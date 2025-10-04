@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A weather app"
+    />
+    <meta
+      name="keywords"
+      content="weather, app, forecast, cloud, sun, rain, city"
+    />
+    <meta name="author" content="x.bavayra" />
+
+    <meta property="og:title" content="Weather app" />
+    <meta
+      property="og:description"
+      content="RThe weather app that allows to follow the actual weather and forecasts for many cities"
+    />
+  <!--  <meta
+      property="og:image"
+      content="https://bavayra.github.io/Shelter/images-base/preview-image.jpg"
+    />
+    <meta property="og:url" content="https://bavayra.github.io/Shelter" />
+    <meta property="og:type" content="website" /> -->
+
+    <script>
+      const saved = localStorage.getItem("theme");
+      const prefersDark = matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute(
+        "data-theme",
+        saved ?? (prefersDark ? "dark" : "light")
+      );
+    </script>
+
+    <title>Weather App</title>
+
+    <link rel="stylesheet" href="index.css" />
+
+    <!--<link
+      rel="icon"
+      type="png"
+      sizes="192x192"
+      href="images-base/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="png"
+      sizes="512x512"
+      href="images-base/android-chrome-512x512.png"
+    />
+    <link
+      rel="icon"
+      type="png"
+      sizes="16x16"
+      href="images-base/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="png"
+      sizes="32x32"
+      href="images-base/favicon-32x32.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images-base/apple-touch-icon.png"
+    />
+  </head> -->
+  <body>
+    <header></header>
+    <main></main>
+  </body>
+</html>
