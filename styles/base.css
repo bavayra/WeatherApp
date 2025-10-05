@@ -1,0 +1,63 @@
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-optical-sizing: auto;
+  letter-spacing: 0.09rem;
+  line-height: 1.4;
+  min-block-size: 100%;
+  min-height: 100%;
+  background: var(--primary-color);
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+:root {
+  /*COLOR STYLES*/
+  --primary-color: #0000;
+  --secondary-color: rgb(60, 60, 67, 0.6);
+  --tertiary-color: rgb(60, 60, 67, 0.3);
+  --quaternary-color: rgb(60, 60, 67, 0.18);
+
+  /*WEATHER COLOR STYLES*/
+  --primary-gradient-color: #0000;
+  --secondary-gradient-color: rgb(60, 60, 67, 0.6);
+  --tertiary-gradient-color: rgb(60, 60, 67, 0.3);
+  --quaternary-gradient-color: rgb(60, 60, 67, 0.18);
+  --surface-gradient-color: rgb(60, 60, 67, 0.3);
+  --accent-gradient-color: rgb(60, 60, 67, 0.18);
+
+  color-scheme: light dark;
+}
+
+:root[data-theme="dark"] {
+  /*COLOR STYLES*/
+  --primary-color: #ffff;
+  --secondary-color: rgb(235, 235, 245, 0.6);
+  --tertiary-color: rgb(235, 235, 245, 0.3);
+  --quaternary-color: rgb(235, 235, 245, 0.18);
+}
+
+button,
+a[role="button"],
+select {
+  cursor: pointer;
+}
+
+img {
+  max-inline-size: 100%;
+  block-size: auto;
+  display: block;
+}
