@@ -6,10 +6,6 @@
   gap: 20px;
   align-items: center;
   margin: 0 auto;
-  inline-size: auto;
-  max-inline-size: 390px;
-  block-size: auto;
-  max-block-size: 183px;
   text-align: center;
   color: var(--primary-color);
 }
@@ -22,7 +18,6 @@
   font-size: var(--large-title-size);
   line-height: var(--large-title-height);
   letter-spacing: var(--large-title-space);
-  margin-bottom: 12px;
 }
 
 .current-temp {
@@ -30,12 +25,13 @@
   line-height: 70px;
   letter-spacing: var(--large-title-space);
   text-align: center;
-  margin-bottom: 12px;
+  margin-block: 12px;
 }
 
 .current-desc-hum {
+  display: flex;
+  flex-direction: column;
   font-size: var(--title3-size);
-  line-height: var(--title3-height);
   letter-spacing: var(--title3-space);
   font-weight: 600;
 }

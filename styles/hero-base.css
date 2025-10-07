@@ -1,0 +1,26 @@
+#rectangle-bg {
+  position: absolute;
+  display: block;
+  align-self: baseline;
+  top: 344px;
+  inline-size: 390px;
+  block-size: 500px;
+  background: linear-gradient(
+    180deg,
+    rgb(58, 63, 84, 0) 12%,
+    rgb(58, 63, 84, 1) 60%
+  );
+  z-index: 0;
+  object-fit: cover;
+  border: none;
+  border-radius: 30px;
+}
+
+#house-img-bg {
+  position: absolute;
+  top: 304px;
+  inline-size: 100svw;
+  max-inline-size: 390px;
+  block-size: 100svh;
+  max-block-size: 390px;
+}

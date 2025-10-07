@@ -63,6 +63,10 @@
   </head>
 
   <body>
+    <div id="bg-layers">
+      <div id="rectangle-bg"></div>
+      <img id="house-img-bg" src="/icons-base/House.svg" />
+    </div>
     <header class="app-header"></header>
     <main class="container">
       <section id="current-weather">
@@ -75,8 +79,27 @@
           </div>
         </div>
       </section>
-      <section id="hourly-forecast"></section>
-      <section id="weekly-forecast"></section>
+      <section id="hero-forecasts">
+        <div id="hourly-forecast-container">
+          <div class="forecasts-btns">
+            <label id="title-hourly-forecast">Hourly Forecast</label>
+            <button id="hourly-forecast-btn"></button>
+
+            <label id="title-weekly-forecast">Weekly Forecast</label>
+            <button id="weekly-forecast-btn"></button>
+          </div>
+          <div class="forecast-by-hours">
+            <div class="forecast-hour">
+              <p class="hour">12AM</p>
+              <img
+                class="forecast-weather-icon"
+                src="icons-weather/moon-cloud-rain-sm.svg"
+              />
+              <p class="temp-by-hour">19</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
     <footer class="app-footer">
       <button id="weather-map"></button>

@@ -1,0 +1,23 @@
+#hourly-forecast-container {
+  position: absolute;
+  display: block;
+  align-self: baseline;
+  top: 519px;
+  inline-size: 390px;
+  block-size: 325px;
+  background: var(--primary-gradient);
+  z-index: 1;
+  object-fit: cover;
+  border: none;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+#hourly-forecast-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--primary-gradient);
+  opacity: 0.26;
+  z-index: 0;
+}

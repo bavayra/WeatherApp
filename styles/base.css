@@ -10,6 +10,7 @@ html {
 }
 
 body {
+  position: relative;
   margin: 0;
   font-family: "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
@@ -139,7 +140,12 @@ img {
 
 .container {
   inline-size: 100svw;
-  max-inline-size: 480px;
+  max-inline-size: 390px;
   min-block-size: 100svh;
   margin: 0 auto;
+}
+
+#hourly-forecast-container > * {
+  position: relative;
+  z-index: 1;
 }
