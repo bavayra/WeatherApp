@@ -63,7 +63,25 @@
   </head>
 
   <body>
-    <header></header>
-    <main></main>
+    <header class="app-header"></header>
+    <main class="container">
+      <section id="current-weather">
+        <div class="current-weather-data">
+          <p class="current-city current">Prague</p>
+          <p class="current-temp current">14</p>
+          <div class="current-desc-hum">
+            <p class="current-desc current">Windy</p>
+            <p class="current-hum current">64%</p>
+          </div>
+        </div>
+      </section>
+      <section id="hourly-forecast"></section>
+      <section id="weekly-forecast"></section>
+    </main>
+    <footer class="app-footer">
+      <button id="weather-map"></button>
+      <button id="add-city-btn"></button>
+      <button id="cities-list"></button>
+    </footer>
   </body>
 </html>

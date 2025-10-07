@@ -1,0 +1,45 @@
+#current-weather {
+  position: relative;
+  top: 98px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin: 0 auto;
+  inline-size: auto;
+  max-inline-size: 390px;
+  block-size: auto;
+  max-block-size: 183px;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.current {
+  margin: 0;
+}
+
+.current-city {
+  font-size: var(--large-title-size);
+  line-height: var(--large-title-height);
+  letter-spacing: var(--large-title-space);
+  margin-bottom: 12px;
+}
+
+.current-temp {
+  font-size: 96px;
+  line-height: 70px;
+  letter-spacing: var(--large-title-space);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.current-desc-hum {
+  font-size: var(--title3-size);
+  line-height: var(--title3-height);
+  letter-spacing: var(--title3-space);
+  font-weight: 600;
+}
+
+.current-desc {
+  color: var(--secondary-color);
+}

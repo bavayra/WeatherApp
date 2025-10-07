@@ -13,8 +13,10 @@ body {
   margin: 0;
   font-family: "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
-  min-block-size: 100%;
-  min-height: 100%;
+  min-block-size: 100svh;
+  background: url(/icons-base/bg.svg) no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 html,
@@ -42,31 +44,36 @@ body {
 
 :root {
   /*COLOR STYLES*/
-  --primary-color: #0000;
+  /*--primary-color: #0000;
   --secondary-color: rgb(60, 60, 67, 0.6);
   --tertiary-color: rgb(60, 60, 67, 0.3);
-  --quaternary-color: rgb(60, 60, 67, 0.18);
+  --quaternary-color: rgb(60, 60, 67, 0.18);*/
+
+  --primary-color: #ffff;
+  --secondary-color: rgb(235, 235, 245, 0.6);
+  --tertiary-color: rgb(235, 235, 245, 0.3);
+  --quaternary-color: rgb(235, 235, 245, 0.18);
 
   /*WEATHER COLOR STYLES*/
-  --primary-gradient: linear-gradient(135deg, #2e335a, #1c1b33);
+  --primary-gradient: linear-gradient(45deg, #2e335a, #1c1b33);
   --secondary-gradient: linear-gradient(135deg, #5936b4, #362a84);
   --tertiary-gradient: linear-gradient(135deg, #3658b1, #c159ec);
   --quaternary-gradient: linear-gradient(90deg, #aec9ff, #083072);
   --surface-gradient: radial-gradient(circle at 70% 70%, #f7cbfd, #7758d1);
   --accent-gradient: conic-gradient(from 180deg at 30% 30%, #612fab);
 
-  /*REGULAR FONTS*/
+  /*FONTS*/
 
   --caption2-size: 11px;
-  --caption2-height: 1.18;
+  --caption2-height: 0.846;
   --caption2-space: 0.07px;
 
   --caption1-size: 12px;
-  --caption1-height: 1.3;
+  --caption1-height: 0.75;
   --caption1-space: 0px;
 
   --footnote-size: 13px;
-  --footnote-height: 1.39;
+  --footnote-height: 0.72;
   --footnote-space: -0.08px;
 
   --subheadline-size: 15px;
@@ -74,27 +81,27 @@ body {
   --subheadline-space: -0.24px;
 
   --callout-size: 16px;
-  --callout-height: var(--caption1-height);
+  --callout-height: 0.76;
   --callout-space: -0.32px;
 
   --body-size: 17px;
-  --body-height: var(--caption1-height);
+  --body-height: 0.77;
   --body-space: -0.41px;
 
   --headline-size: var(--body-size);
-  --headline-height: var(--caption1-height);
+  --headline-height: var(--body-height);
   --headline-space: var(--body-space);
 
   --title3-size: 20px;
-  --title3-height: 1.2;
+  --title3-height: 0.83;
   --title3-space: 0.38px;
 
   --title2-size: 22px;
-  --title2-height: 1.28;
+  --title2-height: 0.79;
   --title2-space: 0.35px;
 
   --title1-size: 28px;
-  --title1-height: var(--title3-height);
+  --title1-height: 0.82;
   --title1-space: 0.36px;
 
   --large-title-size: 34px;
@@ -104,19 +111,19 @@ body {
   color-scheme: light dark;
 }
 
-:root[data-theme="dark"] {
-  /*COLOR STYLES*/
+/*:root[data-theme="dark"] {
+  /*COLOR STYLES
   --primary-color: #ffff;
   --secondary-color: rgb(235, 235, 245, 0.6);
   --tertiary-color: rgb(235, 235, 245, 0.3);
   --quaternary-color: rgb(235, 235, 245, 0.18);
 
-  /*WEATHER COLOR STYLES*/
+  /*WEATHER COLOR STYLES
   --primary-gradient: #48319d;
   --secondary-gradient: #1f1d47;
   --tertiary-gradient: #c427fb;
   --quaternary-gradient: #e0d9ff;
-}
+}*/
 
 button,
 a[role="button"],
@@ -128,4 +135,11 @@ img {
   max-inline-size: 100%;
   block-size: auto;
   display: block;
+}
+
+.container {
+  inline-size: 100svw;
+  max-inline-size: 480px;
+  min-block-size: 100svh;
+  margin: 0 auto;
 }
