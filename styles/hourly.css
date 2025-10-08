@@ -22,14 +22,13 @@
 .forecasts-btns {
   position: absolute;
   display: flex;
+  flex-direction: row;
   inline-size: var(--container-w);
   block-size: 49px;
   border: none;
 }
 
 .forecasts-btns button {
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
@@ -39,7 +38,33 @@
   line-height: var(--subheadline-height);
   letter-spacing: var(--subheadline-space);
   color: var(--secondary-color);
-  font-weight: 400;
+  font-weight: 600;
+}
+
+#forecast-btns-underline {
+  position: absolute;
+  top: 47px;
+  block-size: 3px;
+  inline-size: 100%;
+  max-inline-size: 390px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 3%,
+    rgba(255, 255, 255, 1) 22%,
+    rgba(255, 255, 255, 0) 44%
+  );
+  border: none;
+}
+
+#forecast-btns-separator {
+  position: absolute;
+  top: 49px;
+  inline-size: 100%;
+  max-inline-size: 390px;
+  block-size: 1px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.2);
 }
 
 .forecast-by-hours {
@@ -77,6 +102,8 @@
 }
 
 .forecast-weather-icon {
+  top: 52px;
+  left: 8px;
   inline-size: 44px;
   block-size: 38px;
 }
@@ -87,4 +114,15 @@
   font-size: var(--title3-size);
   line-height: var(--title3-height);
   letter-spacing: var(--title3-space);
+}
+
+#ellipse1-bg {
+  position: absolute;
+  top: 38px;
+  left: 191px;
+  inline-size: 250px;
+  block-size: 250px;
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: 50%;
 }
