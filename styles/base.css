@@ -44,6 +44,10 @@ body {
 }
 
 :root {
+  --container-w: 390px;
+
+  --inner-shadow: inset 0 1px 0 0 #ffffff;
+
   /*COLOR STYLES*/
   /*--primary-color: #0000;
   --secondary-color: rgb(60, 60, 67, 0.6);
@@ -61,7 +65,13 @@ body {
   --tertiary-gradient: linear-gradient(135deg, #3658b1, #c159ec);
   --quaternary-gradient: linear-gradient(90deg, #aec9ff, #083072);
   --surface-gradient: radial-gradient(circle at 70% 70%, #f7cbfd, #7758d1);
-  --accent-gradient: conic-gradient(from 180deg at 30% 30%, #612fab);
+  --accent-gradient: conic-gradient(
+    from 180deg at 30% 30%,
+    rgb(97, 47, 171, 0) 14%,
+    rgb(97, 47, 171, 1) 36%,
+    rgb(97, 47, 171, 0) 63%,
+    rgb(97, 47, 171, 1) 75%
+  );
 
   /*FONTS*/
 
@@ -140,12 +150,7 @@ img {
 
 .container {
   inline-size: 100svw;
-  max-inline-size: 390px;
+  max-inline-size: var(--container-w);
   min-block-size: 100svh;
   margin: 0 auto;
-}
-
-#hourly-forecast-container > * {
-  position: relative;
-  z-index: 1;
 }
