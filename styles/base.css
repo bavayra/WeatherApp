@@ -148,6 +148,10 @@ img {
   display: block;
 }
 
+.visually-hidden {
+  display: none;
+}
+
 .container {
   inline-size: 100svw;
   max-inline-size: var(--container-w);
