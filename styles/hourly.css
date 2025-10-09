@@ -1,14 +1,36 @@
+#hero-forecasts {
+  position: absolute;
+  top: 519px;
+  background: var(--primary-color);
+  inline-size: var(--container-w);
+  block-size: 325px;
+  border: none;
+  border-radius: 30px;
+  z-index: 0;
+}
+
+#rectangle2-bg {
+  position: absolute;
+  top: 519px;
+  background: var(--primary-gradient);
+  opacity: 0.26;
+  inline-size: var(--container-w);
+  block-size: 325px;
+  box-shadow: var(--inner-shadow);
+  border: none;
+  border-radius: 44px;
+  backdrop-filter: blur(50px);
+  z-index: 2;
+}
+
 #hourly-forecast-container {
   position: absolute;
   display: block;
   top: 519px;
   inline-size: var(--container-w);
   block-size: 325px;
-  background: linear-gradient(
-    45deg,
-    rgb(46, 51, 90, 0.26),
-    rgb(28, 27, 51, 0.26)
-  );
+  background: linear-gradient(45deg, rgb(46, 51, 90, 1), rgb(28, 27, 51, 1));
+  opacity: 0.26;
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
   z-index: 1;
@@ -114,15 +136,4 @@
   font-size: var(--title3-size);
   line-height: var(--title3-height);
   letter-spacing: var(--title3-space);
-}
-
-#ellipse1-bg {
-  position: absolute;
-  top: 38px;
-  left: 191px;
-  inline-size: 250px;
-  block-size: 250px;
-  background: var(--accent-gradient);
-  border: none;
-  border-radius: 50%;
 }
