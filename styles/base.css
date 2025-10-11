@@ -10,12 +10,10 @@ html {
 }
 
 body {
-  position: relative;
   margin: 0;
   font-family: "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   background-color: var(--primary-gradient);
-  z-index: 0;
 }
 
 html,
@@ -58,19 +56,17 @@ body {
   --quaternary-color: rgb(235, 235, 245, 0.18);
 
   /*WEATHER COLOR STYLES*/
-  --primary-gradient: linear-gradient(165deg, #2e335a, #1c1b33);
+  --primary-gradient: linear-gradient(120deg, #2e335a, #1c1b33);
   --secondary-gradient: linear-gradient(135deg, #5936b4, #362a84);
   --tertiary-gradient: linear-gradient(135deg, #3658b1, #c159ec);
   --quaternary-gradient: linear-gradient(90deg, #aec9ff, #083072);
   --surface-gradient: radial-gradient(circle at 70% 70%, #f7cbfd, #7758d1);
   --accent-gradient: conic-gradient(
     from 180deg,
-    rgb(97, 47, 171, 0.5) 0%,
     rgb(97, 47, 171, 0) 14%,
     rgb(97, 47, 171, 1) 36%,
     rgb(97, 47, 171, 0) 63%,
-    rgb(97, 47, 171, 1) 75%,
-    rgb(97, 47, 171, 0.5) 100%
+    rgb(97, 47, 171, 1) 75%
   );
 
   /*FONTS*/
@@ -149,6 +145,7 @@ img {
 }
 
 #hero {
+  position: relative;
   min-inline-size: 100svw;
   min-block-size: 100svh;
   background: url(/icons-base/bg.svg) no-repeat;
