@@ -1,0 +1,88 @@
+.home-indicator {
+  position: absolute;
+  top: 520px;
+  inline-size: var(--container-w);
+  block-size: 49px;
+  z-index: 999;
+  border: none;
+  border-top-left-radius: 44px;
+  border-top-right-radius: 44px;
+}
+
+#shape-toggle {
+  position: absolute;
+  display: flex;
+  top: 8px;
+  left: 170px;
+  inline-size: 48px;
+  block-size: 5px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  box-shadow: var(--drop-shadow);
+}
+
+#forecast-btns-separator {
+  position: absolute;
+  top: 49px;
+  background: none;
+  inline-size: var(--container-w);
+  block-size: 1px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#forecast-btns-separator::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.3);
+  mix-blend-mode: overlay;
+}
+
+#forecast-btns-underline {
+  position: absolute;
+  top: 47px;
+  inline-size: 100%;
+  max-inline-size: 390px;
+  block-size: 3px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 3%,
+    rgba(255, 255, 255, 0.4) 22%,
+    rgba(255, 255, 255, 0) 44%
+  );
+  border: none;
+  mix-blend-mode: overlay;
+  overflow: hidden;
+}
+
+.forecasts-btns {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  inline-size: var(--container-w);
+}
+
+.forecasts-btns button {
+  background: none;
+  border: none;
+  color: var(--secondary-color);
+  font-size: var(--subheadline-size);
+  letter-spacing: var(--subheadline-space);
+  line-height: var(--subheadline-height);
+}
+
+#hourly-forecast-btn {
+  position: absolute;
+  top: 25px;
+  left: 32px;
+}
+
+#weekly-forecast-btn {
+  position: absolute;
+  top: 25px;
+  left: 243px;
+}

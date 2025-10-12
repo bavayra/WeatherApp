@@ -9,6 +9,22 @@ html {
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("../fonts/sfpro-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("../fonts/sfpro-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   margin: 0;
   font-family: "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -21,28 +37,11 @@ body {
   scroll-behavior: smooth;
 }
 
-@font-face {
-  font-family: "SF Pro Display";
-  src: local("SF Pro Display Regular"), local("SF Pro Display"),
-    url("../fonts/sfpro-regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "SF Pro Display";
-  src: local("SF Pro Display Bold"), local("SF Pro Display"),
-    url("../fonts/sfpro-bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --container-w: 390px;
 
   --inner-shadow: inset 0 1px 0 0 #ffffff;
+  --drop-shadow: 1px -1px 2px 0 #343030cb;
 
   /*COLOR STYLES*/
   /*--primary-color: #0000;

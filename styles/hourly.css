@@ -25,54 +25,6 @@
   box-shadow: var(--inner-shadow);
 }
 
-.forecasts-btns {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  inline-size: var(--container-w);
-  block-size: 49px;
-  border: none;
-}
-
-.forecasts-btns button {
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  background: transparent;
-  border: none;
-  font-size: var(--subheadline-size);
-  line-height: var(--subheadline-height);
-  letter-spacing: var(--subheadline-space);
-  color: var(--secondary-color);
-  font-weight: 600;
-}
-
-#forecast-btns-underline {
-  position: absolute;
-  top: 47px;
-  block-size: 3px;
-  inline-size: 100%;
-  max-inline-size: 390px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0) 3%,
-    rgba(255, 255, 255, 1) 22%,
-    rgba(255, 255, 255, 0) 44%
-  );
-  border: none;
-}
-
-#forecast-btns-separator {
-  position: absolute;
-  top: 49px;
-  inline-size: 100%;
-  max-inline-size: 390px;
-  block-size: 1px;
-  background-color: rgba(255, 255, 255, 0.3);
-  border: none;
-  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.2);
-}
-
 .forecast-by-hours {
   position: absolute;
   display: grid;

@@ -1,4 +1,5 @@
-@import url(/styles/base.css);
-@import url(/styles/hero-base.css);
-@import url(/styles/hourly.css);
-@import url(/styles/current-w.css);
+@import url(./styles/base.css);
+@import url(./styles/hero-base.css);
+@import url(./styles/home-indicator.css);
+@import url(./styles/hourly.css);
+@import url(./styles/current-w.css);
