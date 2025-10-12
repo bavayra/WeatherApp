@@ -9,25 +9,9 @@ html {
   box-sizing: border-box;
 }
 
-@font-face {
-  font-family: "SF Pro Display";
-  src: url("../fonts/sfpro-regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "SF Pro Display";
-  src: url("../fonts/sfpro-bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 body {
   margin: 0;
-  font-family: "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   background-color: var(--primary-gradient);
 }

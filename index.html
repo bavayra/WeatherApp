@@ -18,6 +18,12 @@
     <meta property="og:url" content="https://bavayra.github.io/WeatherApp" />
     <meta property="og:type" content="website" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+<!--Althought the author of the Figma design used SF Pro Display Font, it's suitable only for iOs devices. I tried to used as similar one as possible-->
+
     <script>
       const saved = localStorage.getItem("theme");
       const prefersDark = matchMedia("(prefers-color-scheme: dark)").matches;
@@ -28,9 +34,9 @@
     </script>
 
     <title>Weather App</title>
-
+    
     <link rel="stylesheet" href="index.css" />
-    <link rel="stylesheet" href="./styles/base.css">
+  
 
     <link
       rel="icon"

@@ -33,7 +33,6 @@
   flex-direction: column;
   font-size: var(--title3-size);
   letter-spacing: var(--title3-space);
-  font-weight: 600;
 }
 
 .current-desc {
