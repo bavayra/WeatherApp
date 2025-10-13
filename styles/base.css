@@ -127,20 +127,12 @@ img {
   display: block;
 }
 
-#hero-bg {
-  position: relative;
-  min-inline-size: 100svw;
-  min-block-size: 100svh;
-  background: url(/icons-base/bg.svg) no-repeat;
-  background-size: auto;
-  background-position: center;
-}
-
 .visually-hidden {
   display: none;
 }
 
 .container {
+  position: relative;
   inline-size: 100svw;
   max-inline-size: var(--container-w);
   min-block-size: 100svh;

@@ -1,25 +1,19 @@
 #hero-forecasts {
   position: absolute;
   top: 519px;
-  inline-size: var(--container-w);
-  block-size: 325px;
-  border: none;
-  border-radius: 30px;
-}
-
-#hourly-forecast-container {
-  position: absolute;
+  z-index: 5;
   display: block;
-  top: 519px;
   inline-size: var(--container-w);
   block-size: 325px;
-  background: linear-gradient(45deg, rgb(46, 51, 90, 1), rgb(28, 27, 51, 1));
-  opacity: 0.26;
-  backdrop-filter: blur(50px);
-  -webkit-backdrop-filter: blur(50px);
-  object-fit: cover;
   border: none;
-  border-radius: 44px;
+  border-radius: 40px;
+  background: linear-gradient(
+    45deg,
+    rgb(46, 51, 90, 0.26),
+    rgb(28, 27, 51, 0.26)
+  );
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   overflow: hidden;
   box-shadow: var(--inner-shadow);
 }
@@ -27,11 +21,13 @@
 .forecast-by-hours {
   position: absolute;
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 12px;
   top: 69px;
-  margin-left: 20px;
+  left: 20px;
 }
 
-.forecast-hour {
+.forecast {
   display: grid;
   gap: 16px;
   grid-template-rows: repeat(3, 1fr);
@@ -42,17 +38,25 @@
   inline-size: auto;
   max-block-size: 146px;
   block-size: auto;
+  color: var(--primary-color);
+  border: none;
   border-radius: 30px;
-  background-color: rgba(72, 49, 157, 0.2);
+  background-color: rgba(72, 49, 157, 0.3);
   color: var(--primary-color);
   text-align: center;
-  box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25),
-    5px 4px 10px 0 rgba(0, 0, 0, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.3),
+    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.15);
+  /*box-shadow: inset 1px 1px 0px 0px rgba(255, 255, 255, 0.25),
+    5px 4px 10px 1px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.1);*/
+}
+
+.forecast:hover {
+  background-color: #48319d;
 }
 
 .hour {
   margin: 0;
-  color: var(--primary-color);
   font-size: var(--subheadline-size);
   line-height: var(--subheadline-height);
   letter-spacing: var(--subheadline-space);
@@ -67,7 +71,6 @@
 
 .temp-by-hour {
   margin: 0;
-  color: var(--primary-color);
   font-size: var(--title3-size);
   line-height: var(--title3-height);
   letter-spacing: var(--title3-space);

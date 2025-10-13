@@ -1,9 +1,7 @@
 .home-indicator {
   position: absolute;
-  top: 520px;
   inline-size: var(--container-w);
   block-size: 49px;
-  z-index: 999;
   border: none;
   border-top-left-radius: 44px;
   border-top-right-radius: 44px;

@@ -1,5 +1,5 @@
 #hero-bg {
-  position: relative;
+  position: absolute;
   min-inline-size: 100svw;
   min-block-size: 100svh;
   background: url(/icons-base/bg.svg) no-repeat;
@@ -34,12 +34,12 @@
   inline-size: var(--container-w);
   block-size: 325px;
   box-shadow: var(--inner-shadow);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
   mix-blend-mode: overlay;
   border: none;
   border-radius: 44px;
-  z-index: 2;
+  z-index: 1;
 }
 
 #ellipse1-bg {
@@ -52,8 +52,8 @@
   border: none;
   border-radius: 50%;
   background: var(--accent-gradient);
-  filter: blur(60px);
-  -webkit-filter: blur(60px);
+  filter: blur(40px);
+  -webkit-filter: blur(40px);
   z-index: 4;
 }
 
@@ -83,7 +83,7 @@
   border: none;
   border-radius: 50%;
   background: var(--accent-gradient);
-  filter: blur(100px);
+  filter: blur(80px);
   z-index: 4;
 }
 
@@ -103,8 +103,8 @@
   );
   border: none;
   border-radius: 50%;
-  filter: blur(100px);
-  -webkit-filter: blur(100px);
+  filter: blur(50px);
+  -webkit-filter: blur(50px);
   z-index: 4;
 }
 
