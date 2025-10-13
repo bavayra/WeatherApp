@@ -1,7 +1,6 @@
 #hero-forecasts {
   position: absolute;
   top: 519px;
-  background: var(--primary-color);
   inline-size: var(--container-w);
   block-size: 325px;
   border: none;

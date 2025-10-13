@@ -1,7 +1,10 @@
-#hero {
+#hero-bg {
   position: relative;
-  inline-size: var(--container-w);
-  block-size: 325px;
+  min-inline-size: 100svw;
+  min-block-size: 100svh;
+  background: url(/icons-base/bg.svg) no-repeat;
+  background-size: auto;
+  background-position: center;
   background-color: var(--primary-color);
 }
 

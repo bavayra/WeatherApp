@@ -18,11 +18,14 @@
     <meta property="og:url" content="https://bavayra.github.io/WeatherApp" />
     <meta property="og:type" content="website" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
 
-<!--Althought the author of the Figma design used SF Pro Display Font, it's suitable only for iOs devices. I tried to used as similar one as possible-->
+    <!--Althought the author of the Figma design used SF Pro Display Font, it's suitable only for iOs devices. I tried to used as similar one as possible-->
 
     <script>
       const saved = localStorage.getItem("theme");
@@ -34,9 +37,8 @@
     </script>
 
     <title>Weather App</title>
-    
+
     <link rel="stylesheet" href="index.css" />
-  
 
     <link
       rel="icon"
@@ -71,7 +73,7 @@
 
   <body>
     <!--<header class="app-header"></header>-->
-    <section id="hero">
+    <section id="hero-bg">
       <div id="rectangle1-bg"></div>
       <img id="house-img-bg" src="/icons-base/House.svg" />
       <div id="rectangle2-bg">
@@ -80,8 +82,9 @@
       <div id="ellipse6-bg"></div>
       <div id="ellipse1-bg"></div>
       <div id="ellipse4-bg"></div>
+    </section>
 
-      <main class="container">
+    <main class="container">
       <section id="current-weather">
         <div class="current-weather-data">
           <p class="current-city current">Montreal</p>
@@ -92,47 +95,43 @@
           </div>
         </div>
       </section>
-     <!--   <section id="hero-forecasts">-->
 
-      <!-- </section>-->
+      <section id="hero-forecasts">
+       
+          <section class="home-indicator">
+            <div id="shape-toggle"></div>
+            <div class="forecasts-btns">
+              <label id="title-hourly-forecast" class="visually-hidden"
+                >Hourly Forecast</label
+              >
+              <button id="hourly-forecast-btn">Hourly Forecast</button>
 
-      <!--ДОБАВЬ ТУТ СЕКШН-->
-      <!-- <div id="hourly-forecast-container"></div>-->
+              <label id="title-weekly-forecast" class="visually-hidden"
+                >Weekly Forecast</label
+              >
+              <button id="weekly-forecast-btn">Weekly Forecast</button>
+            </div>
+            <div id="forecast-btns-underline"></div>
+            <div id="forecast-btns-separator"></div>
+          </section>
 
-      <section class="home-indicator">
-        <div id="shape-toggle"></div>
-        <<div class="forecasts-btns">
-          <label id="title-hourly-forecast" class="visually-hidden"
-            >Hourly Forecast</label
-          >
-          <button id="hourly-forecast-btn">Hourly Forecast</button>
-
-          <label id="title-weekly-forecast" class="visually-hidden"
-            >Weekly Forecast</label
-          >
-          <button id="weekly-forecast-btn">Weekly Forecast</button> 
-        <div id="forecast-btns-underline"></div>
-        <div id="forecast-btns-separator"></div>
-      </section>
-
-      <!--<div class="forecast-by-hours">
+          <div class="forecast-by-hours">
             <div class="forecast-hour">
               <p class="hour">12 AM</p>
               <img
                 class="forecast-weather-icon"
                 src="icons-weather/moon-cloud-rain-sm.svg"
               />
-              <p class="temp-by-hour">19</p>
+              <p class="temp-by-hour">19&deg;</p>
             </div>
-          </div>
-        </div>
-      </section>-->
+          </section>
+    
+      </section>
     </main>
-      <!-- <footer class="app-footer">
+    <!-- <footer class="app-footer">
       <button id="weather-map"></button>
       <button id="add-city-btn"></button>
       <button id="cities-list"></button>
     </footer>-->
-    </section>
   </body>
 </html>

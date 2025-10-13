@@ -1,5 +1,5 @@
 #current-weather {
-  position: relative;
+  position: absolute;
   top: 98px;
   display: flex;
   flex-direction: column;
@@ -47,7 +47,7 @@
   font-size: var(--title3-size);
   letter-spacing: var(--title3-space);
   text-wrap: nowrap;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .current-desc {
