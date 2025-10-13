@@ -74,7 +74,7 @@
   font-size: var(--subheadline-size);
   letter-spacing: var(--subheadline-space);
   line-height: var(--subheadline-height);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 #hourly-forecast-btn {

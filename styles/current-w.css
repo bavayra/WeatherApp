@@ -5,6 +5,8 @@
   flex-direction: column;
   gap: 20px;
   align-items: center;
+  inline-size: var(--container-w);
+  block-size: 183px;
   margin: 0 auto;
   text-align: center;
   color: var(--primary-color);
@@ -15,24 +17,37 @@
 }
 
 .current-city {
+  display: flex;
+  justify-self: center;
+  inline-size: 129px;
+  block-size: 41px;
+  font-weight: 300;
   font-size: var(--large-title-size);
   line-height: var(--large-title-height);
   letter-spacing: var(--large-title-space);
 }
 
 .current-temp {
+  inline-size: 127px;
+  block-size: 70px;
+  margin-bottom: 12px;
   font-size: 96px;
   line-height: 70px;
   letter-spacing: var(--large-title-space);
   text-align: center;
-  margin-block: 12px;
+  font-weight: 200;
 }
 
 .current-desc-hum {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  inline-size: 115px;
+  block-size: 48px;
   font-size: var(--title3-size);
   letter-spacing: var(--title3-space);
+  text-wrap: nowrap;
+  font-weight: 500;
 }
 
 .current-desc {
