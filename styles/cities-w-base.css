@@ -1,0 +1,33 @@
+#weather-by-cities {
+  position: relative;
+  width: var(--container-w);
+  height: 100svh;
+  max-height: 844px;
+  background: var(--primary-gradient);
+}
+
+#ellipse7-bg {
+  position: absolute;
+  top: 80px;
+  left: -3px;
+  inline-size: 352px;
+  block-size: 352px;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  opacity: 0.8;
+  filter: blur(90px);
+}
+
+#ellipse8-bg {
+  position: absolute;
+  top: 470px;
+  left: 122px;
+  inline-size: 365px;
+  block-size: 365px;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  opacity: 0.8;
+  filter: blur(90px);
+}

@@ -6,6 +6,7 @@
   block-size: 100px;
   border: none;
   overflow: hidden;
+  z-index: 40;
 }
 
 #footer-back {
@@ -59,7 +60,7 @@
 
 #footer-substract {
   position: absolute;
-  top: 1px;
+  top: 3px;
   inline-size: 258px;
   block-size: 100px;
 }

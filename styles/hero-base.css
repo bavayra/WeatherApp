@@ -6,6 +6,7 @@
   background-size: auto;
   background-position: center;
   background-color: var(--primary-color);
+  overflow: hidden;
 }
 
 #rectangle1-bg {
