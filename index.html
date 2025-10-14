@@ -135,17 +135,33 @@
       </section>
     </main>
     <footer class="app-footer">
-      <button id="weather-map">
-        <img src="/icons-base/Map.svg" />
-      </button>
-      <div id="footer-center">
+      <div id="footer-back">
+        <svg
+          id="footer-separator"
+          viewBox="0 0 390 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0,4 Q195,40 390,4"
+            stroke="#A6A6D6"
+            stroke-width="1"
+            fill="none"
+          />
+        </svg>
+        <div id="back-btns">
+          <button class="weather-map btn-footer">
+            <img src="/icons-base/Map.svg" />
+          </button>
+          <button class="cities-list btn-footer">
+            <img src="/icons-base/List.svg" />
+          </button>
+        </div>
+      </div>
+      <!--<div id="footer-center">
         <button id="add-city-btn">
           <img src="/icons-base/Plus.svg" />
         </button>
-      </div>
-      <button id="cities-list">
-        <img src="/icons-base/List.svg" />
-      </button>
+      </div>-->
     </footer>
   </body>
 </html>

@@ -38,7 +38,8 @@
   -webkit-backdrop-filter: blur(22px);
   mix-blend-mode: overlay;
   border: none;
-  border-radius: 44px;
+  border-top-left-radius: 44px;
+  border-top-right-radius: 44px;
   z-index: 1;
 }
 

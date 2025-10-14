@@ -1,0 +1,50 @@
+.app-footer {
+  position: absolute;
+  top: 744px;
+  z-index: 100;
+  inline-size: var(--container-w);
+  block-size: 100px;
+  border: none;
+}
+
+#footer-back {
+  position: absolute;
+  top: 12px;
+  inline-size: 390px;
+  block-size: 88px;
+}
+
+#back-btns {
+  position: absolute;
+  left: 32px;
+  top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  inline-size: 326px;
+  block-size: auto;
+  gap: auto;
+}
+
+#back-btns button {
+  padding: 0;
+  inline-size: 44px;
+  block-size: 44px;
+  background-color: transparent;
+  border: none;
+}
+
+#footer-separator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--container-w);
+  height: 24px;
+  fill: none;
+}
+
+#footer-separator path {
+  stroke: rgb(117, 130, 244, 0.5);
+  stroke-width: 0.5;
+  fill: none;
+}
