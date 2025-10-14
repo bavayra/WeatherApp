@@ -5,6 +5,7 @@
   inline-size: var(--container-w);
   block-size: 100px;
   border: none;
+  overflow: hidden;
 }
 
 #footer-back {
@@ -26,7 +27,7 @@
   gap: auto;
 }
 
-#back-btns button {
+.btn-footer {
   padding: 0;
   inline-size: 44px;
   block-size: 44px;
@@ -47,4 +48,58 @@
   stroke: rgb(117, 130, 244, 0.5);
   stroke-width: 0.5;
   fill: none;
+}
+
+#footer-center {
+  position: absolute;
+  left: 66px;
+  inline-size: 258px;
+  block-size: 100px;
+}
+
+#footer-substract {
+  position: absolute;
+  top: 1px;
+  inline-size: 258px;
+  block-size: 100px;
+}
+
+#add-city-bg {
+  position: absolute;
+  top: 12px;
+  left: 96.5px;
+  z-index: 9999;
+  align-self: center;
+  inline-size: 64px;
+  block-size: 64px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(255, 255, 255, 0.4) 76%
+  );
+  z-index: 50;
+}
+
+#add-city-btn {
+  position: absolute;
+  top: 15px;
+  left: 100px;
+  z-index: 51;
+  inline-size: 58px;
+  block-size: 58px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f5f5f9, #dadfe7);
+  box-shadow: 10px 10px 20px 7px rgba(13, 20, 49, 0.5),
+    -10px -10px 15px 1px rgba(255, 255, 255, 0.15), inset 1px 1px 0.5px 0px #fff,
+    inset -2px -4px 8px 0px rgba(100, 100, 100, 0.78);
+}
+
+#add-city-btn img {
+  align-self: center;
+  justify-self: center;
+  background: transparent;
 }
