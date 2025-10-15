@@ -12,10 +12,68 @@
   position: absolute;
   inline-size: 342px;
   block-size: 184px;
-  border: 1px solid red;
+  border: none;
 }
 
-.weather-card-bg img {
+.weather-card-bg {
   position: absolute;
   bottom: 0;
+  z-index: 5;
+}
+
+.weather-icon img {
+  z-index: 6;
+  position: absolute;
+  top: -14px;
+  left: 178px;
+  inline-size: 160px;
+  block-size: 160px;
+}
+
+.city-temp {
+  position: absolute;
+  left: 20px;
+  top: 59px;
+  padding: 0;
+
+  z-index: 7;
+}
+
+.city-temp p {
+  position: absolute;
+  margin: 0;
+  font-size: 62px;
+  letter-spacing: 0.37px;
+  line-height: 41px;
+  padding: 0;
+  font-weight: 400;
+}
+
+.weather-desc {
+  position: absolute;
+  z-index: 7;
+  top: 124px;
+  left: 20px;
+  inline-size: 136px;
+  block-size: 41px;
+  line-height: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+.weather-hum {
+  margin: 0;
+  color: var(--secondary-color);
+  font-size: var(--caption1-size);
+  line-height: var(--caption1-height);
+  letter-spacing: var(--caption1-space);
+}
+
+.weather-city-country {
+  font-size: var(--subheadline-size);
+  line-height: var(--subheadline-height);
+  letter-spacing: var(--subheadline-space);
+  font-weight: 300;
+  margin: 0;
+  margin-top: 10px;
 }
