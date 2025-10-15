@@ -44,7 +44,7 @@
   position: absolute;
   top: 47px;
   inline-size: 100%;
-  max-inline-size: 390px;
+  max-inline-size: var(--container-w);
   block-size: 3px;
   background: linear-gradient(
     90deg,
