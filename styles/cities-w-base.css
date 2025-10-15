@@ -41,7 +41,7 @@
   inline-size: 100%;
   max-inline-size: var(--container-w);
   block-size: 106px;
-  border: 1px solid red;
+  border: none;
 }
 
 #weather-head-container {
@@ -148,7 +148,6 @@
 #search-input::placeholder {
   position: absolute;
   left: 28.63px;
-
   font-size: var(--body-size);
   letter-spacing: var(--callout-space);
   line-height: var(--body-height);

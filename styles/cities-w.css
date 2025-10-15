@@ -1,1 +1,21 @@
+#weather-widget {
+  position: absolute;
+  top: 165px;
+  left: 26px;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  inline-size: 338px;
+  block-size: 100svh;
+}
 
+.weather-card {
+  position: absolute;
+  inline-size: 342px;
+  block-size: 184px;
+  border: 1px solid red;
+}
+
+.weather-card-bg img {
+  position: absolute;
+  bottom: 0;
+}
