@@ -1,0 +1,53 @@
+.forecast-by-days {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 12px;
+  top: 69px;
+  left: 20px;
+}
+
+.forecast {
+  display: grid;
+  gap: 16px;
+  grid-template-rows: repeat(3, 1fr);
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 8px;
+  max-inline-size: 60px;
+  inline-size: auto;
+  max-block-size: 146px;
+  block-size: auto;
+  border: none;
+  border-radius: 30px;
+  background-color: rgba(72, 49, 157, 0.3);
+  color: var(--primary-color);
+  text-align: center;
+  box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.3),
+    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.15);
+}
+
+.forecast:hover {
+  background-color: #48319d;
+}
+
+.day {
+  margin: 0;
+  font-size: var(--subheadline-size);
+  line-height: var(--subheadline-height);
+  letter-spacing: var(--subheadline-space);
+}
+
+.forecast-weather-icon {
+  top: 52px;
+  left: 8px;
+  inline-size: 44px;
+  block-size: 38px;
+}
+
+.temp-by-day {
+  margin: 0;
+  font-size: var(--title3-size);
+  line-height: var(--title3-height);
+  letter-spacing: var(--title3-space);
+}

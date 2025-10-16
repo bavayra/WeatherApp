@@ -8,20 +8,20 @@
   block-size: 100svh;
 }
 
-.weather-card {
+.weather-card1 {
   position: absolute;
   inline-size: 342px;
   block-size: 184px;
   border: none;
 }
 
-.weather-card-bg {
+.weather-card-bg1 {
   position: absolute;
   bottom: 0;
   z-index: 5;
 }
 
-.weather-icon img {
+.weather-icon1 img {
   z-index: 6;
   position: absolute;
   top: -14px;
@@ -30,16 +30,15 @@
   block-size: 160px;
 }
 
-.city-temp {
+.city-temp1 {
   position: absolute;
   left: 20px;
   top: 59px;
   padding: 0;
-
   z-index: 7;
 }
 
-.city-temp p {
+.city-temp1 p {
   position: absolute;
   margin: 0;
   font-size: 62px;
@@ -49,7 +48,7 @@
   font-weight: 400;
 }
 
-.weather-desc {
+.weather-desc1 {
   position: absolute;
   z-index: 7;
   top: 124px;
@@ -61,7 +60,7 @@
   margin: 0;
 }
 
-.weather-hum {
+.weather-hum1 {
   margin: 0;
   color: var(--secondary-color);
   font-size: var(--caption1-size);
@@ -69,7 +68,77 @@
   letter-spacing: var(--caption1-space);
 }
 
-.weather-city-country {
+.weather-city-country1 {
+  font-size: var(--subheadline-size);
+  line-height: var(--subheadline-height);
+  letter-spacing: var(--subheadline-space);
+  font-weight: 300;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.weather-card2 {
+  position: absolute;
+  inline-size: 342px;
+  block-size: 184px;
+  border: none;
+  top: 204px;
+}
+
+.weather-card-bg2 {
+  position: absolute;
+  bottom: 0;
+  z-index: 5;
+}
+
+.weather-icon2 img {
+  z-index: 6;
+  position: absolute;
+  top: -14px;
+  left: 178px;
+  inline-size: 160px;
+  block-size: 160px;
+}
+
+.city-temp2 {
+  position: absolute;
+  left: 20px;
+  top: 59px;
+  padding: 0;
+  z-index: 7;
+}
+
+.city-temp2 p {
+  position: absolute;
+  margin: 0;
+  font-size: 62px;
+  letter-spacing: 0.37px;
+  line-height: 41px;
+  padding: 0;
+  font-weight: 400;
+}
+
+.weather-desc2 {
+  position: absolute;
+  z-index: 7;
+  top: 124px;
+  left: 20px;
+  inline-size: 136px;
+  block-size: 41px;
+  line-height: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+.weather-hum2 {
+  margin: 0;
+  color: var(--secondary-color);
+  font-size: var(--caption1-size);
+  line-height: var(--caption1-height);
+  letter-spacing: var(--caption1-space);
+}
+
+.weather-city-country2 {
   font-size: var(--subheadline-size);
   line-height: var(--subheadline-height);
   letter-spacing: var(--subheadline-space);
