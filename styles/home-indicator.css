@@ -12,8 +12,8 @@
   display: flex;
   top: 8px;
   left: 170px;
-  inline-size: 48px;
-  block-size: 5px;
+  width: 48px;
+  height: 5px;
   border: none;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.3);
@@ -23,10 +23,10 @@
 #forecast-btns-separator {
   position: absolute;
   top: 49px;
-  background: none;
   inline-size: var(--container-w);
   block-size: 1px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: none;
 }
 
 #forecast-btns-separator::after {

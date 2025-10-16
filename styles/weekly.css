@@ -25,10 +25,12 @@
   text-align: center;
   box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.3),
     inset 1px 1px 0px 0px rgba(255, 255, 255, 0.15);
+  transition: transform 0.3s ease-in-out;
 }
 
 .forecast:hover {
   background-color: #48319d;
+  transform: scale(1.05);
 }
 
 .day {
@@ -41,8 +43,8 @@
 .forecast-weather-icon {
   top: 52px;
   left: 8px;
-  inline-size: 44px;
-  block-size: 38px;
+  width: 44px;
+  height: 38px;
 }
 
 .temp-by-day {

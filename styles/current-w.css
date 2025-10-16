@@ -4,10 +4,10 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin: 0 auto;
   align-items: center;
   inline-size: var(--container-w);
   block-size: 183px;
-  margin: 0 auto;
   text-align: center;
   color: var(--primary-color);
 }

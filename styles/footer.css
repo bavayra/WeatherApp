@@ -6,7 +6,6 @@
   block-size: 100px;
   border: none;
   overflow: hidden;
-  z-index: 40;
 }
 
 #footer-back {
@@ -22,10 +21,10 @@
   top: 20px;
   display: flex;
   justify-content: space-between;
+  gap: auto;
   align-items: center;
   inline-size: 326px;
   block-size: auto;
-  gap: auto;
 }
 
 .btn-footer {
@@ -69,7 +68,7 @@
   position: absolute;
   top: 12px;
   left: 96.5px;
-  z-index: 9999;
+  z-index: 50;
   align-self: center;
   inline-size: 64px;
   block-size: 64px;
@@ -81,7 +80,6 @@
     rgba(0, 0, 0, 1) 0%,
     rgba(255, 255, 255, 0.4) 76%
   );
-  z-index: 50;
 }
 
 #add-city-btn {
