@@ -2,16 +2,15 @@
   position: relative;
   inline-size: var(--container-w);
   block-size: 100svh;
-  max-height: 844px;
   background: var(--primary-gradient);
 }
 
 #ellipse7-bg {
   position: absolute;
-  top: 80px;
+  top: 5rem;
   left: -3px;
   width: 352px;
-  height: 352px;
+  aspect-ratio: 1;
   border: none;
   border-radius: 50%;
   background: var(--accent-gradient);
@@ -21,10 +20,10 @@
 
 #ellipse8-bg {
   position: absolute;
-  top: 470px;
-  left: 122px;
+  top: 29.375rem;
+  left: 7.625rem;
   width: 365px;
-  height: 365px;
+  aspect-ratio: 1;
   border: none;
   border-radius: 50%;
   background: var(--accent-gradient);
@@ -34,12 +33,12 @@
 
 #weather-head {
   position: absolute;
-  top: 49px;
+  top: 3rem;
   display: grid;
   grid-template-rows: 1fr 1fr;
-  row-gap: 8px;
+  row-gap: 0.5rem;
   inline-size: 100%;
-  block-size: 106px;
+  block-size: 6.625rem;
   border: none;
 }
 
@@ -50,22 +49,22 @@
   grid-template-columns: 1fr 1fr;
   border: none;
   inline-size: 100%;
-  block-size: 52px;
+  block-size: 3.25rem;
 }
 
 #weather-head-left {
   position: absolute;
-  gap: 5px;
+  gap: 0.3125rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  inline-size: 195px;
+  inline-size: 12.19rem;
   block-size: 100%;
 }
 
 #head-back-btn {
   position: absolute;
-  left: 8px;
-  top: 14px;
+  left: 0.5rem;
+  top: 0.875rem;
   margin: 0;
   inline-size: 28px;
   block-size: 24px;
@@ -81,11 +80,11 @@
 
 #head-left-title {
   position: absolute;
-  top: 15px;
-  left: 39px;
+  top: 1rem;
+  left: 2.44rem;
   margin: 0;
-  inline-size: 102px;
-  block-size: 34px;
+  inline-size: 6.375rem;
+  block-size: 2.125rem;
   color: var(--primary-color);
   font-size: var(--title1-size);
   line-height: var(--title1-height);
@@ -95,9 +94,9 @@
 
 #weather-head-right {
   position: absolute;
-  left: 195px;
-  padding: 9px 9px 9px 16px;
-  inline-size: 195px;
+  left: 12.19rem;
+  padding: 0.56rem 0.56rem 0.56rem 1rem;
+  inline-size: 12.19rem;
   block-size: 100%;
 }
 
@@ -110,20 +109,20 @@
 
 #search-bar {
   position: absolute;
-  top: 60px;
+  top: 3.75rem;
   margin: 0;
   padding: 0;
-  block-size: 46px;
+  block-size: 2.875rem;
   inline-size: var(--container-w);
 }
 
 #search-input {
   position: absolute;
-  left: 16px;
+  left: 1rem;
   top: 0;
-  padding: 7px 8px;
-  inline-size: 358px;
-  block-size: 36px;
+  padding: 0.44rem 0.5rem;
+  inline-size: 22.375rem;
+  block-size: 2.25rem;
   border: none;
   border-radius: 10px;
   background: linear-gradient(
@@ -136,11 +135,11 @@
 
 #search-bar img {
   position: absolute;
-  top: 11.5px;
-  left: 24px;
+  top: 0.72rem;
+  left: 1.5rem;
   justify-self: center;
   width: 15.63px;
-  height: 15.63px;
+  aspect-ratio: 1;
 }
 
 #search-input::placeholder {

@@ -1,7 +1,7 @@
 .home-indicator {
   position: absolute;
   inline-size: var(--container-w);
-  block-size: 49px;
+  block-size: 3.06rem;
   border: none;
   border-top-left-radius: 44px;
   border-top-right-radius: 44px;
@@ -10,9 +10,9 @@
 #shape-toggle {
   position: absolute;
   display: flex;
-  top: 8px;
-  left: 170px;
-  width: 48px;
+  top: 0.5rem;
+  left: 10.625rem;
+  width: 3rem;
   height: 5px;
   border: none;
   border-radius: 10px;
@@ -22,7 +22,7 @@
 
 #forecast-btns-separator {
   position: absolute;
-  top: 49px;
+  top: 3rem;
   inline-size: var(--container-w);
   block-size: 1px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -42,7 +42,7 @@
 
 #forecast-btns-underline {
   position: absolute;
-  top: 47px;
+  top: 2.94rem;
   inline-size: 100%;
   max-inline-size: var(--container-w);
   block-size: 3px;
@@ -77,12 +77,12 @@
 
 #hourly-forecast-btn {
   position: absolute;
-  top: 25px;
-  left: 32px;
+  top: 1.56rem;
+  left: 2rem;
 }
 
 #weekly-forecast-btn {
   position: absolute;
-  top: 25px;
-  left: 243px;
+  top: 1.56rem;
+  left: 15.19rem;
 }

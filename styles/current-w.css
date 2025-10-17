@@ -1,13 +1,14 @@
 #current-weather {
   position: absolute;
-  top: 98px;
+  top: 6.125rem;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25rem;
   margin: 0 auto;
   align-items: center;
-  inline-size: var(--container-w);
-  block-size: 183px;
+  justify-content: center;
+  inline-size: 100%;
+  block-size: 11.44rem;
   text-align: center;
   color: var(--primary-color);
 }
@@ -19,8 +20,8 @@
 .current-city {
   display: flex;
   justify-self: center;
-  inline-size: 129px;
-  block-size: 41px;
+  inline-size: 8rem;
+  block-size: 2.56rem;
   font-weight: 300;
   font-size: var(--large-title-size);
   line-height: var(--large-title-height);
@@ -28,10 +29,10 @@
 }
 
 .current-temp {
-  inline-size: 127px;
-  block-size: 70px;
-  margin-bottom: 12px;
-  font-size: 96px;
+  inline-size: 7.94rem;
+  block-size: 4.375rem;
+  margin-bottom: 0.75rem;
+  font-size: 6rem;
   line-height: 70px;
   letter-spacing: var(--large-title-space);
   text-align: center;
@@ -42,8 +43,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  inline-size: 115px;
-  block-size: 48px;
+  inline-size: 7.19rem;
+  block-size: 3rem;
   font-size: var(--title3-size);
   letter-spacing: var(--title3-space);
   text-wrap: nowrap;

@@ -53,57 +53,52 @@ body {
   );
 
   /*FONTS*/
+  /*I'll be using adaptive sizes somtimes instead of strict pixels (like in Figma) for better adaptivity*/
 
-  --caption2-size: 11px;
+  --caption2-size: 0.68rem;
   --caption2-height: 0.846;
   --caption2-space: 0.07px;
 
-  --caption1-size: 12px;
+  --caption1-size: 0.75rem;
   --caption1-height: 0.75;
   --caption1-space: 0px;
 
-  --footnote-size: 13px;
+  --footnote-size: 0.8rem;
   --footnote-height: 0.72;
   --footnote-space: -0.08px;
 
-  --subheadline-size: 15px;
+  --subheadline-size: 0.94rem;
   --subheadline-height: var(--caption1-height);
   --subheadline-space: -0.24px;
 
-  --callout-size: 16px;
+  --callout-size: 1rem;
   --callout-height: 0.76;
   --callout-space: -0.32px;
 
-  --body-size: 17px;
+  --body-size: 1rem;
   --body-height: 0.77;
   --body-space: -0.41px;
 
-  --headline-size: var(--body-size);
-  --headline-height: var(--body-height);
-  --headline-space: var(--body-space);
-
-  --title3-size: 20px;
+  --title3-size: 1.25rem;
   --title3-height: 0.83;
   --title3-space: 0.38px;
 
-  --title2-size: 22px;
+  --title2-size: 1.375rem;
   --title2-height: 0.79;
   --title2-space: 0.35px;
 
-  --title1-size: 28px;
+  --title1-size: 1.75rem;
   --title1-height: 0.82;
   --title1-space: 0.36px;
 
-  --large-title-size: 34px;
+  --large-title-size: 2.125rem;
   --large-title-height: var(--title3-height);
   --large-title-space: 0.37px;
 
   color-scheme: light dark;
 }
 
-button,
-a[role="button"],
-select {
+button {
   cursor: pointer;
 }
 
@@ -119,8 +114,7 @@ img {
 
 .container {
   position: relative;
-  margin: 0 auto;
-  inline-size: 100svw;
-  max-inline-size: var(--container-w);
+  margin: 0;
+  min-inline-size: 100svw;
   min-block-size: 100svh;
 }

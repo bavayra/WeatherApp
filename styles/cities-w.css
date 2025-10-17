@@ -1,17 +1,18 @@
 #weather-widget {
   position: absolute;
-  top: 165px;
-  left: 26px;
+  top: 10.3rem;
+  left: 1.625rem;
   display: grid;
   grid-template-rows: repeat(3, 1fr);
-  inline-size: 338px;
-  block-size: 100svh;
+  inline-size: 21.125rem;
+  block-size: 52.75rem;
+  max-block-size: 100svh;
 }
 
 .weather-card1 {
   position: absolute;
-  inline-size: 342px;
-  block-size: 184px;
+  inline-size: 21.375rem;
+  block-size: 11.5rem;
   border: none;
 }
 
@@ -24,16 +25,16 @@
 .weather-icon1 img {
   position: absolute;
   z-index: 6;
-  top: -14px;
-  left: 178px;
+  top: 0.875rem;
+  left: 11.125rem;
   width: 160px;
-  height: 160px;
+  aspect-ratio: 1;
 }
 
 .city-temp1 {
   position: absolute;
-  left: 20px;
-  top: 59px;
+  left: 1.25rem;
+  top: 3.69rem;
   z-index: 7;
   padding: 0;
 }
@@ -42,7 +43,7 @@
   position: absolute;
   margin: 0;
   padding: 0;
-  font-size: 62px;
+  font-size: 3.875rem;
   letter-spacing: 0.37px;
   line-height: 41px;
   font-weight: 400;
@@ -51,12 +52,12 @@
 .weather-desc1 {
   position: absolute;
   z-index: 7;
-  top: 124px;
-  left: 20px;
+  top: 7.75rem;
+  left: 1.25rem;
   padding: 0;
   margin: 0;
-  inline-size: 136px;
-  block-size: 41px;
+  inline-size: 8.5rem;
+  block-size: 2.56rem;
   line-height: 10px;
 }
 
@@ -70,7 +71,7 @@
 
 .weather-city-country1 {
   margin: 0;
-  margin-top: 10px;
+  margin-top: 0.625rem;
   font-size: var(--subheadline-size);
   line-height: var(--subheadline-height);
   letter-spacing: var(--subheadline-space);
@@ -79,9 +80,9 @@
 
 .weather-card2 {
   position: absolute;
-  top: 204px;
-  inline-size: 342px;
-  block-size: 184px;
+  top: 12.75rem;
+  inline-size: 21.375rem;
+  block-size: 11.5rem;
   border: none;
 }
 
@@ -94,16 +95,16 @@
 .weather-icon2 img {
   z-index: 6;
   position: absolute;
-  top: -14px;
-  left: 178px;
+  top: -0.875rem;
+  left: 11.125rem;
   width: 160px;
-  height: 160px;
+  aspect-ratio: 1;
 }
 
 .city-temp2 {
   position: absolute;
-  left: 20px;
-  top: 59px;
+  left: 1.25rem;
+  top: 3.69rem;
   z-index: 7;
   padding: 0;
 }
@@ -112,7 +113,7 @@
   position: absolute;
   margin: 0;
   padding: 0;
-  font-size: 62px;
+  font-size: 3.875rem;
   letter-spacing: 0.37px;
   line-height: 41px;
   font-weight: 400;
@@ -121,12 +122,12 @@
 .weather-desc2 {
   position: absolute;
   z-index: 7;
-  top: 124px;
-  left: 20px;
+  top: 7.75rem;
+  left: 1.25rem;
   padding: 0;
   margin: 0;
-  inline-size: 136px;
-  block-size: 41px;
+  inline-size: 8.5rem;
+  block-size: 2.56rem;
   line-height: 10px;
 }
 
@@ -140,7 +141,7 @@
 
 .weather-city-country2 {
   margin: 0;
-  margin-top: 10px;
+  margin-top: 0.625rem;
   font-size: var(--subheadline-size);
   line-height: var(--subheadline-height);
   letter-spacing: var(--subheadline-space);
