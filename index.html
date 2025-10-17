@@ -75,17 +75,17 @@
     <!--<header class="app-header"></header>-->
     <section id="hero-section">
     <section id="hero-bg">
-      <div id="rectangle1-bg"></div>
-      <img id="house-img-bg" src="/icons-base/House.svg" />
-      <div id="rectangle2-bg">
-        <div id="ellipse2-bg"></div>
+      <div id="rectangle1-bg"  role="presentation" aria-hidden="true"></div>
+      <img id="house-img-bg" src="/icons-base/House.svg" alt="" aria-hidden="true" />
+      <div id="rectangle2-bg"  role="presentation" aria-hidden="true">
+        <div id="ellipse2-bg"  role="presentation" aria-hidden="true"></div>
       </div>
-      <div id="ellipse6-bg"></div>
-      <div id="ellipse1-bg"></div>
-      <div id="ellipse4-bg"></div>
+      <div id="ellipse6-bg"  role="presentation" aria-hidden="true"></div>
+      <div id="ellipse1-bg"  role="presentation" aria-hidden="true"></div>
+      <div id="ellipse4-bg"  role="presentation" aria-hidden="true"></div>
     </section>
 
-    <main class="container">
+    <main class="container" >
       <section id="current-weather">
         <div class="current-weather-data">
           <p class="current-city current">Montreal</p>
@@ -99,20 +99,13 @@
 
       <section id="hero-forecasts">
         <section class="home-indicator">
-          <div id="shape-toggle"></div>
+          <div id="shape-toggle"  role="presentation" aria-hidden="true"></div>
           <div class="forecasts-btns">
-            <label id="title-hourly-forecast" class="visually-hidden"
-              >Hourly Forecast</label
-            >
-            <button id="hourly-forecast-btn">Hourly Forecast</button>
-
-            <label id="title-weekly-forecast" class="visually-hidden"
-              >Weekly Forecast</label
-            >
-            <button id="weekly-forecast-btn">Weekly Forecast</button>
+            <button id="hourly-forecast-btn" type="button" aria-pressed="true" >Hourly Forecast</button>
+            <button id="weekly-forecast-btn" type="button" aria-pressed="false">Weekly Forecast</button>
           </div>
-          <div id="forecast-btns-underline"></div>
-          <div id="forecast-btns-separator"></div>
+          <div id="forecast-btns-underline"  role="presentation" aria-hidden="true"></div>
+          <div id="forecast-btns-separator"  role="presentation" aria-hidden="true"></div>
         </section>
 
         <div class="forecast-by-hours">
@@ -120,7 +113,7 @@
             <p class="hour">12 AM</p>
             <img
               class="forecast-weather-icon"
-              src="icons-weather/moon-cloud-rain-sm.svg"
+              src="icons-weather/moon-cloud-rain-sm.svg" alt="Current weather image" loading="lazy"
             />
             <p class="temp-by-hour">19&deg;</p>
           </div>
@@ -128,7 +121,7 @@
             <p class="hour">12 AM</p>
             <img
               class="forecast-weather-icon"
-              src="icons-weather/moon-cloud-rain-sm.svg"
+              src="icons-weather/moon-cloud-rain-sm.svg" alt="Current weather image" loading="lazy"
             />
             <p class="temp-by-hour">19&deg;</p>
           </div>
@@ -139,7 +132,7 @@
             <p class="day">MON</p>
             <img
               class="forecast-weather-icon"
-              src="icons-weather/moon-cloud-rain-sm.svg"
+              src="icons-weather/moon-cloud-rain-sm.svg" alt="Current weather image" loading="lazy"
             />
             <p class="temp-by-day">23&deg;</p>
           </div>
@@ -147,7 +140,7 @@
             <p class="hour">TUE</p>
             <img
               class="forecast-weather-icon"
-              src="icons-weather/moon-cloud-rain-sm.svg"
+              src="icons-weather/moon-cloud-rain-sm.svg" alt="Current weather image" loading="lazy"
             />
             <p class="temp-by-day">17&deg;</p>
           </div>
@@ -163,28 +156,25 @@
           <path d="M0,4 Q195,40 390,4" />
         </svg>
         <div id="back-btns">
-          <button class="weather-map btn-footer">
-            <img src="/icons-base/Map.svg" />
+          <button class="weather-map btn-footer" type="button" aria-label="Map button">
+            <img src="/icons-base/Map.svg" alt="Map button"/>
           </button>
-          <button class="cities-list btn-footer">
-            <img src="/icons-base/List.svg" />
+          <button class="cities-list btn-footer" type="button" name="Cities list button" >
+            <img src="/icons-base/List.svg" alt="Cities list"/>
           </button>
         </div>
       </div>
       <div id="footer-center">
-        <img id="footer-substract" src="icons-base/Subtract.svg" />
+        <img id="footer-substract"  role="presentation" src="icons-base/Subtract.svg" alt="" aria-hidden="true"/>
         <div id="add-city">
-          <div id="add-city-bg"></div>
-          <button id="add-city-btn">
-            <img src="/icons-base/Plus.svg" />
+          <div id="add-city-bg"  role="presentation" aria-hidden="true"></div>
+          <button id="add-city-btn" type="button" name="Add city button">
+            <img src="/icons-base/Plus.svg" alt="Add button"/>
           </button>
         </div>
       </div>
     </footer>
     </section>
-
-
-
 
     <section id="weather-by-cities">
       <div id="ellipse7-bg"></div>
@@ -192,30 +182,30 @@
       <section id="weather-head">
           <div id="weather-head-container">
             <div id="weather-head-left">
-              <button id="head-back-btn">
-                <img src="/icons-base/arrow-back.svg">
+              <button id="head-back-btn" type="button" name="Go back button">
+                <img src="/icons-base/arrow-back.svg" alt="Back button">
               </button>
               <p id="head-left-title">Weather</p>
             </div>
         
         <div id="weather-head-right">
-            <button id="manage-list-btn">
-              <img src="/icons-base/settings-icon.svg">
+            <button id="manage-list-btn" type="button" name="Manage list button">
+              <img src="/icons-base/settings-icon.svg" alt="Manage list button">
             </button>
           </div>
         </div>
         <div id="search-bar">
-          <img src="/icons-base/search.svg">
-            <input id="search-input" placeholder="Search for a city or airport">
+          <img src="/icons-base/search.svg" alt="Search input icon">
+            <input id="search-input" placeholder="Search for a city or airport" alt="Search input bar" role="search" type="search" autocomplete="city">
           </div>
       </section>
       <section id="weather-widget">
       <div class="weather-card1">
        <div class="weather-card-bg1">
-         <img src="/icons-base/Rectangle-3.svg">
+         <img src="/icons-base/Rectangle-3.svg"  role="presentation" alt="" aria-hidden="true" loading="lazy" >
         </div>
         <div class="weather-icon1">
-          <img src="/icons-weather/moon-cloud-wind-lg.svg">
+          <img src="/icons-weather/moon-cloud-wind-lg.svg" alt="Current weather image" loading="lazy">
         </div>
         <div class="city-temp1">
         <p>19&deg;</p>
@@ -228,10 +218,10 @@
 
        <div class="weather-card2">
        <div class="weather-card-bg2">
-         <img src="/icons-base/Rectangle-3.svg">
+         <img src="/icons-base/Rectangle-3.svg"  role="presentation" alt="" aria-hidden="true"  loading="lazy">
         </div>
         <div class="weather-icon2">
-          <img src="/icons-weather/sun-cloud-rain-lg.svg">
+          <img src="/icons-weather/sun-cloud-rain-lg.svg" alt="Current weather image" loading="lazy">
         </div>
         <div class="city-temp2">
         <p>20&deg;</p>
