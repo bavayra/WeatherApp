@@ -19,11 +19,12 @@ body {
 html,
 body {
   scroll-behavior: smooth;
+  margin: 0;
 }
 
 :root {
   /*BASE STYLES*/
-  --container-w: 24.375rem;
+  --container-w: 100svw;
   --black-rgb: 0, 0, 0;
   --white-rgb: 255, 255, 255;
 
@@ -127,7 +128,17 @@ img {
 
 .container {
   position: relative;
-  margin: 0;
   min-inline-size: 100svw;
   min-block-size: 100svh;
+  margin: 0 auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

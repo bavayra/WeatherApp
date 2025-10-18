@@ -14,18 +14,8 @@
     rgb(28, 27, 51, 0.26)
   );
   backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
   overflow: hidden;
   box-shadow: var(--inner-shadow);
-}
-
-.forecast-by-hours {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  margin-top: 4.3rem;
-  margin-left: 1.25rem;
-  display: grid;
-  column-gap: 0.75rem;
 }
 
 .forecast {
@@ -53,7 +43,26 @@
   transform: scale(1.05);
 }
 
-.hour {
+.temp-by-period {
+  margin: 0;
+  font-size: var(--title3-size);
+  line-height: var(--title3-height);
+  letter-spacing: var(--title3-space);
+}
+
+.forecast-by-hours,
+.forecast-by-days {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 4.3rem;
+  margin-left: 1.25rem;
+  display: grid;
+  column-gap: 0.75rem;
+  inline-size: var(--container-w);
+}
+
+.hour,
+.day {
   margin: 0;
   font-size: var(--subheadline-size);
   line-height: var(--subheadline-height);
@@ -61,15 +70,6 @@
 }
 
 .forecast-weather-icon {
-  top: 3.25rem;
-  left: 0.5rem;
-  width: 2.75rem;
-  height: 2.375rem;
-}
-
-.temp-by-hour {
-  margin: 0;
-  font-size: var(--title3-size);
-  line-height: var(--title3-height);
-  letter-spacing: var(--title3-space);
+  inline-size: 2.75rem;
+  block-size: 2.375rem;
 }
