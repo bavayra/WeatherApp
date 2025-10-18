@@ -22,16 +22,29 @@ body {
 }
 
 :root {
-  --container-w: 390px;
+  /*BASE STYLES*/
+  --container-w: 24.375rem;
+  --black-rgb: 0, 0, 0;
+  --white-rgb: 255, 255, 255;
 
+  /*COLORS W/ OPACITY*/
+  --black-03: rgba(var(--black-rgb), 0.3);
+  --black-025: rgba(var(--black-rgb), 0.25);
+  --black-05: rgba(var(--black-rgb), 0.5);
+
+  --white-01: rgba(var(--white-rgb), 0.1);
+  --white-015: rgba(var(--white-rgb), 0.15);
+  --white-04: rgba(var(--white-rgb), 0.4);
+
+  /*SHADOWS*/
   --inner-shadow: inset 0 1px 0 0 #ffffff;
   --drop-shadow: 1px -1px 2px 0 #343030cb;
+  --shadow-card: 5px 4px 10px 0px var(--black-03),
+    inset 1px 1px 0px 0px var(--white-015);
+  --shadow-inset: inset 0px 4px 4px 0px var(--black-025);
+  --shadow-separator: 0 1px 0 0 var(--black-03);
 
   /*COLOR STYLES*/
-  /*--primary-color: #0000;
-  --secondary-color: rgb(60, 60, 67, 0.6);
-  --tertiary-color: rgb(60, 60, 67, 0.3);
-  --quaternary-color: rgb(60, 60, 67, 0.18);*/
 
   --primary-color: #ffff;
   --secondary-color: rgb(235, 235, 245, 0.6);

@@ -9,7 +9,7 @@
   position: absolute;
   top: 5rem;
   left: -3px;
-  width: 352px;
+  width: 22rem;
   aspect-ratio: 1;
   border: none;
   border-radius: 50%;
@@ -22,7 +22,7 @@
   position: absolute;
   top: 29.375rem;
   left: 7.625rem;
-  width: 365px;
+  width: 22.8rem;
   aspect-ratio: 1;
   border: none;
   border-radius: 50%;
@@ -43,17 +43,15 @@
 }
 
 #weather-head-container {
-  position: absolute;
-  top: 2px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin-top: 3px;
   border: none;
   inline-size: 100%;
   block-size: 3.25rem;
 }
 
 #weather-head-left {
-  position: absolute;
   gap: 0.3125rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -62,12 +60,11 @@
 }
 
 #head-back-btn {
-  position: absolute;
-  left: 0.5rem;
-  top: 0.875rem;
-  margin: 0;
-  inline-size: 28px;
-  block-size: 24px;
+  display: flex;
+  margin-top: 0.875rem;
+  margin-left: 0.5rem;
+  inline-size: 1.75rem;
+  block-size: 1.5rem;
   background: transparent;
   border: none;
 }
@@ -82,6 +79,7 @@
   position: absolute;
   top: 1rem;
   left: 2.44rem;
+  display: flex;
   margin: 0;
   inline-size: 6.375rem;
   block-size: 2.125rem;
@@ -101,8 +99,9 @@
 }
 
 #manage-list-btn {
-  position: absolute;
-  left: 146px;
+  display: flex;
+  justify-self: self-end;
+  left: 9.125rem;
   background: transparent;
   border: none;
 }
@@ -110,16 +109,15 @@
 #search-bar {
   position: absolute;
   top: 3.75rem;
+  display: flex;
   margin: 0;
-  padding: 0;
   block-size: 2.875rem;
   inline-size: var(--container-w);
 }
 
 #search-input {
-  position: absolute;
-  left: 1rem;
-  top: 0;
+  display: flex;
+  margin-left: 1rem;
   padding: 0.44rem 0.5rem;
   inline-size: 22.375rem;
   block-size: 2.25rem;
@@ -130,7 +128,7 @@
     rgb(46, 51, 90, 0.26),
     rgb(28, 27, 51, 0.26)
   );
-  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow-inset);
 }
 
 #search-bar img {
@@ -149,5 +147,5 @@
   font-size: var(--body-size);
   letter-spacing: var(--callout-space);
   line-height: var(--body-height);
-  color: rgb(235, 235, 245, 0.6);
+  color: var(--secondary-color);
 }

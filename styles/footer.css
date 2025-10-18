@@ -16,10 +16,10 @@
 }
 
 #back-btns {
-  position: absolute;
-  left: 2rem;
-  top: 1.25rem;
   display: flex;
+  flex-direction: row;
+  margin-left: 2rem;
+  margin-top: 1.25rem;
   justify-content: space-between;
   gap: auto;
   align-items: center;
@@ -67,7 +67,7 @@
 #add-city-bg {
   position: absolute;
   top: 0.75rem;
-  left: 96.5px;
+  left: 6rem;
   z-index: 50;
   align-self: center;
   inline-size: 4rem;
@@ -93,7 +93,7 @@
   border-radius: 50%;
   background: linear-gradient(135deg, #f5f5f9, #dadfe7);
   box-shadow: 10px 10px 20px 7px rgba(13, 20, 49, 0.5),
-    -10px -10px 15px 1px rgba(255, 255, 255, 0.15), inset 1px 1px 0.5px 0px #fff,
+    -10px -10px 15px 1px var(--white-015), inset 1px 1px 0.5px 0px #fff,
     inset -2px -4px 8px 0px rgba(100, 100, 100, 0.78);
 }
 

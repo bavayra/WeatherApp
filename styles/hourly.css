@@ -20,11 +20,11 @@
 }
 
 .forecast-by-hours {
-  position: absolute;
-  top: 4.3rem;
-  left: 1.25rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 4.3rem;
+  margin-left: 1.25rem;
+  display: grid;
   column-gap: 0.75rem;
 }
 
@@ -44,8 +44,7 @@
   background-color: rgba(72, 49, 157, 0.3);
   color: var(--primary-color);
   text-align: center;
-  box-shadow: 5px 4px 10px 0px rgba(0, 0, 0, 0.3),
-    inset 1px 1px 0px 0px rgba(255, 255, 255, 0.15);
+  box-shadow: var(--shadow-card);
   transition: transform 0.3s ease-in-out;
 }
 
@@ -66,6 +65,7 @@
   left: 0.5rem;
   width: 2.75rem;
   height: 2.375rem;
+}
 
 .temp-by-hour {
   margin: 0;
