@@ -39,7 +39,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: var(--container-w);
+  width: 100%;
   height: 1.5rem;
   fill: none;
 }
@@ -101,4 +101,13 @@
   align-self: center;
   justify-self: center;
   background: transparent;
+}
+
+@media (max-width: 390px) {
+  .app-footer {
+    top: 45.5rem;
+    z-index: 100;
+    inline-size: 100%;
+    block-size: 6.25rem;
+  }
 }

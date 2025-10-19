@@ -54,3 +54,9 @@
 .current-desc {
   color: var(--secondary-color);
 }
+
+@media (max-width: 389px) {
+  #current-weather {
+    top: 5rem;
+  }
+}

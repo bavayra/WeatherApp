@@ -1,7 +1,9 @@
 .home-indicator {
   position: absolute;
-  inline-size: var(--container-w);
+  width: 100%;
+  max-width: var(--container-max-w);
   block-size: 3.06rem;
+  margin-left: 0;
   border: none;
   border-top-left-radius: 44px;
   border-top-right-radius: 44px;
@@ -22,7 +24,8 @@
 #forecast-btns-separator {
   position: absolute;
   top: 3rem;
-  inline-size: var(--container-w);
+  width: 100%;
+  max-width: var(--container-max-w);
   block-size: 1px;
   border-top: 1px solid var(--white-01);
   background: none;
@@ -42,8 +45,8 @@
 #forecast-btns-underline {
   position: absolute;
   top: 2.94rem;
-  inline-size: 100%;
-  max-inline-size: var(--container-w);
+  width: 100%;
+  max-width: var(--container-max-w);
   block-size: 3px;
   background: linear-gradient(
     90deg,
@@ -57,9 +60,10 @@
 }
 
 .forecasts-btns {
-  display: flex;
-  flex-direction: row;
-  inline-size: var(--container-w);
+  display: grid;
+  grid-template-columns: auto auto;
+  width: 100%;
+  block-size: 100%;
 }
 
 .forecasts-btns button {
@@ -83,4 +87,31 @@
   position: absolute;
   top: 1.7rem;
   left: 15.19rem;
+}
+
+@media (max-width: 389px) {
+  .forecasts-btns button {
+    font-size: var(--footnote-size);
+    letter-spacing: var(--footnote-space);
+    line-height: var(--footnote-height);
+    font-weight: 400;
+  }
+
+  #shape-toggle {
+    margin-left: 8.5rem;
+    width: 3rem;
+    height: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--black-03);
+    box-shadow: var(--drop-shadow);
+  }
+
+  #hourly-forecast-btn {
+    left: 1.9rem;
+  }
+
+  #weekly-forecast-btn {
+    left: 11.19rem;
+  }
 }

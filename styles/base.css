@@ -24,7 +24,7 @@ body {
 
 :root {
   /*BASE STYLES*/
-  --container-w: 100svw;
+  --container-max-w: 390px; /* Максимальная ширина для мобильного дизайна (изменяется в медиа-запросах) */
   --black-rgb: 0, 0, 0;
   --white-rgb: 255, 255, 255;
 
@@ -112,6 +112,18 @@ body {
   color-scheme: light dark;
 }
 
+@media (max-width: 430px) {
+  :root {
+    --container-max-w: 430px;
+  }
+}
+
+@media (max-width: 756px) {
+  :root {
+    --container-max-w: 756px;
+  }
+}
+
 button {
   cursor: pointer;
 }
@@ -128,9 +140,10 @@ img {
 
 .container {
   position: relative;
-  min-inline-size: 100svw;
+  width: 100%;
+  max-width: var(--container-max-w); /* Ограничение только для мобильного */
   min-block-size: 100svh;
-  margin: 0 auto;
+  margin: 0 auto; /* Центрирование на больших экранах */
 }
 
 @media (prefers-reduced-motion: reduce) {

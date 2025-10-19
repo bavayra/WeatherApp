@@ -1,9 +1,10 @@
 #weather-widget {
   position: relative;
   top: 10.3rem;
-  left: 1.625rem;
+  left: 1.4rem;
   display: grid;
   grid-template-rows: repeat(3, 1fr);
+  justify-content: center;
   inline-size: 21.125rem;
   block-size: 52.75rem;
   max-block-size: 100svh;
