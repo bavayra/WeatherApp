@@ -12,7 +12,7 @@
 #shape-toggle {
   display: flex;
   margin-top: 0.5rem;
-  margin-left: 10.625rem;
+  justify-self: center;
   width: 3rem;
   height: 5px;
   border: none;
@@ -95,16 +95,6 @@
     letter-spacing: var(--footnote-space);
     line-height: var(--footnote-height);
     font-weight: 400;
-  }
-
-  #shape-toggle {
-    margin-left: 8.5rem;
-    width: 3rem;
-    height: 5px;
-    border: none;
-    border-radius: 10px;
-    background-color: var(--black-03);
-    box-shadow: var(--drop-shadow);
   }
 
   #hourly-forecast-btn {

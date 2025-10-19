@@ -78,3 +78,9 @@
     letter-spacing: var(--subheadline-space);
   }
 }
+
+@media (min-width: 420px) and (max-width: 767px) {
+  #current-weather {
+    top: 4.5rem;
+  }
+}

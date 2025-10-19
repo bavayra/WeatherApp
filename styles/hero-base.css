@@ -122,3 +122,9 @@
     top: 17.3rem;
   }
 }
+
+@media (min-width: 420px) and (max-width: 768px) {
+  #house-img-bg {
+    top: 17.5rem;
+  }
+}

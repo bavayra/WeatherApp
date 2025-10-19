@@ -112,13 +112,13 @@ body {
   color-scheme: light dark;
 }
 
-@media (max-width: 430px) {
+@media (min-width: 420px) {
   :root {
-    --container-max-w: 430px;
+    --container-max-w: 420px;
   }
 }
 
-@media (max-width: 756px) {
+@media (min-width: 756px) {
   :root {
     --container-max-w: 756px;
   }

@@ -19,13 +19,13 @@
 #back-btns {
   display: flex;
   flex-direction: row;
-  margin-left: 2rem;
-  margin-top: 1.25rem;
   justify-content: space-between;
-  gap: auto;
   align-items: center;
-  inline-size: 20.375rem;
-  block-size: auto;
+  width: 100%;
+  max-width: var(--container-max-w);
+  padding: 0 1.5rem;
+  margin-top: 1.25rem;
+  box-sizing: border-box;
 }
 
 .btn-footer {
@@ -39,8 +39,10 @@
 #footer-separator {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: var(--container-max-w);
   height: 1.5rem;
   fill: none;
 }
@@ -53,7 +55,8 @@
 
 #footer-center {
   position: absolute;
-  left: 4.125rem;
+  left: 50%;
+  transform: translateX(-50%);
   inline-size: 16.125rem;
   block-size: 6.25rem;
 }
@@ -68,7 +71,8 @@
 #add-city-bg {
   position: absolute;
   top: 0.75rem;
-  left: 6rem;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 50;
   align-self: center;
   inline-size: 4rem;
@@ -86,7 +90,8 @@
 #add-city-btn {
   position: absolute;
   top: 1rem;
-  left: 6.25rem;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 51;
   inline-size: 3.625rem;
   aspect-ratio: 1;
