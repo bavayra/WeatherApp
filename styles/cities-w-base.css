@@ -151,3 +151,41 @@
   line-height: var(--body-height);
   color: var(--secondary-color);
 }
+
+@media (max-width: 389px) {
+  #head-back-btn img {
+    width: 70%;
+    height: 70%;
+  }
+
+  #head-left-title {
+    font-size: var(--title2-size);
+    line-height: var(--title2-height);
+    letter-spacing: var(--title2-space);
+    left: 2.1rem;
+  }
+
+  #weather-head-right {
+    left: 8rem;
+  }
+
+  #search-bar {
+    width: 95%;
+  }
+
+  #search-input {
+    margin-left: 1rem;
+    block-size: 1.8rem;
+  }
+
+  #search-bar img {
+    top: 0.55rem;
+    width: 12.63px;
+  }
+
+  #search-input::placeholder {
+    font-size: var(--subheadline-size);
+    letter-spacing: var(--subheadline-space);
+    line-height: var(--subheadline-height);
+  }
+}
