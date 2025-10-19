@@ -1,11 +1,10 @@
 #hero-forecasts {
   position: absolute;
-  top: 32.44rem;
+  top: 32.5rem;
   z-index: 5;
   display: block;
-  width: 100%;
-  max-width: var(--container-max-w);
-  block-size: 20.3rem;
+  inline-size: 100%;
+  block-size: 28.3rem;
   border: none;
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
@@ -26,9 +25,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0.5rem;
-
-  width: 100%;
-  min-width: 3.75rem; /* Минимум 60px */
+  inline-size: auto;
   max-block-size: 9.125rem;
   block-size: auto;
   border: none;
@@ -55,11 +52,12 @@
 .forecast-by-hours,
 .forecast-by-days {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 колонок на мобильном */
-  padding: 4.3rem 1.25rem 0;
+  grid-template-columns: repeat(5, 1fr);
+  margin-top: 4.3rem;
+  margin-left: 1.25rem;
+  display: grid;
   column-gap: 0.75rem;
-  width: 100%;
-  box-sizing: border-box;
+  inline-size: var(--container-w);
 }
 
 .hour,
@@ -76,7 +74,28 @@
 }
 
 @media (max-width: 389px) {
+  .temp-by-period {
+    font-size: var(--body-size);
+    font-weight: 300;
+  }
+
+  .hour,
+  .day {
+    font-size: var(--footnote-size);
+    line-height: var(--footnote-height);
+    letter-spacing: var(--footnote-space);
+  }
+
   #hero-forecasts {
-    top: 30.3rem;
+    top: 28.5rem;
+  }
+
+  .forecast {
+    gap: 0.5rem;
+  }
+
+  .forecast-weather-icon {
+    inline-size: 1.8rem;
+    block-size: 1.8rem;
   }
 }

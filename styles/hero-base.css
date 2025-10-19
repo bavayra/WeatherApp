@@ -116,3 +116,9 @@
   max-height: 100svh;
   z-index: 1;
 }
+
+@media (max-width: 389px) {
+  #house-img-bg {
+    top: 17.3rem;
+  }
+}

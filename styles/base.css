@@ -24,9 +24,9 @@ body {
 
 :root {
   /*BASE STYLES*/
-  --container-max-w: 390px; /* Максимальная ширина для мобильного дизайна (изменяется в медиа-запросах) */
-  --black-rgb: 0, 0, 0;
+  --container-max-w: 390px;
   --white-rgb: 255, 255, 255;
+  --black-rgb: 0, 0, 0;
 
   /*COLORS W/ OPACITY*/
   --black-03: rgba(var(--black-rgb), 0.3);
@@ -140,10 +140,10 @@ img {
 
 .container {
   position: relative;
+  margin: 0 auto;
   width: 100%;
-  max-width: var(--container-max-w); /* Ограничение только для мобильного */
-  min-block-size: 100svh;
-  margin: 0 auto; /* Центрирование на больших экранах */
+  max-width: var(--container-max-w);
+  min-block-size: 100dvh;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -59,4 +59,22 @@
   #current-weather {
     top: 5rem;
   }
+
+  .current-city {
+    font-size: var(--title1-size);
+    line-height: var(--title1-height);
+    letter-spacing: var(--title1-space);
+  }
+
+  .current-temp {
+    margin-bottom: 0.5rem;
+    font-size: 5rem;
+    line-height: 70px;
+    letter-spacing: var(--title1-space);
+  }
+
+  .current-desc-hum {
+    font-size: var(--subheadline-size);
+    letter-spacing: var(--subheadline-space);
+  }
 }
