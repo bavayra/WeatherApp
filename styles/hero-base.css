@@ -6,7 +6,6 @@
   background: url(/icons-base/bg.svg) no-repeat;
   background-size: auto;
   background-position: center;
-  background-color: var(--primary-color);
   overflow: hidden;
   pointer-events: none;
 }
@@ -126,5 +125,13 @@
 @media (min-width: 420px) and (max-width: 768px) {
   #house-img-bg {
     top: 17.5rem;
+  }
+}
+
+/* На высоких экранах ограничиваем высоту фона */
+@media (min-height: 845px) {
+  #hero-bg {
+    min-block-size: 844px;
+    max-block-size: 844px;
   }
 }
