@@ -23,7 +23,7 @@
   align-items: center;
   width: 100%;
   max-width: var(--container-max-w);
-  padding: 0 1.5rem;
+  padding: 0 auto;
   margin-top: 1.25rem;
   box-sizing: border-box;
 }
@@ -120,8 +120,10 @@
     margin-left: 0.8rem;
     inline-size: 18.375rem;
   }
+}
 
-  #footer-center {
-    left: 2.125rem;
+@media (min-width: 420px) {
+  #back-btns {
+    padding: 0 2.5rem;
   }
 }
