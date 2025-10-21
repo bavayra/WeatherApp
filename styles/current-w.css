@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: center;
   inline-size: 100%;
+  max-inline-size: var(--container-max-w);
   block-size: 11.44rem;
   text-align: center;
   color: var(--primary-color);
@@ -33,7 +34,7 @@
   block-size: 4.375rem;
   margin-bottom: 0.75rem;
   font-size: 6rem;
-  line-height: 70px;
+  line-height: 4.375rem;
   letter-spacing: var(--large-title-space);
   text-align: center;
   font-weight: 200;

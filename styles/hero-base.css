@@ -1,8 +1,4 @@
 #hero-bg {
-  position: absolute;
-  width: 100%;
-  max-width: var(--container-max-w);
-  min-block-size: 100svh;
   background: url(/icons-base/bg.svg) no-repeat;
   background-size: auto;
   background-position: center;
@@ -10,33 +6,35 @@
   pointer-events: none;
 }
 
-#rectangle1-bg {
+#hero-bg,
+#house-img-bg {
   position: absolute;
+  inline-size: 100%;
+  max-inline-size: var(--container-max-w);
+  max-block-size: 100svh;
+}
+
+#rectangle1-bg {
   top: 21.5rem;
   z-index: 0;
-  width: 100%;
-  height: 31.25rem;
+  block-size: 31.25rem;
   background: linear-gradient(
     180deg,
     rgb(58, 63, 84, 0) 12%,
     rgb(58, 63, 84, 1) 58%
   );
-  border: none;
-  border-radius: 30px;
+  border-radius: 1.875rem;
 }
 
 #rectangle2-bg {
-  position: absolute;
   top: 32.44rem;
   z-index: 1;
-  width: 100%;
   block-size: 20.3rem;
   box-shadow: var(--inner-shadow);
   backdrop-filter: blur(22px);
   mix-blend-mode: overlay;
-  border: none;
-  border-top-left-radius: 44px;
-  border-top-right-radius: 44px;
+  border-top-left-radius: 2.75rem;
+  border-top-right-radius: 2.75rem;
   background: linear-gradient(
     120deg,
     rgba(46, 51, 90, 0.2) 0%,
@@ -45,56 +43,37 @@
 }
 
 #ellipse1-bg {
-  position: absolute;
   top: 34.82rem;
   left: 11.94rem;
-  z-index: 4;
   display: flex;
-  width: 15.625rem;
-  aspect-ratio: 1;
-  border: none;
-  border-radius: 50%;
-  background: var(--accent-gradient);
+  inline-size: 15.625rem;
   filter: blur(40px);
 }
 
 #ellipse2-bg {
-  position: absolute;
   top: -2rem;
   left: 3rem;
-  z-index: 3;
   display: flex;
-  width: 17.875rem;
-  height: 2rem;
-  border: none;
-  border-radius: 50%;
+  inline-size: 17.875rem;
+  block-size: 2rem;
   background: rgb(196, 39, 251, 0.5);
   filter: blur(60px);
   overflow: hidden;
 }
 
 #ellipse4-bg {
-  position: absolute;
   top: 50.2rem;
   left: 2.69rem;
-  z-index: 4;
   display: flex;
-  width: 26.56rem;
-  aspect-ratio: 1;
-  border: none;
-  border-radius: 50%;
-  background: var(--accent-gradient);
+  inline-size: 26.56rem;
   filter: blur(80px);
 }
 
 #ellipse6-bg {
-  position: absolute;
   top: 36.5rem;
   left: 16.94rem;
-  z-index: 4;
   display: flex;
-  width: 15.625rem;
-  aspect-ratio: 1;
+  inline-size: 15.625rem;
   background: conic-gradient(
     from 180deg,
     rgb(97, 47, 171, 0) 14%,
@@ -102,17 +81,11 @@
     rgb(97, 47, 171, 0) 63%,
     rgb(97, 47, 171, 1) 87%
   );
-  border: none;
-  border-radius: 50%;
   filter: blur(50px);
 }
 
 #house-img-bg {
-  position: absolute;
   top: 19rem;
-  width: 100%;
-  max-width: var(--container-max-w);
-  max-height: 100svh;
   z-index: 1;
 }
 
@@ -128,7 +101,6 @@
   }
 }
 
-/* На высоких экранах ограничиваем высоту фона */
 @media (min-height: 845px) {
   #hero-bg {
     min-block-size: 844px;

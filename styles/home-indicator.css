@@ -1,31 +1,33 @@
 .home-indicator {
-  position: absolute;
-  width: 100%;
-  max-width: var(--container-max-w);
   block-size: 3.06rem;
   margin-left: 0;
+  border-top-left-radius: 2.75rem;
+  border-top-right-radius: 2.75rem;
+}
+
+.home-indicator,
+#forecast-btns-separator,
+#forecast-btns-underline {
+  position: absolute;
+  inline-size: 100%;
+  max-inline-size: var(--container-max-w);
   border: none;
-  border-top-left-radius: 44px;
-  border-top-right-radius: 44px;
 }
 
 #shape-toggle {
   display: flex;
   margin-top: 0.5rem;
   justify-self: center;
-  width: 3rem;
-  height: 5px;
+  inline-size: 3rem;
+  block-size: 5px;
   border: none;
-  border-radius: 10px;
+  border-radius: 0.625rem;
   background-color: var(--black-03);
   box-shadow: var(--drop-shadow);
 }
 
 #forecast-btns-separator {
-  position: absolute;
   top: 3rem;
-  width: 100%;
-  max-width: var(--container-max-w);
   block-size: 1px;
   border-top: 1px solid var(--white-01);
   background: none;
@@ -43,10 +45,7 @@
 }
 
 #forecast-btns-underline {
-  position: absolute;
   top: 2.94rem;
-  width: 100%;
-  max-width: var(--container-max-w);
   block-size: 3px;
   background: linear-gradient(
     90deg,
@@ -54,7 +53,6 @@
     rgba(255, 255, 255, 0.4) 22%,
     rgba(255, 255, 255, 0) 44%
   );
-  border: none;
   mix-blend-mode: overlay;
   overflow: hidden;
 }
@@ -62,7 +60,8 @@
 .forecasts-btns {
   display: grid;
   grid-template-columns: auto auto;
-  width: 100%;
+  inline-size: 100%;
+  max-inline-size: var(--container-max-w);
   block-size: 100%;
 }
 

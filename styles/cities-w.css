@@ -16,6 +16,7 @@
   display: flex;
   justify-self: center;
   inline-size: 95%;
+  max-inline-size: var(--container-max-w);
   block-size: 11.5rem;
   border: none;
 }
@@ -31,7 +32,7 @@
   z-index: 6;
   top: -0.7rem;
   left: 11.125rem;
-  width: 160px;
+  inline-size: 10rem;
   aspect-ratio: 1;
 }
 
@@ -43,9 +44,17 @@
   padding: 0;
 }
 
-.city-temp1 p {
+.city-temp1 p,
+.weather-desc1,
+.weather-hum1,
+.city-temp2 p,
+.weather-desc2,
+.weather-hum2 {
   margin: 0;
   padding: 0;
+}
+
+.city-temp1 p {
   font-size: 3.875rem;
   letter-spacing: 0.37px;
   line-height: 41px;
@@ -57,15 +66,12 @@
   z-index: 7;
   top: 7.75rem;
   left: 1.25rem;
-  padding: 0;
-  margin: 0;
   inline-size: 8.5rem;
   block-size: 2.56rem;
   line-height: 10px;
 }
 
 .weather-hum1 {
-  margin: 0;
   color: var(--secondary-color);
   font-size: var(--caption1-size);
   line-height: var(--caption1-height);
@@ -85,6 +91,7 @@
   position: relative;
   justify-self: center;
   inline-size: 95%;
+  max-inline-size: var(--container-max-w);
   block-size: 11.5rem;
   border: none;
 }
@@ -100,7 +107,7 @@
   z-index: 6;
   top: -0.875rem;
   left: 11.125rem;
-  width: 160px;
+  inline-size: 10rem;
   aspect-ratio: 1;
 }
 
@@ -114,8 +121,6 @@
 
 .city-temp2 p {
   position: absolute;
-  margin: 0;
-  padding: 0;
   font-size: 3.875rem;
   letter-spacing: 0.37px;
   line-height: 41px;
@@ -127,15 +132,12 @@
   z-index: 7;
   top: 7.75rem;
   left: 1.25rem;
-  padding: 0;
-  margin: 0;
   inline-size: 8.5rem;
   block-size: 2.56rem;
   line-height: 10px;
 }
 
 .weather-hum2 {
-  margin: 0;
   color: var(--secondary-color);
   font-size: var(--caption1-size);
   line-height: var(--caption1-height);
@@ -154,9 +156,9 @@
 @media (max-width: 389px) {
   #weather-widget {
     inline-size: 100%;
+    max-inline-size: var(--container-max-w);
     left: 0;
     top: 9rem;
-    max-inline-size: var(--container-max-w);
   }
 
   .weather-card1 {
@@ -165,7 +167,7 @@
 
   .weather-icon1 img {
     top: -4px;
-    width: 140px;
+    inline-size: 140px;
     left: 10rem;
   }
 
@@ -237,149 +239,18 @@
 
 @media (min-width: 420px) {
   #weather-widget {
-    top: 10.3rem;
     left: 0;
-    inline-size: 100%;
-    max-inline-size: var(--container-max-w);
     block-size: 52.75rem;
-    max-block-size: 100svh;
   }
 
   .weather-card1 {
-    display: flex;
     inline-size: 21.375rem;
     block-size: 11.5rem;
-    border: none;
-  }
-
-  .weather-card-bg1 {
-    display: flex;
-    bottom: 0;
-    z-index: 5;
-  }
-
-  .weather-icon1 img {
-    position: absolute;
-    z-index: 6;
-    top: -0.7rem;
-    left: 11.125rem;
-    width: 160px;
-    aspect-ratio: 1;
-  }
-
-  .city-temp1 {
-    position: absolute;
-    left: 1.25rem;
-    top: 3.69rem;
-    z-index: 7;
-    padding: 0;
-  }
-
-  .city-temp1 p {
-    margin: 0;
-    padding: 0;
-    font-size: 3.875rem;
-    letter-spacing: 0.37px;
-    line-height: 41px;
-    font-weight: 400;
-  }
-
-  .weather-desc1 {
-    position: absolute;
-    z-index: 7;
-    top: 7.75rem;
-    left: 1.25rem;
-    padding: 0;
-    margin: 0;
-    inline-size: 8.5rem;
-    block-size: 2.56rem;
-    line-height: 10px;
-  }
-
-  .weather-hum1 {
-    margin: 0;
-    color: var(--secondary-color);
-    font-size: var(--caption1-size);
-    line-height: var(--caption1-height);
-    letter-spacing: var(--caption1-space);
-  }
-
-  .weather-city-country1 {
-    margin: 0;
-    margin-top: 0.625rem;
-    font-size: var(--subheadline-size);
-    line-height: var(--subheadline-height);
-    letter-spacing: var(--subheadline-space);
-    font-weight: 300;
   }
 
   .weather-card2 {
     position: absolute;
     top: 12.75rem;
     inline-size: 21.375rem;
-    block-size: 11.5rem;
-    border: none;
-  }
-
-  .weather-card-bg2 {
-    display: flex;
-    bottom: 0;
-    z-index: 5;
-  }
-
-  .weather-icon2 img {
-    position: absolute;
-    z-index: 6;
-    top: -0.875rem;
-    left: 11.125rem;
-    width: 160px;
-    aspect-ratio: 1;
-  }
-
-  .city-temp2 {
-    position: absolute;
-    left: 1.25rem;
-    top: 3.69rem;
-    z-index: 7;
-    padding: 0;
-  }
-
-  .city-temp2 p {
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    font-size: 3.875rem;
-    letter-spacing: 0.37px;
-    line-height: 41px;
-    font-weight: 400;
-  }
-
-  .weather-desc2 {
-    position: absolute;
-    z-index: 7;
-    top: 7.75rem;
-    left: 1.25rem;
-    padding: 0;
-    margin: 0;
-    inline-size: 8.5rem;
-    block-size: 2.56rem;
-    line-height: 10px;
-  }
-
-  .weather-hum2 {
-    margin: 0;
-    color: var(--secondary-color);
-    font-size: var(--caption1-size);
-    line-height: var(--caption1-height);
-    letter-spacing: var(--caption1-space);
-  }
-
-  .weather-city-country2 {
-    margin: 0;
-    margin-top: 0.625rem;
-    font-size: var(--subheadline-size);
-    line-height: var(--subheadline-height);
-    letter-spacing: var(--subheadline-space);
-    font-weight: 300;
   }
 }
