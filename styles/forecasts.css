@@ -28,7 +28,6 @@
   align-items: center;
   padding: 1rem 0.5rem;
   inline-size: auto;
-  max-inline-size: var(--container-max-w);
   max-block-size: 9.125rem;
   block-size: auto;
   border: none;
@@ -58,7 +57,6 @@
   grid-template-columns: repeat(5, 1fr);
   margin-top: 4.3rem;
   margin-left: 1.25rem;
-  display: grid;
   column-gap: 0.75rem;
   inline-size: 100%;
   max-inline-size: var(--container-max-w);

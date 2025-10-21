@@ -19,7 +19,7 @@
   margin-top: 0.5rem;
   justify-self: center;
   inline-size: 3rem;
-  block-size: 5px;
+  block-size: 0.3125rem;
   border: none;
   border-radius: 0.625rem;
   background-color: var(--black-03);

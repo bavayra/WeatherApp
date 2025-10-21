@@ -39,6 +39,11 @@
   border: none;
 }
 
+.btn-footer img {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
 #footer-separator {
   top: 0;
   left: 50%;
@@ -75,10 +80,8 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 50;
-  align-self: center;
   inline-size: 4rem;
   aspect-ratio: 1;
-  padding: 0;
   border: none;
   border-radius: 50%;
   background: linear-gradient(
@@ -118,8 +121,8 @@
   }
 
   #back-btns {
+    padding: 0 1rem;
     inline-size: 100%;
     max-inline-size: var(--container-max-w);
-    padding: 0 1rem;
   }
 }

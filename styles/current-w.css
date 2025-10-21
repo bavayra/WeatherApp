@@ -30,11 +30,11 @@
 }
 
 .current-temp {
+  margin-bottom: 0.75rem;
   inline-size: 7.94rem;
   block-size: 4.375rem;
-  margin-bottom: 0.75rem;
   font-size: 6rem;
-  line-height: 4.375rem;
+  line-height: 0.73;
   letter-spacing: var(--large-title-space);
   text-align: center;
   font-weight: 200;
@@ -70,7 +70,7 @@
   .current-temp {
     margin-bottom: 0.5rem;
     font-size: 5rem;
-    line-height: 70px;
+    line-height: 0.875;
     letter-spacing: var(--title1-space);
   }
 

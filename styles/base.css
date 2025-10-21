@@ -1,7 +1,6 @@
 html {
   -webkit-text-size-adjust: 100%;
   font-synthesis: none;
-  background: var(--surface-gradient);
 }
 
 *,
@@ -14,7 +13,7 @@ body {
   margin: 0;
   font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
-  background-color: var(--primary-gradient);
+  background: var(--surface-gradient);
 }
 
 html,
@@ -63,8 +62,6 @@ body {
   );
 
   /*FONTS*/
-  /*I'll be using adaptive sizes somtimes instead of strict pixels (like in Figma) for better adaptivity*/
-
   --caption2-size: 0.68rem;
   --caption2-height: 0.846;
   --caption2-space: 0.07px;
@@ -158,11 +155,11 @@ img {
 
 @media (min-width: 390px) {
   #hero-section {
-    width: 390px;
+    inline-size: 390px;
   }
 
   .container {
-    width: 390px;
+    inline-size: 390px;
   }
 }
 @media (max-width: 389px) {
@@ -172,12 +169,8 @@ img {
 }
 
 @media (min-width: 430px) {
-  :root {
-    --container-max-w: 390px;
-  }
-
   .container {
-    width: 390px;
+    inline-size: 390px;
   }
 }
 

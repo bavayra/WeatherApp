@@ -1,10 +1,10 @@
 #weather-by-cities {
   position: relative;
+  margin: 0 auto;
   inline-size: 100%;
   max-inline-size: var(--container-max-w);
   block-size: 100svh;
   background: var(--primary-gradient);
-  margin: 0 auto;
   overflow: hidden;
 }
 
@@ -65,6 +65,10 @@
   block-size: 100%;
 }
 
+#head-back-btn img {
+  inline-size: 100%;
+}
+
 #head-back-btn {
   display: flex;
   margin-top: 0.875rem;
@@ -83,8 +87,8 @@
   position: absolute;
   top: 1rem;
   left: 2.44rem;
-  display: flex;
   margin: 0;
+  display: flex;
   inline-size: 6.375rem;
   block-size: 2.125rem;
   color: var(--primary-color);
@@ -108,14 +112,19 @@
   border: none;
 }
 
+#manage-list-btn img {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
 #search-bar {
   position: absolute;
   top: 3.75rem;
-  display: flex;
   left: 50%;
   transform: translateX(-50%);
-  justify-content: center;
   margin: 0;
+  display: flex;
+  justify-content: center;
   block-size: 2.875rem;
 }
 
@@ -139,13 +148,13 @@
   top: 0.72rem;
   left: 1.5rem;
   justify-self: center;
-  inline-size: 15.63px;
-  aspect-ratio: 1;
+  inline-size: 0.98rem;
+  block-size: auto;
 }
 
 #search-input::placeholder {
   position: absolute;
-  left: 28.63px;
+  left: 1.79rem;
   justify-self: center;
   font-size: var(--body-size);
   letter-spacing: var(--callout-space);
@@ -155,15 +164,15 @@
 
 @media (max-width: 389px) {
   #head-back-btn img {
-    width: 70%;
-    height: 70%;
+    inline-size: 70%;
+    block-size: 70%;
   }
 
   #head-left-title {
+    left: 2.1rem;
     font-size: var(--title2-size);
     line-height: var(--title2-height);
     letter-spacing: var(--title2-space);
-    left: 2.1rem;
   }
 
   #weather-head-right {
@@ -171,7 +180,7 @@
   }
 
   #search-bar {
-    width: 95%;
+    inline-size: 95%;
   }
 
   #search-input {
@@ -180,7 +189,8 @@
   }
 
   #search-bar img {
-    width: 12.63px;
+    top: 0.5rem;
+    inline-size: 0.79rem;
   }
 
   #search-input::placeholder {

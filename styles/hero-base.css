@@ -45,7 +45,6 @@
 #ellipse1-bg {
   top: 34.82rem;
   left: 11.94rem;
-  display: flex;
   inline-size: 15.625rem;
   filter: blur(40px);
 }
@@ -53,7 +52,6 @@
 #ellipse2-bg {
   top: -2rem;
   left: 3rem;
-  display: flex;
   inline-size: 17.875rem;
   block-size: 2rem;
   background: rgb(196, 39, 251, 0.5);
@@ -64,7 +62,6 @@
 #ellipse4-bg {
   top: 50.2rem;
   left: 2.69rem;
-  display: flex;
   inline-size: 26.56rem;
   filter: blur(80px);
 }
@@ -72,7 +69,6 @@
 #ellipse6-bg {
   top: 36.5rem;
   left: 16.94rem;
-  display: flex;
   inline-size: 15.625rem;
   background: conic-gradient(
     from 180deg,
