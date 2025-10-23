@@ -36,9 +36,8 @@ export function initForecastToggle() {
     console.warn("Home indicator not found, creating buttons...");
     createForecastButtons();
   }
-
-  renderHourlyForecast();
   setupForecastListeners();
+  renderHourlyForecast();
 }
 
 function createForecastButtons() {
@@ -87,7 +86,6 @@ function setupForecastListeners() {
     renderHourlyForecast();
   });
 
-  // Обработчик для кнопки "Weekly Forecast"
   weeklyBtn.addEventListener("click", () => {
     weeklyBtn.setAttribute("aria-pressed", "true");
     weeklyBtn.classList.add("active");
@@ -100,7 +98,62 @@ function setupForecastListeners() {
     if (shapeToggle) {
       shapeToggle.style.transform = "translateX(100%)";
     }
-
     renderWeeklyForecast();
   });
+}
+
+export function renderHourlyForecast() {
+  const container = document.querySelector(".forecast-by-hours");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  weatherData.hourly.forEach((item) => {
+    const forecastCard = document.createElement("div");
+    forecastCard.className = "forecast";
+    forecastCard.innerHTML = `
+      <p class="hour">${item.time}</p>
+      <img
+        class="forecast-weather-icon"
+        src="icons-weather/${item.icon}"
+        alt="Weather at ${item.time}"
+        loading="lazy"
+        width="44"
+        height="44"
+         onerror="this.style.display='none'"
+      />
+      <p class="temp-by-period">${item.temp}°</p>
+    `;
+    container.appendChild(forecastCard);
+  });
+
+  console.log("Hourly forecast rendered");
+}
+
+export function renderWeeklyForecast() {
+  const container = document.querySelector(".forecast-by-days");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  weatherData.weekly.forEach((item) => {
+    const forecastCard = document.createElement("div");
+    forecastCard.className = "forecast";
+    forecastCard.innerHTML = `
+      <p class="day">${item.day}</p>
+      <img
+        class="forecast-weather-icon"
+        src="icons-weather/${item.icon}"
+        alt="Weather on ${item.day}"
+        loading="lazy"
+        width="44"
+        height="44"
+         onerror="this.style.display='none'"
+      />
+      <p class="temp-by-period">${item.temp}°</p>
+    `;
+    container.appendChild(forecastCard);
+  });
+
+  console.log("Weekly forecast rendered");
 }

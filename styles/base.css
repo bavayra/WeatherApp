@@ -119,6 +119,15 @@ img {
   display: none !important;
 }
 
+.hidden {
+  display: none !important;
+}
+
+/*#weather-by-cities,
+#weather-map-search {
+  display: none;
+}*/
+
 #hero-section {
   position: relative;
   margin: 0 auto;

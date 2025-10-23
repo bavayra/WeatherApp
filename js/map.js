@@ -57,13 +57,13 @@ async function showWeatherInfo(lat, lng) {
   setTimeout(() => {
     weatherInfo.innerHTML = `
       <div class="map-weather-card">
-        <h3>Погода в этой точке</h3>
-        <p>Координаты: ${lat.toFixed(2)}, ${lng.toFixed(2)}</p>
-        <p>Температура: 18°C</p>
-        <p>Влажность: 65%</p>
-        <p>Описание: Облачно</p>
+        <h3>Weather at this location</h3>
+        <p>Coordinates: ${lat.toFixed(2)}, ${lng.toFixed(2)}</p>
+        <p>Temperature: 18°C</p>
+        <p>Humidity: 65%</p>
+        <p>Description: Overcast</p>
         <button id="add-from-map" class="add-city-from-map-btn">
-          Добавить в избранное
+          Add to favorites
         </button>
       </div>
     `;
@@ -79,6 +79,7 @@ async function showWeatherInfo(lat, lng) {
           icon: "cloud-lg.svg",
         };
         addCity(cityData);
+        alert(" The location was added to favorites!");
       });
     }
   }, 500);

@@ -77,10 +77,15 @@
   block-size: 1.5rem;
   background: transparent;
   border: none;
+  transition: transform 0.2s ease-in-out;
 }
 
 #head-back-btn img {
   display: block;
+}
+
+#head-back-btn:hover {
+  transform: scale(1.05);
 }
 
 #head-left-title {
@@ -115,6 +120,16 @@
 #manage-list-btn img {
   inline-size: 100%;
   block-size: 100%;
+  transition: transform 0.2s ease-in-out;
+}
+
+#manage-list-btn:hover {
+  transform: scale(1.1);
+}
+
+#manage-list-btn.active {
+  color: #432d84;
+  font-weight: bold;
 }
 
 #search-bar {

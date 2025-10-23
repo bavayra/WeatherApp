@@ -1,0 +1,85 @@
+#map-container {
+  margin: 1.25rem 0;
+  inline-size: 100%;
+  block-size: 25rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: var(--surface-gradient);
+  box-shadow: var(--drop-shadow);
+}
+
+.map-weather-card {
+  padding: 1.25rem;
+  background-color: var(--tertiary-color);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(10px);
+}
+
+.map-weather-card p {
+  margin: 0.5rem 0;
+  font-size: var(--callout-size);
+}
+
+.map-weather-card button {
+  margin-top: 1rem;
+  padding: 0.625rem 1.25rem;
+  background-color: var(--tertiary-color);
+  color: #7758d1;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: var(--callout-size);
+  transition: transform 0.2s ease-in-out;
+}
+
+.map-weather-card button:hover {
+  transform: scale(1.05);
+  color: #432d84;
+}
+
+.delete-city-btn {
+  position: absolute;
+  top: 0.625rem;
+  right: 0;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  background: rgba(201, 1, 78, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: var(--title1-size);
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.delete-city-btn:hover {
+  background: rgba(201, 1, 78);
+  transform: scale(1.05);
+}
+
+.map-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.map-header button {
+  padding: 0.625rem 1rem;
+  background-color: var(--tertiary-color);
+  color: #7758d1;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: var(--callout-size);
+  transition: transform 0.2s ease-in-out;
+}
+
+.map-header button:hover {
+  transform: scale(1.05);
+  color: #432d84;
+}
