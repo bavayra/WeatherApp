@@ -1,6 +1,6 @@
 # ☀️ Weather App
 
-A mobile weather forecast application designed for ,mobile devices.
+A mobile weather forecast application designed for mobile devices.
 
 ## 🎨 Design
 
