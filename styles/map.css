@@ -8,6 +8,10 @@
   box-shadow: var(--drop-shadow);
 }
 
+#map-weather-info {
+  margin-top: 1.25rem;
+}
+
 .map-weather-card {
   padding: 1.25rem;
   background-color: var(--tertiary-color);
@@ -82,4 +86,11 @@
 .map-header button:hover {
   transform: scale(1.05);
   color: #432d84;
+}
+
+#weather-by-cities,
+#weather-map-search {
+  margin: 0 auto;
+  padding: 1.25rem;
+  max-inline-size: var(--container-max-w);
 }

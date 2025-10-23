@@ -1,4 +1,5 @@
 import { addCity } from "./cityManager.js";
+import { getWeatherByCoords } from "./api.js";
 
 let map = null;
 let marker = null;
@@ -54,8 +55,15 @@ async function showWeatherInfo(lat, lng) {
   weatherInfo.classList.remove("hidden");
   weatherInfo.innerHTML = "<p>Loading weather...</p>";
 
-  setTimeout(() => {
-    weatherInfo.innerHTML = `
+  const weatherData = await getWeatherByCoords(lat, lng);
+
+  if (!weatherData) {
+    weatherInfo.innerHTML =
+      '<p style="padding: 20px; color: #f00;">❌ Weather loading error /p>';
+    return;
+  }
+
+  weatherInfo.innerHTML = `
       <div class="map-weather-card">
         <h3>Weather at this location</h3>
         <p>Coordinates: ${lat.toFixed(2)}, ${lng.toFixed(2)}</p>
@@ -68,19 +76,18 @@ async function showWeatherInfo(lat, lng) {
       </div>
     `;
 
-    const addBtn = document.getElementById("add-from-map");
-    if (addBtn) {
-      addBtn.addEventListener("click", () => {
-        const cityData = {
-          name: `Location ${lat.toFixed(2)}`,
-          country: `${lng.toFixed(2)}`,
-          temp: 18,
-          humidity: 65,
-          icon: "cloud-lg.svg",
-        };
-        addCity(cityData);
-        alert(" The location was added to favorites!");
-      });
-    }
-  }, 500);
+  const addBtn = document.getElementById("add-from-map");
+  if (addBtn) {
+    addBtn.addEventListener("click", () => {
+      const cityData = {
+        name: weatherData.name,
+        country: weatherData.country,
+        temp: weatherData.temp,
+        humidity: weatherData.humidity,
+        icon: weatherData.icon,
+      };
+      addCity(cityData);
+      alert(`${weatherData.name} was added to favorites!`);
+    });
+  }
 }

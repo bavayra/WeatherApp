@@ -1,23 +1,8 @@
-export const weatherData = {
-  hourly: [
-    { time: "12AM", temp: 19, icon: "moon-cloud-rain-sm.svg" },
-    { time: "1AM", temp: 18, icon: "moon-cloud-rain-sm.svg" },
-    { time: "2AM", temp: 17, icon: "moon-cloud-sm.svg" },
-    { time: "3AM", temp: 16, icon: "moon-cloud-sm.svg" },
-    { time: "4AM", temp: 15, icon: "moon-sm.svg" },
-    { time: "5AM", temp: 15, icon: "moon-sm.svg" },
-    { time: "6AM", temp: 16, icon: "sun-sm.svg" },
-    { time: "7AM", temp: 17, icon: "sun-sm.svg" },
-  ],
-  weekly: [
-    { day: "MON", temp: 23, icon: "sun-cloud-rain-sm.svg" },
-    { day: "TUE", temp: 17, icon: "moon-cloud-rain-sm.svg" },
-    { day: "WED", temp: 20, icon: "sun-cloud-sm.svg" },
-    { day: "THU", temp: 22, icon: "sun-sm.svg" },
-    { day: "FRI", temp: 19, icon: "cloud-rain-sm.svg" },
-    { day: "SAT", temp: 18, icon: "cloud-sm.svg" },
-    { day: "SUN", temp: 21, icon: "sun-sm.svg" },
-  ],
+import { getForecast } from "./api.js";
+
+export let weatherData = {
+  hourly: [],
+  weekly: [],
 };
 
 export function initForecastToggle() {
@@ -25,6 +10,7 @@ export function initForecastToggle() {
 
   const forecastByHours = document.querySelector(".forecast-by-hours");
   const forecastByDays = document.querySelector(".forecast-by-days");
+
   if (!forecastByHours || !forecastByDays) {
     console.error("Forecast containers not found in HTML");
     return;
@@ -36,8 +22,38 @@ export function initForecastToggle() {
     console.warn("Home indicator not found, creating buttons...");
     createForecastButtons();
   }
+
+  loadForecastData();
   setupForecastListeners();
-  renderHourlyForecast();
+}
+
+async function loadForecastData() {
+  const lat = 45.5017;
+  const lon = -73.5673;
+
+  const forecastData = await getForecast(lat, lon);
+
+  if (forecastData) {
+    weatherData = forecastData;
+    renderHourlyForecast();
+  } else {
+    console.error("Failed to load forecast data");
+  }
+}
+
+export async function updateForecastForCity(lat, lon) {
+  const forecastData = await getForecast(lat, lon);
+
+  if (forecastData) {
+    weatherData = forecastData;
+
+    const hourlyBtn = document.getElementById("hourly-forecast-btn");
+    if (hourlyBtn && hourlyBtn.classList.contains("active")) {
+      renderHourlyForecast();
+    } else {
+      renderWeeklyForecast();
+    }
+  }
 }
 
 function createForecastButtons() {

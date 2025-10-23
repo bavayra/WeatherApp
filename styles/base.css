@@ -123,10 +123,10 @@ img {
   display: none !important;
 }
 
-/*#weather-by-cities,
+#weather-by-cities,
 #weather-map-search {
   display: none;
-}*/
+}
 
 #hero-section {
   position: relative;

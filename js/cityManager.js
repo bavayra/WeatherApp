@@ -1,3 +1,5 @@
+import { getForecast } from "./api.js";
+
 let savedCities = [];
 let isManageMode = false;
 
@@ -10,9 +12,18 @@ export function initCityManagement() {
   const manageBtn = document.getElementById("manage-list-btn");
 
   if (searchInput) {
+    let searchTimeout;
     searchInput.addEventListener("input", (e) => {
-      const query = e.target.value.toLowerCase();
-      filterCities(query);
+      const query = e.target.value.trim();
+
+      filterCities(query.toLowerCase());
+
+      clearTimeout(searchTimeout);
+      if (query.length >= 3) {
+        searchTimeout = setTimeout(() => {
+          searchNewCities(query);
+        }, 500);
+      }
     });
   }
 
@@ -21,6 +32,84 @@ export function initCityManagement() {
       isManageMode = !isManageMode;
       toggleManageMode();
     });
+  }
+  renderSavedCities();
+}
+
+async function searchNewCities(query) {
+  console.log("Searching for:", query);
+
+  const results = await searchCities(query);
+
+  if (results.length > 0) {
+    displaySearchResults(results);
+  }
+}
+
+function displaySearchResults(cities) {
+  const widget = document.getElementById("weather-widget");
+  if (!widget) return;
+
+  let searchSection = document.getElementById("search-results");
+  if (!searchSection) {
+    searchSection = document.createElement("div");
+    searchSection.id = "search-results";
+    searchSection.style.marginBottom = "20px";
+    widget.insertBefore(searchSection, widget.firstChild);
+  }
+
+  searchSection.innerHTML = `
+    <h3 style="color: #fff; margin-bottom: 10px;">Search results:</h3>
+    ${cities
+      .map(
+        (city) => `
+      <button 
+        class="search-result-btn" 
+        data-city="${city.name}" 
+        data-country="${city.country}"
+        data-lat="${city.lat}"
+        data-lon="${city.lon}"
+        style="
+          display: block;
+          width: 100%;
+          padding: 12px;
+          margin-bottom: 8px;
+          background: rgba(255,255,255,0.1);
+          border: none;
+          border-radius: 8px;
+          color: #fff;
+          text-align: left;
+          cursor: pointer;
+        "
+      >
+        📍 ${city.name}, ${city.country} ${city.state ? `(${city.state})` : ""}
+      </button>
+    `
+      )
+      .join("")}
+  `;
+
+  searchSection.querySelectorAll(".search-result-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const cityName = btn.dataset.city;
+      await addCityFromSearch(cityName);
+    });
+  });
+}
+
+async function addCityFromSearch(cityName) {
+  const weatherData = await getWeatherByCity(cityName);
+
+  if (weatherData) {
+    addCity(weatherData);
+
+    const searchResults = document.getElementById("search-results");
+    if (searchResults) searchResults.remove();
+
+    const searchInput = document.getElementById("search-input");
+    if (searchInput) searchInput.value = "";
+  } else {
+    alert("Could not load city data");
   }
 }
 
