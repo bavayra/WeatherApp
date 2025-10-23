@@ -154,14 +154,6 @@ function toggleManageMode() {
 }
 
 function deleteCity(index) {
-  if (confirm("Do you want to delete this city from favorites?")) {
-    savedCities.splice(index, 1);
-    saveCitiesToStorage();
-    renderSavedCities();
-  }
-}
-
-function deleteCity(index) {
   if (confirm("Удалить этот город из избранного?")) {
     savedCities.splice(index, 1);
     saveCitiesToStorage();
@@ -169,7 +161,6 @@ function deleteCity(index) {
   }
 }
 
-// Добавление города
 export function addCity(cityData) {
   const exists = savedCities.some(
     (city) => city.name === cityData.name && city.country === cityData.country
@@ -179,8 +170,8 @@ export function addCity(cityData) {
     savedCities.push(cityData);
     saveCitiesToStorage();
     renderSavedCities();
-    alert(`${cityData.name} добавлен в избранное!`);
+    alert(`${cityData.name} is added to your favorites!`);
   } else {
-    alert(`${cityData.name} уже в избранном!`);
+    alert(`${cityData.name} is already on the favorites list`);
   }
 }
