@@ -25,7 +25,7 @@
       rel="stylesheet"
     />
 
-    <!--Althought the author of the Figma design used SF Pro Display Font, it's suitable only for iOs devices. I tried to used as similar one as possible-->
+    <!--Althought the designer from Figma used SF Pro Display Font, it's suitable only for iOs devices. I tried to used as similar one as possible-->
 
     <link rel="preload" as="image" href="/icons-base/House.svg" />
 
@@ -134,11 +134,11 @@
 
         <section id="current-weather">
           <div class="current-weather-data">
-            <p class="current-city current">Montreal</p>
-            <p class="current-temp current">14&deg;</p>
+            <p class="current-city current">Loading...</p>
+            <p class="current-temp current">--°</p>
             <div class="current-desc-hum">
-              <p class="current-desc current">Mostly Clear</p>
-              <p class="current-hum current">Humidity: 64%</p>
+              <p class="current-desc current">--</p>
+              <p class="current-hum current">Humidity: --%</p>
             </div>
           </div>
         </section>
@@ -176,59 +176,9 @@
             ></div>
           </section>
 
-          <div class="forecast-by-hours">
-            <div class="forecast-hour1 forecast">
-              <p class="hour">12AM</p>
-              <img
-                class="forecast-weather-icon"
-                src="icons-weather/moon-cloud-rain-sm.svg"
-                alt="Current weather image"
-                loading="lazy"
-                width="44"
-                height="44"
-              />
-              <p class="temp-by-period">19&deg;</p>
-            </div>
-            <div class="forecast-hour2 forecast">
-              <p class="hour">12AM</p>
-              <img
-                class="forecast-weather-icon"
-                src="icons-weather/moon-cloud-rain-sm.svg"
-                alt="Current weather image"
-                loading="lazy"
-                width="44"
-                height="44"
-              />
-              <p class="temp-by-period">19&deg;</p>
-            </div>
-          </div>
+          <div class="forecast-by-hours"></div>
 
-          <div class="forecast-by-days visually-hidden">
-            <div class="forecast-day1 forecast">
-              <p class="day">MON</p>
-              <img
-                class="forecast-weather-icon"
-                src="icons-weather/moon-cloud-rain-sm.svg"
-                alt="Current weather image"
-                loading="lazy"
-                width="44"
-                height="44"
-              />
-              <p class="temp-by-period">23&deg;</p>
-            </div>
-            <div class="forecast-day2 forecast">
-              <p class="day">TUE</p>
-              <img
-                class="forecast-weather-icon"
-                src="icons-weather/moon-cloud-rain-sm.svg"
-                alt="Current weather image"
-                loading="lazy"
-                width="44"
-                height="44"
-              />
-              <p class="temp-by-period">17&deg;</p>
-            </div>
-          </div>
+          <div class="forecast-by-days visually-hidden"></div>
         </section>
         <div class="app-footer">
           <div id="footer-back">
@@ -376,11 +326,11 @@
               />
             </div>
             <div class="city-temp">
-              <p>19&deg;</p>
+              <p></p>
             </div>
             <div class="weather-desc">
-              <p class="weather-hum">Humidity: 50%</p>
-              <p class="weather-city-country">Montreal, Canada</p>
+              <p class="weather-hum"></p>
+              <p class="weather-city-country"></p>
             </div>
           </div>
 
@@ -405,8 +355,8 @@
               <p>20&deg;</p>
             </div>
             <div class="weather-desc">
-              <p class="weather-hum">Humidity: 70%</p>
-              <p class="weather-city-country">Toronto, Canada</p>
+              <p class="weather-hum"></p>
+              <p class="weather-city-country"></p>
             </div>
           </div>
         </section>

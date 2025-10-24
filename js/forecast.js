@@ -23,22 +23,16 @@ export function initForecastToggle() {
     createForecastButtons();
   }
 
-  loadForecastData();
   setupForecastListeners();
-}
 
-async function loadForecastData() {
-  const lat = 45.5017;
-  const lon = -73.5673;
-
-  const forecastData = await getForecast(lat, lon);
-
-  if (forecastData) {
-    weatherData = forecastData;
-    renderHourlyForecast();
-  } else {
-    console.error("Failed to load forecast data");
-  }
+  document.addEventListener("weatherDataUpdated", () => {
+    const hourlyBtn = document.getElementById("hourly-forecast-btn");
+    if (hourlyBtn && hourlyBtn.getAttribute("aria-pressed") === "true") {
+      renderHourlyForecast();
+    } else {
+      renderWeeklyForecast();
+    }
+  });
 }
 
 export async function updateForecastForCity(lat, lon) {

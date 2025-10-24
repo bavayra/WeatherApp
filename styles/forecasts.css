@@ -15,7 +15,7 @@
     rgb(28, 27, 51, 0.26)
   );
   backdrop-filter: blur(15px);
-  overflow: hidden;
+  /*overflow: hidden;*/
   box-shadow: var(--inner-shadow);
 }
 
@@ -54,10 +54,10 @@
 .forecast-by-hours,
 .forecast-by-days {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   margin-top: 4.3rem;
   margin-left: 1.25rem;
-  column-gap: 0.75rem;
+  column-gap: 1.25rem;
   inline-size: 100%;
   max-inline-size: var(--container-max-w);
 }
