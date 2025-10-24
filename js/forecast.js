@@ -20,7 +20,6 @@ export function initForecastToggle() {
 
   if (!homeIndicator) {
     console.warn("Home indicator not found, creating buttons...");
-    createForecastButtons();
   }
 
   setupForecastListeners();
@@ -50,23 +49,6 @@ export async function updateForecastForCity(lat, lon) {
   }
 }
 
-function createForecastButtons() {
-  const homeIndicator = document.querySelector(".home-indicator");
-  if (!homeIndicator) return;
-
-  homeIndicator.innerHTML = `
-    <div class="forecast-toggle">
-      <button id="hourly-forecast-btn" class="forecast-btn active" aria-pressed="true">
-        Hourly Forecast
-      </button>
-      <button id="weekly-forecast-btn" class="forecast-btn" aria-pressed="false">
-        Weekly Forecast
-      </button>
-      <div id="shape-toggle" class="toggle-indicator"></div>
-    </div>
-  `;
-}
-
 function setupForecastListeners() {
   const hourlyBtn = document.getElementById("hourly-forecast-btn");
   const weeklyBtn = document.getElementById("weekly-forecast-btn");
@@ -89,10 +71,6 @@ function setupForecastListeners() {
     hourlyForecast.classList.remove("visually-hidden");
     weeklyForecast.classList.add("visually-hidden");
 
-    if (shapeToggle) {
-      shapeToggle.style.transform = "translateX(0)";
-    }
-
     renderHourlyForecast();
   });
 
@@ -105,9 +83,6 @@ function setupForecastListeners() {
     weeklyForecast.classList.remove("visually-hidden");
     hourlyForecast.classList.add("visually-hidden");
 
-    if (shapeToggle) {
-      shapeToggle.style.transform = "translateX(100%)";
-    }
     renderWeeklyForecast();
   });
 }

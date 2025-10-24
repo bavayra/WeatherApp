@@ -82,7 +82,7 @@ function displaySearchResults(cities) {
           cursor: pointer;
         "
       >
-        📍 ${city.name}, ${city.country} ${city.state ? `(${city.state})` : ""}
+         ${city.name}, ${city.country} ${city.state ? `(${city.state})` : ""}
       </button>
     `
       )
@@ -167,7 +167,7 @@ export function renderSavedCities() {
 
   if (savedCities.length === 0) {
     widget.innerHTML =
-      '<p style="text-align: center; padding: 20px; color: #666;">Нет сохраненных городов</p>';
+      '<p style="text-align: center; padding: 20px; color: #666;">No favorite cities</p>';
     return;
   }
 
@@ -243,7 +243,7 @@ function toggleManageMode() {
 }
 
 function deleteCity(index) {
-  if (confirm("Удалить этот город из избранного?")) {
+  if (confirm("Do you want to delete this city?")) {
     savedCities.splice(index, 1);
     saveCitiesToStorage();
     renderSavedCities();
@@ -259,7 +259,7 @@ export function addCity(cityData) {
     savedCities.push(cityData);
     saveCitiesToStorage();
     renderSavedCities();
-    alert(`${cityData.name} is added to your favorites!`);
+    alert(`${cityData.name} is added to your favorites list!`);
   } else {
     alert(`${cityData.name} is already on the favorites list`);
   }

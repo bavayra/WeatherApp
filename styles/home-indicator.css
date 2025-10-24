@@ -74,6 +74,16 @@
   letter-spacing: var(--subheadline-space);
   line-height: var(--subheadline-height);
   font-weight: 500;
+  transition: transform 0.2s ease-in;
+}
+
+.forecasts-btns button:hover {
+  transform: scale(1.07);
+}
+
+.forecasts-btns button[aria-pressed="true"] {
+  color: #a384ffc1;
+  font-weight: 600;
 }
 
 #hourly-forecast-btn {

@@ -105,14 +105,14 @@
 
 #weather-head-right {
   position: absolute;
-  left: 12.19rem;
-  padding: 0.56rem 0.56rem 0.56rem 1rem;
-  inline-size: 12.19rem;
+  right: 0;
+  padding-block: 0.56rem;
+  inline-size: 8rem;
 }
 
 #manage-list-btn {
   display: flex;
-  justify-self: self-end;
+  justify-self: center;
   background: transparent;
   border: none;
 }
@@ -134,19 +134,24 @@
 
 #search-bar {
   position: absolute;
-  top: 3.75rem;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0;
-  display: flex;
-  justify-content: center;
+  top: 4rem;
+  margin: auto;
+  padding: 0 1rem;
   block-size: 2.875rem;
+  inline-size: 95%;
+  max-inline-size: var(--container-max-w);
+}
+
+#search-input-container {
+  inline-size: 100%;
+  block-size: 100%;
 }
 
 #search-input {
   display: flex;
   padding: 0.44rem 0.5rem;
-  inline-size: 22.375rem;
+  inline-size: 100%;
+  max-inline-size: 22.375rem;
   block-size: 2.25rem;
   border: none;
   border-radius: 0.625rem;
@@ -158,11 +163,16 @@
   box-shadow: var(--shadow-inset);
 }
 
+#search-btn {
+  position: absolute;
+  inline-size: 0.98rem;
+  block-size: auto;
+  background: none;
+  border: none;
+}
+
 #search-bar img {
   position: absolute;
-  top: 0.72rem;
-  left: 1.5rem;
-  justify-self: center;
   inline-size: 0.98rem;
   block-size: auto;
 }
@@ -190,16 +200,7 @@
     letter-spacing: var(--title2-space);
   }
 
-  #weather-head-right {
-    left: 8rem;
-  }
-
-  #search-bar {
-    inline-size: 95%;
-  }
-
   #search-input {
-    margin-left: 1rem;
     block-size: 1.8rem;
   }
 
