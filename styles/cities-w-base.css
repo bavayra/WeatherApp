@@ -3,9 +3,11 @@
   margin: 0 auto;
   inline-size: 100%;
   max-inline-size: var(--container-max-w);
-  block-size: 100svh;
+  min-block-size: 47.25rem;
+  block-size: 52.75rem;
   background: var(--primary-gradient);
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #weather-by-cities,

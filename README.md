@@ -86,7 +86,6 @@ WeatherApp/
 
 ## 📝 TODO
 
-- [ ] Weather API integration
 - [ ] Dynamic city add/remove
 - [ ] User geolocation
 - [ ] LocalStorage data persistence

@@ -99,8 +99,8 @@ export function renderHourlyForecast() {
     forecastCard.innerHTML = `
       <p class="hour">${item.time}</p>
       <img
-        class="forecast-weather-icon"
-        src="icons-weather/${item.icon}"
+        class="forecast-weather-icon"а
+        src="/icons-weather/${item.icon}"
         alt="Weather at ${item.time}"
         loading="lazy"
         width="44"
@@ -128,7 +128,7 @@ export function renderWeeklyForecast() {
       <p class="day">${item.day}</p>
       <img
         class="forecast-weather-icon"
-        src="icons-weather/${item.icon}"
+        src="/icons-weather/${item.icon}"
         alt="Weather on ${item.day}"
         loading="lazy"
         width="44"
