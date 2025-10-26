@@ -13,8 +13,7 @@
 #weather-by-cities,
 #weather-head,
 #weather-head-container,
-#head-back-btn img,
-#search-bar {
+#head-back-btn img {
   inline-size: 100%;
   max-inline-size: var(--container-max-w);
 }
@@ -136,12 +135,13 @@
 
 #search-bar {
   position: absolute;
-  top: 4rem;
-  margin: auto;
-  padding: 0 1rem;
+  top: 6.3rem;
+  left: 50%;
+  transform: translateX(-50%);
   block-size: 2.875rem;
-  inline-size: 95%;
-  max-inline-size: var(--container-max-w);
+  inline-size: calc(100% - 2rem);
+  max-inline-size: calc(var(--container-max-w) - 2rem);
+  box-sizing: border-box;
 }
 
 #search-input-container {
@@ -151,9 +151,7 @@
 
 #search-input {
   display: flex;
-  padding: 0.44rem 0.5rem;
   inline-size: 100%;
-  max-inline-size: 22.375rem;
   block-size: 2.25rem;
   border: none;
   border-radius: 0.625rem;
@@ -163,10 +161,14 @@
     rgb(28, 27, 51, 0.26)
   );
   box-shadow: var(--shadow-inset);
+  box-sizing: border-box;
+  padding-inline-start: 2.5rem;
 }
 
 #search-btn {
   position: absolute;
+  top: 0.625rem;
+  left: 0.25rem;
   inline-size: 0.98rem;
   block-size: auto;
   background: none;
@@ -175,13 +177,13 @@
 
 #search-bar img {
   position: absolute;
-  inline-size: 0.98rem;
+  inline-size: 100%;
   block-size: auto;
 }
 
 #search-input::placeholder {
   position: absolute;
-  left: 1.79rem;
+  left: 1.9rem;
   justify-self: center;
   font-size: var(--body-size);
   letter-spacing: var(--callout-space);
@@ -202,12 +204,15 @@
     letter-spacing: var(--title2-space);
   }
 
+  #search-btn {
+    top: 0.45rem;
+  }
+
   #search-input {
     block-size: 1.8rem;
   }
 
   #search-bar img {
-    top: 0.5rem;
     inline-size: 0.79rem;
   }
 
@@ -215,11 +220,5 @@
     font-size: var(--subheadline-size);
     letter-spacing: var(--subheadline-space);
     line-height: var(--subheadline-height);
-  }
-}
-
-@media (min-width: 420px) {
-  #search-bar img {
-    left: 1.5rem;
   }
 }
