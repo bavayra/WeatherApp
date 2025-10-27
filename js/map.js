@@ -4,10 +4,10 @@ import { getWeatherByCoords } from "./api.js";
 let map = null;
 let marker = null;
 
-export function initializeMap() {
+export async function initializeMap() {
   console.log("Initializing map...");
 
-  const mapContainer = document.getElementById("map-container");
+  const mapContainer = document.getElementById("map");
 
   if (!mapContainer) {
     console.error("Map container not found");
@@ -20,28 +20,109 @@ export function initializeMap() {
   }
 
   try {
-    map = L.map("map-container").setView([45.5017, -73.5673], 10);
+    const position = await getUserLocation();
+    const { latitude, longitude } = position.coords;
+
+    map = L.map("map").setView([latitude, longitude], 10);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "© OpenStreetMap contributors",
       maxZoom: 19,
     }).addTo(map);
 
-    map.on("click", async (e) => {
-      const { lat, lng } = e.latlng;
+    L.marker([latitude, longitude])
+      .addTo(map)
+      .bindPopup("Your location")
+      .openPopup();
 
-      if (marker) {
-        map.removeLayer(marker);
-      }
-
-      marker = L.marker([lat, lng]).addTo(map);
-      await showWeatherInfo(lat, lng);
-    });
-
-    console.log("Map initialized successfully");
+    const weatherData = await getWeatherByCoords(latitude, longitude);
+    displayWeatherOnMap(weatherData, latitude, longitude);
   } catch (error) {
-    console.error("Error initializing map:", error);
+    console.error("Geolocation error:", error);
+
+    map = L.map("map").setView([51.505, -0.09], 10); //Fallback for the default location
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "© OpenStreetMap contributors",
+      maxZoom: 18,
+    }).addTo(map);
+
+    alert("Could not get your location. Showing default location.");
   }
+
+  setupMapClickListener();
+}
+
+function setupMapClickListener() {
+  if (!map) return;
+
+  map.on("click", async (e) => {
+    const { lat, lng } = e.latlng;
+
+    try {
+      const weatherData = await getWeatherByCoords(lat, lng);
+      displayWeatherOnMap(weatherData, lat, lng);
+    } catch (error) {
+      console.error("Failed to get weather for clicked location:", error);
+    }
+  });
+}
+
+function getUserLocation() {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      reject(new Error("Geolocation is not supported by your browser"));
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => resolve(position),
+      (error) => {
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            reject(new Error("User denied geolocation permission"));
+            break;
+          case error.POSITION_UNAVAILABLE:
+            reject(new Error("Location information unavailable"));
+            break;
+          case error.TIMEOUT:
+            reject(new Error("Geolocation request timed out"));
+            break;
+          default:
+            reject(new Error("An unknown error occurred"));
+        }
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+      }
+    );
+  });
+}
+
+function displayWeatherOnMap(weatherData, lat, lon) {
+  if (!map) return;
+
+  map.eachLayer((layer) => {
+    if (layer instanceof L.Marker) {
+      const popup = layer.getPopup();
+      if (popup && popup.getContent().includes("°C")) {
+        map.removeLayer(layer);
+      }
+    }
+  });
+
+  const popupContent = `
+    <div class="weather-popup">
+      <h3>${weatherData.name}, ${weatherData.country}</h3>
+      <p><strong>${weatherData.temp}°C</strong></p>
+      <p>${weatherData.description}</p>
+      <p>Humidity: ${weatherData.humidity}%</p>
+    </div>
+  `;
+
+  L.marker([lat, lon]).addTo(map).bindPopup(popupContent);
 }
 
 async function showWeatherInfo(lat, lng) {

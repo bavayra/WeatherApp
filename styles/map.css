@@ -1,7 +1,8 @@
-#map-container {
+#map {
   margin: 1.25rem 0;
   inline-size: 100%;
   block-size: 25rem;
+  max-block-size: 52.75rem;
   border-radius: 0.75rem;
   overflow: hidden;
   background: var(--surface-gradient);
