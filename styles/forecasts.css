@@ -75,6 +75,11 @@
   block-size: 2.375rem;
 }
 
+.forecast-weather-icon[src$=".png"] {
+  inline-size: 4.5rem;
+  block-size: 3rem;
+}
+
 @media (max-width: 389px) {
   .temp-by-period {
     font-size: var(--body-size);
@@ -100,5 +105,10 @@
   .forecast-weather-icon {
     inline-size: 1.8rem;
     block-size: 1.8rem;
+  }
+
+  .forecast-weather-icon[src$=".png"] {
+    inline-size: 2.5rem;
+    block-size: 2rem;
   }
 }
