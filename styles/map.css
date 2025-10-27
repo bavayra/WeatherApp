@@ -1,7 +1,7 @@
 #map {
   margin: 1.25rem 0;
   inline-size: 100%;
-  block-size: 25rem;
+  block-size: 52.75rem;
   max-block-size: 52.75rem;
   border-radius: 0.75rem;
   overflow: hidden;
@@ -42,30 +42,6 @@
   color: #432d84;
 }
 
-.delete-city-btn {
-  position: absolute;
-  top: 0.625rem;
-  right: 0;
-  z-index: 6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  inline-size: 2.5rem;
-  block-size: 2.5rem;
-  background: rgba(201, 1, 78, 0.8);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  font-size: var(--title1-size);
-  cursor: pointer;
-  transition: background 0.2s ease-in-out, transform 0.2s ease-in-out;
-}
-
-.delete-city-btn:hover {
-  background: rgba(201, 1, 78);
-  transform: scale(1.05);
-}
-
 .map-header {
   display: flex;
   align-items: center;
@@ -73,20 +49,18 @@
   margin-bottom: 1.25rem;
 }
 
-.map-header button {
+#map-back-btn {
   padding: 0.625rem 1rem;
-  background-color: var(--tertiary-color);
-  color: #7758d1;
+  background-color: #7758d1;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 50%;
   cursor: pointer;
-  font-size: var(--callout-size);
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
-.map-header button:hover {
+#map-back-btn:hover {
   transform: scale(1.05);
-  color: #432d84;
+  background-color: #432d84;
 }
 
 #weather-by-cities,

@@ -87,11 +87,9 @@ WeatherApp/
 ## 📝 TODO
 
 - [ ] Dynamic city add/remove
-- [ ] User geolocation
 - [ ] LocalStorage data persistence
 - [ ] Transition animations between screens
 - [ ] PWA functionality (offline mode)
-- [ ] Image compression (WebP)
 - [ ] Service Worker for caching
 
 ## 🚀 Getting Started
