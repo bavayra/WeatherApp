@@ -1,4 +1,4 @@
-import { getForecast } from "./api.js";
+import { getForecast, getWeatherByCity, searchCities } from "./api.js";
 
 let savedCities = [];
 let isManageMode = false;
@@ -127,29 +127,36 @@ function filterCities(query) {
   });
 }
 
-function loadSavedCities() {
+async function loadSavedCities() {
   const saved = localStorage.getItem("savedCities");
   if (saved) {
     savedCities = JSON.parse(saved);
+    await updateAllCitiesWeather();
   } else {
-    savedCities = [
-      {
-        name: "Montreal",
-        country: "Canada",
-        temp: 19,
-        humidity: 50,
-        icon: "moon-cloud-wind-lg.svg",
-      },
-      {
-        name: "Toronto",
-        country: "Canada",
-        temp: 20,
-        humidity: 70,
-        icon: "sun-cloud-rain-lg.svg",
-      },
-    ];
-    saveCitiesToStorage();
+    savedCities = [];
+    try {
+      const montrealWeather = await getWeatherByCity("Montreal");
+      const torontoWeather = await getWeatherByCity("Toronto");
+      if (montrealWeather) addCity(montrealWeather);
+      if (torontoWeather) addCity(torontoWeather);
+    } catch (error) {
+      console.error("Failed to load default cities:", error);
+    }
   }
+}
+
+async function updateAllCitiesWeather() {
+  for (let i = 0; i < savedCities.length; i++) {
+    const city = savedCities[i];
+    try {
+      const weatherData = await getWeatherByCity(city.name);
+      savedCities[i] = weatherData;
+    } catch (error) {
+      console.error(`Failed to update weather for ${city.name}:`, error);
+    }
+  }
+  saveCitiesToStorage();
+  renderCities();
 }
 
 function saveCitiesToStorage() {
