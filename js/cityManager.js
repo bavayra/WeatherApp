@@ -156,7 +156,7 @@ async function updateAllCitiesWeather() {
     }
   }
   saveCitiesToStorage();
-  renderCities();
+  renderSavedCities();
 }
 
 function saveCitiesToStorage() {
