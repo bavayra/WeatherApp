@@ -2,7 +2,7 @@ import { getForecast } from "./api.js";
 
 export let weatherData = {
   hourly: [],
-  weekly: [],
+  daily: [],
 };
 
 export function initForecastToggle() {
@@ -16,12 +16,6 @@ export function initForecastToggle() {
     return;
   }
 
-  const homeIndicator = document.querySelector(".home-indicator");
-
-  if (!homeIndicator) {
-    console.warn("Home indicator not found, creating buttons...");
-  }
-
   setupForecastListeners();
 
   document.addEventListener("weatherDataUpdated", () => {
@@ -29,61 +23,67 @@ export function initForecastToggle() {
     if (hourlyBtn && hourlyBtn.getAttribute("aria-pressed") === "true") {
       renderHourlyForecast();
     } else {
-      renderWeeklyForecast();
+      renderDailyForecast();
     }
   });
 }
 
 export async function updateForecastForCity(lat, lon) {
-  const forecastData = await getForecast(lat, lon);
+  try {
+    const forecastData = await getForecast(lat, lon);
 
-  if (forecastData) {
-    weatherData = forecastData;
+    if (forecastData) {
+      weatherData.hourly = forecastData.hourly;
+      weatherData.daily = forecastData.daily;
 
-    const hourlyBtn = document.getElementById("hourly-forecast-btn");
-    if (hourlyBtn && hourlyBtn.classList.contains("active")) {
-      renderHourlyForecast();
-    } else {
-      renderWeeklyForecast();
+      console.log("Weather data updated:", weatherData);
+
+      const hourlyBtn = document.getElementById("hourly-forecast-btn");
+      if (hourlyBtn && hourlyBtn.classList.contains("active")) {
+        renderHourlyForecast();
+      } else {
+        renderDailyForecast();
+      }
     }
+  } catch (error) {
+    console.error("Failed to update forecast:", error);
   }
 }
 
 function setupForecastListeners() {
   const hourlyBtn = document.getElementById("hourly-forecast-btn");
-  const weeklyBtn = document.getElementById("weekly-forecast-btn");
+  const dailyBtn = document.getElementById("daily-forecast-btn");
 
-  if (!hourlyBtn || !weeklyBtn) {
+  if (!hourlyBtn || !dailyBtn) {
     console.error("Forecast buttons not found");
     return;
   }
 
   const hourlyForecast = document.querySelector(".forecast-by-hours");
-  const weeklyForecast = document.querySelector(".forecast-by-days");
-  const shapeToggle = document.getElementById("shape-toggle");
+  const dailyForecast = document.querySelector(".forecast-by-days");
 
   hourlyBtn.addEventListener("click", () => {
     hourlyBtn.setAttribute("aria-pressed", "true");
     hourlyBtn.classList.add("active");
-    weeklyBtn.setAttribute("aria-pressed", "false");
-    weeklyBtn.classList.remove("active");
+    dailyBtn.setAttribute("aria-pressed", "false");
+    dailyBtn.classList.remove("active");
 
     hourlyForecast.classList.remove("visually-hidden");
-    weeklyForecast.classList.add("visually-hidden");
+    dailyForecast.classList.add("visually-hidden");
 
     renderHourlyForecast();
   });
 
-  weeklyBtn.addEventListener("click", () => {
-    weeklyBtn.setAttribute("aria-pressed", "true");
-    weeklyBtn.classList.add("active");
+  dailyBtn.addEventListener("click", () => {
+    dailyBtn.setAttribute("aria-pressed", "true");
+    dailyBtn.classList.add("active");
     hourlyBtn.setAttribute("aria-pressed", "false");
     hourlyBtn.classList.remove("active");
 
-    weeklyForecast.classList.remove("visually-hidden");
+    dailyForecast.classList.remove("visually-hidden");
     hourlyForecast.classList.add("visually-hidden");
 
-    renderWeeklyForecast();
+    renderDailyForecast();
   });
 }
 
@@ -92,6 +92,7 @@ export function renderHourlyForecast() {
   if (!container) return;
 
   container.innerHTML = "";
+  console.log("Rendering hourly forecast:", weatherData.hourly.length, "items");
 
   weatherData.hourly.forEach((item) => {
     const forecastCard = document.createElement("div");
@@ -99,13 +100,13 @@ export function renderHourlyForecast() {
     forecastCard.innerHTML = `
       <p class="hour">${item.time}</p>
       <img
-        class="forecast-weather-icon"а
+        class="forecast-weather-icon"
         src="/icons-weather/${item.icon}"
         alt="Weather at ${item.time}"
         loading="lazy"
         width="44"
         height="44"
-         onerror="this.style.display='none'"
+        onerror="this.style.display='none'"
       />
       <p class="temp-by-period">${item.temp}°</p>
     `;
@@ -115,15 +116,22 @@ export function renderHourlyForecast() {
   console.log("Hourly forecast rendered");
 }
 
-export function renderWeeklyForecast() {
+export function renderDailyForecast() {
   const container = document.querySelector(".forecast-by-days");
   if (!container) return;
 
   container.innerHTML = "";
 
-  weatherData.weekly.forEach((item) => {
+  console.log("Rendering daily forecast:", weatherData.daily.length, "items");
+
+  weatherData.daily.forEach((item, index) => {
     const forecastCard = document.createElement("div");
     forecastCard.className = "forecast";
+
+    if (index === 0) {
+      forecastCard.classList.add("active");
+    }
+
     forecastCard.innerHTML = `
       <p class="day">${item.day}</p>
       <img
@@ -133,12 +141,12 @@ export function renderWeeklyForecast() {
         loading="lazy"
         width="44"
         height="44"
-         onerror="this.style.display='none'"
+        onerror="this.style.display='none'"
       />
       <p class="temp-by-period">${item.temp}°</p>
     `;
     container.appendChild(forecastCard);
   });
 
-  console.log("Weekly forecast rendered");
+  console.log("Daily forecast rendered", weatherData.daily);
 }

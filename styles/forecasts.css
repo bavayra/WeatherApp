@@ -26,7 +26,7 @@
   justify-self: center;
   align-items: center;
   padding: 1rem 0.5rem;
-  inline-size: auto;
+  inline-size: 3.125rem;
   max-block-size: 9.125rem;
   block-size: auto;
   border: none;
@@ -41,6 +41,11 @@
 .forecast:hover {
   background-color: #48319d;
   transform: scale(1.05);
+}
+
+.forecast.active {
+  background-color: #48319d;
+  transform: scale(1.08);
 }
 
 .temp-by-period {

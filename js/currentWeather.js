@@ -74,7 +74,7 @@ async function loadForecastForLocation(lat, lon) {
 
   if (forecastData) {
     weatherData.hourly = forecastData.hourly;
-    weatherData.weekly = forecastData.weekly;
+    weatherData.daily = forecastData.daily;
 
     const hourlyBtn = document.getElementById("hourly-forecast-btn");
     if (hourlyBtn && hourlyBtn.getAttribute("aria-pressed") === "true") {

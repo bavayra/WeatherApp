@@ -92,7 +92,7 @@
   left: 2rem;
 }
 
-#weekly-forecast-btn {
+#daily-forecast-btn {
   position: absolute;
   top: 1.7rem;
   left: 15.19rem;
@@ -110,7 +110,7 @@
     left: 1.9rem;
   }
 
-  #weekly-forecast-btn {
+  #daily-forecast-btn {
     left: 11.19rem;
   }
 }
