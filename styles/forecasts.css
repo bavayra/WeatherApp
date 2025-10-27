@@ -15,7 +15,6 @@
     rgb(28, 27, 51, 0.26)
   );
   backdrop-filter: blur(15px);
-  /*overflow: hidden;*/
   box-shadow: var(--inner-shadow);
 }
 

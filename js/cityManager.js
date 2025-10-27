@@ -226,7 +226,7 @@ function createWeatherCard(city, index) {
     const deleteBtn = card.querySelector(".delete-city-btn");
     deleteBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      deleteCity(index);
+      removeCity(index);
     });
   }
 
@@ -249,14 +249,6 @@ function toggleManageMode() {
   renderSavedCities();
 }
 
-function deleteCity(index) {
-  if (confirm("Do you want to delete this city?")) {
-    savedCities.splice(index, 1);
-    saveCitiesToStorage();
-    renderSavedCities();
-  }
-}
-
 export function addCity(cityData) {
   const exists = savedCities.some(
     (city) => city.name === cityData.name && city.country === cityData.country
@@ -269,5 +261,25 @@ export function addCity(cityData) {
     alert(`${cityData.name} is added to your favorites list!`);
   } else {
     alert(`${cityData.name} is already on the favorites list`);
+  }
+}
+
+function removeCity(index) {
+  if (!confirm("Do you want to delete this city?")) return;
+  const cards = document.querySelectorAll(".weather-card");
+  const cardToRemove = cards[index];
+
+  if (cardToRemove) {
+    cardToRemove.classList.add("removing");
+
+    setTimeout(() => {
+      savedCities.splice(index, 1);
+      saveCitiesToStorage();
+      renderSavedCities();
+    }, 400);
+  } else {
+    savedCities.splice(index, 1);
+    saveCitiesToStorage();
+    renderSavedCities();
   }
 }

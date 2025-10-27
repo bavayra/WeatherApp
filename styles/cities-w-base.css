@@ -86,7 +86,7 @@
 }
 
 #head-back-btn:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 #head-left-title {
@@ -121,11 +121,11 @@
 #manage-list-btn img {
   inline-size: 100%;
   block-size: 100%;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.5s ease-in;
 }
 
 #manage-list-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.07);
 }
 
 #manage-list-btn.active {
