@@ -1,5 +1,7 @@
 import { getForecast, getWeatherByCity, searchCities } from "./api.js";
 
+const maxCities = 5;
+
 let savedCities = [];
 let isManageMode = false;
 
@@ -98,18 +100,27 @@ function displaySearchResults(cities) {
 }
 
 async function addCityFromSearch(cityName) {
+  if (savedCities.length >= maxCities) {
+    showErrorModal(
+      `Maximum ${maxCities} cities allowed. Remove a city to add a new one.`
+    );
+    return;
+  }
+
   const weatherData = await getWeatherByCity(cityName);
 
   if (weatherData) {
-    addCity(weatherData);
+    const success = addCity(weatherData);
 
-    const searchResults = document.getElementById("search-results");
-    if (searchResults) searchResults.remove();
+    if (success) {
+      const searchResults = document.getElementById("search-results");
+      if (searchResults) searchResults.remove();
 
-    const searchInput = document.getElementById("search-input");
-    if (searchInput) searchInput.value = "";
+      const searchInput = document.getElementById("search-input");
+      if (searchInput) searchInput.value = "";
+    }
   } else {
-    alert("Could not load city data");
+    showErrorModal("Could not load city data. Please try again.");
   }
 }
 
@@ -245,11 +256,17 @@ function toggleManageMode() {
       manageBtn.setAttribute("aria-pressed", "false");
     }
   }
-
   renderSavedCities();
 }
 
 export function addCity(cityData) {
+  if (savedCities.length >= maxCities) {
+    showErrorModal(
+      `You can only save up to ${maxCities} cities. Please remove a city first.`
+    );
+    return false;
+  }
+
   const exists = savedCities.some(
     (city) => city.name === cityData.name && city.country === cityData.country
   );
@@ -258,9 +275,10 @@ export function addCity(cityData) {
     savedCities.push(cityData);
     saveCitiesToStorage();
     renderSavedCities();
-    alert(`${cityData.name} is added to your favorites list!`);
+    return true;
   } else {
-    alert(`${cityData.name} is already on the favorites list`);
+    showErrorModal(`${cityData.name} is already on the favorites list`);
+    return false;
   }
 }
 
@@ -281,5 +299,46 @@ function removeCity(index) {
     savedCities.splice(index, 1);
     saveCitiesToStorage();
     renderSavedCities();
+  }
+}
+
+function showErrorModal(message) {
+  let modal = document.getElementById("error-modal");
+
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "error-modal";
+    modal.className = "modal";
+    modal.innerHTML = `
+      <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <p class="modal-message"></p>
+        <button class="modal-ok-btn">OK</button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    const closeBtn = modal.querySelector(".modal-close");
+    const okBtn = modal.querySelector(".modal-ok-btn");
+
+    closeBtn.addEventListener("click", () => hideErrorModal());
+    okBtn.addEventListener("click", () => hideErrorModal());
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        hideErrorModal();
+      }
+    });
+  }
+
+  const messageEl = modal.querySelector(".modal-message");
+  messageEl.textContent = message;
+  modal.classList.add("show");
+}
+
+function hideErrorModal() {
+  const modal = document.getElementById("error-modal");
+  if (modal) {
+    modal.classList.remove("show");
   }
 }
