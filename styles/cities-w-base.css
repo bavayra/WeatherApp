@@ -109,6 +109,7 @@
   right: 0;
   padding-block: 0.56rem;
   inline-size: 8rem;
+  block-size: auto;
 }
 
 #manage-list-btn {
@@ -137,6 +138,8 @@
   position: absolute;
   top: 6.3rem;
   left: 50%;
+  display: flex;
+  align-items: center;
   transform: translateX(-50%);
   block-size: 2.875rem;
   inline-size: calc(100% - 2rem);
@@ -145,14 +148,20 @@
 }
 
 #search-input-container {
+  position: relative;
   inline-size: 100%;
   block-size: 100%;
+  pointer-events: none;
 }
 
 #search-input {
   display: flex;
+  padding-block: 0.4rem;
+  padding-left: 2rem;
   inline-size: 100%;
-  block-size: 2.25rem;
+  block-size: auto;
+  color: var(--primary-color);
+  font-size: var(--subheadline-size);
   border: none;
   border-radius: 0.625rem;
   background: linear-gradient(
@@ -162,29 +171,31 @@
   );
   box-shadow: var(--shadow-inset);
   box-sizing: border-box;
-  padding-inline-start: 2.5rem;
+  cursor: text;
+  pointer-events: auto !important;
 }
 
 #search-btn {
   position: absolute;
-  top: 0.625rem;
-  left: 0.25rem;
-  inline-size: 0.98rem;
-  block-size: auto;
+  top: 35%;
+  left: 0.6rem;
+  transform: translateY(-50%);
+  z-index: 10;
+  padding: 0;
+  inline-size: 1rem;
+  block-size: 1rem;
   background: none;
   border: none;
+  pointer-events: auto;
 }
 
 #search-bar img {
-  position: absolute;
   inline-size: 100%;
-  block-size: auto;
+  block-size: 100%;
+  pointer-events: none;
 }
 
 #search-input::placeholder {
-  position: absolute;
-  left: 1.9rem;
-  justify-self: center;
   font-size: var(--body-size);
   letter-spacing: var(--callout-space);
   line-height: var(--body-height);

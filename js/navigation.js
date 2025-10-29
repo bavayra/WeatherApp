@@ -14,56 +14,6 @@ export function initNavigation() {
     return;
   }
   setupNavigationListeners();
-  createNavigationButtons();
-}
-
-function createNavigationButtons() {
-  const footerBack = document.getElementById("footer-back");
-  const footerCenter = document.getElementById("footer-center");
-
-  if (footerBack && !footerBack.innerHTML.trim()) {
-    footerBack.innerHTML = `
-      <button class="weather-map" aria-label="Open weather map">
-        <img src="icons-base/map-icon.svg" alt="" width="24" height="24" />
-      </button>
-    `;
-  }
-
-  if (footerCenter && !footerCenter.innerHTML.trim()) {
-    footerCenter.innerHTML = `
-      <button id="add-city-btn" class="add-city-btn" aria-label="Add city">
-        <span>+</span>
-      </button>
-      <button class="cities-list" aria-label="View cities list">
-        <img src="icons-base/list-icon.svg" alt="" width="24" height="24" />
-      </button>
-    `;
-  }
-
-  const weatherHead = document.getElementById("weather-head-container");
-  if (weatherHead && !weatherHead.innerHTML.trim()) {
-    weatherHead.innerHTML = `
-      <button id="head-back-btn" aria-label="Go back">
-        <span>←</span>
-      </button>
-      <h2>Weather</h2>
-      <button id="manage-list-btn" aria-label="Manage cities">
-        <span>⋮</span>
-      </button>
-    `;
-  }
-
-  const searchBar = document.getElementById("search-bar");
-  if (searchBar && !searchBar.innerHTML.trim()) {
-    searchBar.innerHTML = `
-      <input 
-        type="search" 
-        id="search-input" 
-        placeholder="Search for cities..."
-        aria-label="Search cities"
-      />
-    `;
-  }
 }
 
 function setupNavigationListeners() {
