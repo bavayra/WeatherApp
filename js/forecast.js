@@ -94,7 +94,7 @@ export function renderHourlyForecast() {
   container.innerHTML = "";
   console.log("Rendering hourly forecast:", weatherData.hourly.length, "items");
 
-  weatherData.hourly.forEach((item) => {
+  weatherData.hourly.forEach((item, index) => {
     const forecastCard = document.createElement("div");
     forecastCard.className = "forecast";
     forecastCard.innerHTML = `
@@ -110,6 +110,15 @@ export function renderHourlyForecast() {
       />
       <p class="temp-by-period">${item.temp}°</p>
     `;
+
+    forecastCard.addEventListener("click", () => {
+      forecastCard.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
+    });
+
     container.appendChild(forecastCard);
   });
 
@@ -145,6 +154,15 @@ export function renderDailyForecast() {
       />
       <p class="temp-by-period">${item.temp}°</p>
     `;
+
+    forecastCard.addEventListener("click", () => {
+      forecastCard.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "start",
+      });
+    });
+
     container.appendChild(forecastCard);
   });
 

@@ -22,10 +22,13 @@
   display: grid;
   gap: 1rem;
   grid-template-rows: repeat(3, 1fr);
+  z-index: 999;
   justify-content: space-between;
   justify-self: center;
   align-items: center;
+  flex-shrink: 0;
   padding: 1rem 0.5rem;
+  margin-block: 0.5rem;
   inline-size: 3.125rem;
   max-block-size: 9.125rem;
   block-size: auto;
@@ -36,11 +39,12 @@
   text-align: center;
   box-shadow: var(--shadow-card);
   transition: transform 0.3s ease-in-out;
+  scroll-snap-align: start;
 }
 
 .forecast:hover {
   background-color: #48319d;
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .forecast.active {
@@ -57,13 +61,24 @@
 
 .forecast-by-hours,
 .forecast-by-days {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  display: flex;
+  gap: 1.25rem;
   margin-top: 4.3rem;
   margin-left: 1.25rem;
-  column-gap: 1.25rem;
+  padding-right: 1.25rem;
   inline-size: 100%;
   max-inline-size: var(--container-max-w);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.forecast-by-hours::-webkit-scrollbar,
+.forecast-by-days::-webkit-scrollbar {
+  display: none;
 }
 
 .hour,
