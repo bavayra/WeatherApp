@@ -1,12 +1,11 @@
 #map {
   margin: 1.25rem 0;
   inline-size: 100%;
-  block-size: 52.75rem;
-  max-block-size: 52.75rem;
+  block-size: 42.75rem;
+  max-block-size: 42.75rem;
   border-radius: 0.75rem;
   overflow: hidden;
   background: var(--surface-gradient);
-  box-shadow: var(--drop-shadow);
 }
 
 #map-weather-info {
@@ -63,9 +62,121 @@
   background-color: #432d84;
 }
 
-#weather-by-cities,
 #weather-map-search {
   margin: 0 auto;
   padding: 1.25rem;
   max-inline-size: var(--container-max-w);
+}
+
+/*I added more specific selectors since I didn't want to use important!*/
+
+#weather-map-search .leaflet-popup-content-wrapper {
+  padding: 0;
+  background: linear-gradient(135deg, #2e335a 0%, #1c1b33 100%);
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#weather-map-search .leaflet-popup-content {
+  margin: 0;
+  padding: 1.5rem;
+  min-inline-size: 220px;
+  font-family: inherit;
+}
+
+#weather-map-search .leaflet-popup-tip {
+  background: #1c1b33;
+  box-shadow: none;
+}
+
+#weather-map-search .leaflet-popup-close-button {
+  color: #f7cbfd;
+  font-size: var(--title1-size);
+  font-weight: 300;
+  padding: 0.5rem 0.75rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  text-shadow: none;
+  top: 0;
+  right: 1rem;
+}
+
+#weather-map-search .leaflet-popup-close-button:hover {
+  color: var(--primary-color);
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0.25rem;
+}
+
+.weather-popup {
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.weather-popup h3 {
+  margin: 0 0 1rem 0;
+  color: var(--secondary-color);
+  font-size: var(--body-size);
+  line-height: var(--body-height);
+  letter-spacing: var(--body-space);
+  font-weight: 600;
+}
+
+.weather-popup p {
+  margin: 0;
+  color: var(--secondary-color);
+  font-size: var(--subheadline-size);
+  line-height: var(--subheadline-height);
+  letter-spacing: var(--subheadline-space);
+  opacity: 0.9;
+}
+
+.weather-popup p strong {
+  display: block;
+  font-size: var(--large-title-size);
+  line-height: var(--large-title-height);
+  letter-spacing: var(--large-title-space);
+  color: var(--primary-color);
+  font-weight: 700;
+  margin: 0.5rem 0;
+}
+
+.add-from-popup-btn {
+  padding: 0.75rem 1.5rem;
+  background: var(--surface-gradient);
+  color: #2e335a;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-size: var(--body-size);
+  font-weight: 700;
+  transition: all 0.2s ease;
+  inline-size: 100%;
+  box-shadow: 0 4px 12px rgba(72, 49, 157, 0.3);
+}
+
+.add-from-popup-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(72, 49, 157, 0.5);
+}
+
+.add-from-popup-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(72, 49, 157, 0.3);
+}
+
+.leaflet-popup {
+  animation: popupFadeIn 0.3s ease-out;
+}
+
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

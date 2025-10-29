@@ -104,14 +104,9 @@ function getUserLocation() {
 function displayWeatherOnMap(weatherData, lat, lon) {
   if (!map) return;
 
-  map.eachLayer((layer) => {
-    if (layer instanceof L.Marker) {
-      const popup = layer.getPopup();
-      if (popup && popup.getContent().includes("°C")) {
-        map.removeLayer(layer);
-      }
-    }
-  });
+  if (marker) {
+    map.removeLayer(marker);
+  }
 
   const popupContent = `
     <div class="weather-popup">
@@ -119,10 +114,34 @@ function displayWeatherOnMap(weatherData, lat, lon) {
       <p><strong>${weatherData.temp}°C</strong></p>
       <p>${weatherData.description}</p>
       <p>Humidity: ${weatherData.humidity}%</p>
+      <button class="add-from-popup-btn" data-lat="${lat}" data-lon="${lon}">
+        Add to favorites
+      </button>
     </div>
   `;
 
-  L.marker([lat, lon]).addTo(map).bindPopup(popupContent);
+  marker = L.marker([lat, lon]).addTo(map).bindPopup(popupContent).openPopup();
+  marker.on("popupopen", () => {
+    const addBtn = document.querySelector(".add-from-popup-btn");
+    if (addBtn) {
+      addBtn.addEventListener("click", async () => {
+        const lat = parseFloat(addBtn.dataset.lat);
+        const lon = parseFloat(addBtn.dataset.lon);
+
+        try {
+          const weatherData = await getWeatherByCoords(lat, lon);
+          const success = addCity(weatherData);
+
+          if (success) {
+            showErrorModal(`${weatherData.name} was added to favorites!`);
+          }
+        } catch (error) {
+          console.error("Error adding city from map:", error);
+          showErrorModal("Failed to add city. Please try again.");
+        }
+      });
+    }
+  });
 }
 
 async function showWeatherInfo(lat, lng) {
