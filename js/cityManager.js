@@ -383,5 +383,16 @@ function hideErrorModal() {
   const modal = document.getElementById("error-modal");
   if (modal) {
     modal.classList.remove("show");
+    const searchResults = document.getElementById("search-results");
+    if (searchResults) {
+      searchResults.remove();
+    }
+
+    const searchInput = document.getElementById("search-input");
+    if (searchInput) {
+      searchInput.value = "";
+    }
+
+    filterCities("");
   }
 }
