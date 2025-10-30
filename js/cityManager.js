@@ -41,6 +41,18 @@ export function initCityManagement() {
         }
       }
     });
+
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        const query = e.target.value.trim();
+        console.log("Enter pressed, searching for:", query);
+
+        if (query.length >= 3) {
+          searchNewCities(query);
+        }
+      }
+    });
   }
 
   if (searchBtn) {
