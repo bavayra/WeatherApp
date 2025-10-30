@@ -86,7 +86,6 @@ WeatherApp/
 
 ## 📝 TODO
 
-- [ ] Dynamic city add/remove
 - [ ] LocalStorage data persistence
 - [ ] Transition animations between screens
 - [ ] PWA functionality (offline mode)

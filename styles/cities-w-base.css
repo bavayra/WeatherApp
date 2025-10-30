@@ -33,7 +33,7 @@
 #weather-head {
   position: absolute;
   top: 3rem;
-  block-size: 6.625rem;
+  block-size: auto;
 }
 
 #weather-head-container {
@@ -106,7 +106,7 @@
 
 #weather-head-right {
   position: absolute;
-  right: 0;
+  right: 1rem;
   padding-block: 0.56rem;
   inline-size: 8rem;
   block-size: auto;
@@ -114,7 +114,7 @@
 
 #manage-list-btn {
   display: flex;
-  justify-self: center;
+  justify-self: self-end;
   background: transparent;
   border: none;
 }
@@ -138,6 +138,7 @@
   position: absolute;
   top: 6.3rem;
   left: 50%;
+  z-index: 10;
   display: flex;
   align-items: center;
   transform: translateX(-50%);
@@ -152,14 +153,17 @@
   inline-size: 100%;
   block-size: 100%;
   pointer-events: none;
+  z-index: 1;
 }
 
 #search-input {
-  display: flex;
+  position: relative;
+  display: block;
+  z-index: 5;
   padding-block: 0.4rem;
-  padding-left: 2rem;
+  padding-inline-start: 2rem;
   inline-size: 100%;
-  block-size: auto;
+  block-size: 2rem;
   color: var(--primary-color);
   font-size: var(--subheadline-size);
   border: none;
@@ -175,6 +179,14 @@
   pointer-events: auto !important;
 }
 
+#search-input::placeholder {
+  font-size: var(--body-size);
+  letter-spacing: var(--callout-space);
+  line-height: var(--body-height);
+  color: var(--secondary-color);
+  pointer-events: none !important;
+}
+
 #search-btn {
   position: absolute;
   top: 35%;
@@ -186,27 +198,23 @@
   block-size: 1rem;
   background: none;
   border: none;
-  pointer-events: auto;
+  pointer-events: auto !important;
+  flex-shrink: 0;
 }
 
 #search-bar img {
   inline-size: 100%;
   block-size: 100%;
   pointer-events: none;
-}
-
-#search-input::placeholder {
-  font-size: var(--body-size);
-  letter-spacing: var(--callout-space);
-  line-height: var(--body-height);
-  color: var(--secondary-color);
+  z-index: 50;
 }
 
 #search-results {
   position: absolute;
-  top: 9rem;
+  top: calc(15% + 0.5rem);
   left: 0;
   right: 0;
+  z-index: 100;
   background-color: #2e335a;
   border-radius: 0.75rem;
   padding: 1rem;
@@ -214,6 +222,7 @@
   max-block-size: auto;
   overflow-y: auto;
   display: none;
+  pointer-events: auto !important;
 }
 
 .search-results-title {
