@@ -1,4 +1,9 @@
-import { getForecast, getWeatherByCity, searchCities } from "./api.js";
+import {
+  getForecast,
+  getWeatherByCity,
+  getWeatherByCoords,
+  searchCities,
+} from "./api.js";
 
 const maxCities = 5;
 
@@ -125,8 +130,8 @@ function displaySearchResults(cities) {
     }`;
 
     cityBtn.addEventListener("click", async () => {
-      console.log("City clicked:", city.name);
-      await addCityFromSearch(city.name);
+      console.log("City clicked:", city.name, "Coords:", city.lat, city.lon);
+      await addCityFromSearch(city.lat, city.lon);
     });
 
     searchResults.appendChild(cityBtn);
@@ -135,7 +140,7 @@ function displaySearchResults(cities) {
   searchResults.style.display = "block";
 }
 
-async function addCityFromSearch(cityName) {
+async function addCityFromSearch(lat, lon) {
   if (savedCities.length >= maxCities) {
     showErrorModal(
       `Maximum ${maxCities} cities allowed. Remove a city to add a new one.`
@@ -143,7 +148,7 @@ async function addCityFromSearch(cityName) {
     return;
   }
   try {
-    const weatherData = await getWeatherByCity(cityName);
+    const weatherData = await getWeatherByCoords(lat, lon);
 
     if (weatherData) {
       const success = addCity(weatherData);
