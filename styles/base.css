@@ -14,6 +14,12 @@ body {
   font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   background: var(--surface-gradient);
+  transition: background 0.5s ease;
+}
+
+body.daytime-bg {
+  background-image: url("../icons-base/bg-sky.webp") center/cover no-repeat
+    fixed;
 }
 
 html,

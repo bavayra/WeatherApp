@@ -6,6 +6,12 @@
   pointer-events: none;
 }
 
+#hero-bg.daytime-bg {
+  background-image: url(/icons-base/bg-sky.webp);
+  background-size: cover;
+  background-position: center;
+}
+
 #hero-bg,
 #house-img-bg {
   position: absolute;
