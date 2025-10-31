@@ -229,10 +229,15 @@ export function renderSavedCities() {
   widget.innerHTML = "";
 
   if (savedCities.length === 0) {
-    widget.innerHTML =
-      '<p style="text-align: center; padding: 20px; color: #666;">No favorite cities</p>';
+    const emptyMessage = document.createElement("p");
+    emptyMessage.className = "empty-message";
+    emptyMessage.textContent = "No saved cities yet. Add your first city!";
+    widget.appendChild(emptyMessage);
+    console.log("No cities to render");
     return;
   }
+
+  const fragment = document.createDocumentFragment();
 
   savedCities.forEach((city, index) => {
     const card = createWeatherCard(city, index);
@@ -246,6 +251,12 @@ function createWeatherCard(city, index) {
   const card = document.createElement("div");
   card.className = "weather-card";
   card.dataset.index = index;
+
+  card.setAttribute("role", "article");
+  card.setAttribute(
+    "aria-label",
+    `Weather for ${city.name}, ${city.country}. Temperature ${city.temp} degrees, humidity ${city.humidity} percent`
+  );
 
   card.innerHTML = `
     <div class="weather-card-bg">
@@ -305,6 +316,26 @@ function toggleManageMode() {
 }
 
 export function addCity(cityData) {
+  if (!cityData || typeof cityData !== "object") {
+    showErrorModal("Invalid city data");
+    return false;
+  }
+
+  if (!cityData.name || typeof cityData.name !== "string") {
+    showErrorModal("City name is required");
+    return false;
+  }
+
+  if (!cityData.country || typeof cityData.country !== "string") {
+    showErrorModal("Country is required");
+    return false;
+  }
+
+  if (typeof cityData.lat !== "number" || typeof cityData.lon !== "number") {
+    showErrorModal("Invalid coordinates");
+    return false;
+  }
+
   if (savedCities.length >= maxCities) {
     showErrorModal(
       `You can only save up to ${maxCities} cities. Please remove a city first.`
