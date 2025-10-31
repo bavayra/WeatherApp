@@ -2,6 +2,7 @@ import { initCurrentWeather } from "./currentWeather.js";
 import { initForecastToggle } from "./forecast.js";
 import { initNavigation } from "./navigation.js";
 import { initCityManagement } from "./cityManager.js";
+import { showErrorModal } from "./modal.js";
 
 function setDynamicBackground() {
   const currentHour = new Date().getHours();

@@ -23,8 +23,8 @@
   gap: 1rem;
   grid-template-rows: repeat(3, 1fr);
   z-index: 999;
-  justify-content: space-between;
-  justify-self: center;
+  justify-content: center;
+
   align-items: center;
   flex-shrink: 0;
   padding: var(--spacing-sm) var(--spacing-xs);
@@ -33,7 +33,7 @@
   max-block-size: 9.125rem;
   block-size: auto;
   border: none;
-  border-radius: 1.875rem;
+  border-radius: var(--radius-xl);
   background-color: rgba(72, 49, 157, 0.3);
   color: var(--primary-color);
   text-align: center;
@@ -63,7 +63,7 @@
 .forecast-by-days {
   display: flex;
   gap: 1.25rem;
-  margin-top: 4.3rem;
+  margin-top: 3.5rem;
   margin-left: var(--spacing-md);
   padding-right: var(--spacing-md);
   inline-size: 100%;

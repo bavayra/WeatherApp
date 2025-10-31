@@ -1,4 +1,5 @@
 import { getForecast } from "./api.js";
+import { showErrorModal } from "./modal.js";
 
 export let weatherData = {
   hourly: [],
@@ -47,6 +48,7 @@ export async function updateForecastForCity(lat, lon) {
     }
   } catch (error) {
     console.error("Failed to update forecast:", error);
+    showErrorModal("Failed to load weather forecast. Please try again later.");
   }
 }
 

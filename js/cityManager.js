@@ -5,6 +5,8 @@ import {
   searchCities,
 } from "./api.js";
 
+import { showErrorModal, showConfirmModal } from "./modal.js";
+
 const maxCities = 5;
 
 let savedCities = [];
@@ -348,111 +350,6 @@ function removeCity(index) {
   });
 }
 
-function showErrorModal(message) {
-  let modal = document.getElementById("error-modal");
-
-  if (!modal) {
-    modal = document.createElement("div");
-    modal.id = "error-modal";
-    modal.className = "modal";
-    modal.innerHTML = `
-      <div class="modal-content">
-        <span class="modal-close">&times;</span>
-        <p class="modal-message"></p>
-        <button class="modal-ok-btn">OK</button>
-      </div>
-    `;
-    document.body.appendChild(modal);
-
-    const closeBtn = modal.querySelector(".modal-close");
-    const okBtn = modal.querySelector(".modal-ok-btn");
-
-    closeBtn.addEventListener("click", () => hideErrorModal());
-    okBtn.addEventListener("click", () => hideErrorModal());
-
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        hideErrorModal();
-      }
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modal.classList.contains("show")) {
-        hideErrorModal();
-      }
-    });
-  }
-
-  const messageEl = modal.querySelector(".modal-message");
-  messageEl.textContent = message;
-  modal.classList.add("show");
-}
-
-function showConfirmModal(message, onConfirm) {
-  let modal = document.getElementById("confirm-modal");
-
-  if (!modal) {
-    modal = document.createElement("div");
-    modal.id = "confirm-modal";
-    modal.className = "modal";
-    modal.innerHTML = `
-      <div class="modal-content">
-        <p class="modal-message"></p>
-        <div class="modal-buttons">
-          <button class="modal-confirm-btn">Yes</button>
-          <button class="modal-cancel-btn">Cancel</button>
-        </div>
-      </div>
-    `;
-    document.body.appendChild(modal);
-  }
-  const messageEl = modal.querySelector(".modal-message");
-  messageEl.textContent = message;
-
-  const confirmBtn = modal.querySelector(".modal-confirm-btn");
-  const cancelBtn = modal.querySelector(".modal-cancel-btn");
-
-  const newConfirmBtn = confirmBtn.cloneNode(true);
-  const newCancelBtn = cancelBtn.cloneNode(true);
-  confirmBtn.replaceWith(newConfirmBtn);
-  cancelBtn.replaceWith(newCancelBtn);
-
-  newConfirmBtn.addEventListener("click", () => {
-    modal.classList.remove("show");
-    if (onConfirm) onConfirm();
-  });
-
-  newCancelBtn.addEventListener("click", () => {
-    modal.classList.remove("show");
-  });
-
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.classList.remove("show");
-    }
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("show")) {
-      modal.classList.remove("show");
-    }
-  });
-
-  modal.classList.add("show");
-}
-
-function hideErrorModal() {
-  const modal = document.getElementById("error-modal");
-  if (modal) {
-    modal.classList.remove("show");
-    const searchResults = document.getElementById("search-results");
-    if (searchResults) {
-      searchResults.remove();
-    }
-
-    const searchInput = document.getElementById("search-input");
-    if (searchInput) {
-      searchInput.value = "";
-    }
-    filterCities("");
-  }
-}
+document.addEventListener("clearSearch", () => {
+  filterCities("");
+});

@@ -1,6 +1,7 @@
 import { getCurrentWeather } from "./api.js";
 import { getForecast } from "./api.js";
 import { weatherData } from "./forecast.js";
+import { showErrorModal } from "./modal.js";
 
 let userLocation = null;
 
@@ -30,6 +31,9 @@ export function initCurrentWeather() {
     );
   } else {
     console.warn("Geolocation not supported");
+    showErrorModal(
+      "Geolocation is not supported by your browser. Using default location (Montreal)."
+    );
 
     const defaultLat = 45.5017;
     const defaultLon = -73.5673;
