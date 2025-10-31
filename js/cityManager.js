@@ -28,14 +28,12 @@ export function initCityManagement() {
 
   if (searchInput) {
     let searchTimeout;
+    let currentSearchController = null;
+
     searchInput.addEventListener("input", (e) => {
-      const query = e.target.value.trim();
-
-      console.log("Search input:", query);
-
-      filterCities(query.toLowerCase());
-
       clearTimeout(searchTimeout);
+
+      const query = e.target.value.trim();
 
       if (query.length >= 3) {
         searchTimeout = setTimeout(() => {
@@ -47,6 +45,16 @@ export function initCityManagement() {
           searchResults.remove();
         }
       }
+
+      console.log("Search input:", query);
+
+      if (currentSearchController) {
+        currentSearchController.abort();
+      }
+
+      filterCities(query.toLowerCase());
+
+      clearTimeout(searchTimeout);
     });
 
     searchInput.addEventListener("keydown", (e) => {
@@ -86,14 +94,17 @@ export function initCityManagement() {
 async function searchNewCities(query) {
   console.log("Searching for:", query);
 
-  const results = await searchCities(query);
-
-  console.log("Search results:", results);
-
-  if (results.length > 0) {
-    displaySearchResults(results);
-  } else {
-    displaySearchResults([]);
+  try {
+    currentSearchController = new AbortController();
+    const cities = await searchCities(query, currentSearchController.signal);
+    displaySearchResults(cities);
+  } catch (error) {
+    if (error.name === "AbortError") {
+      console.log("Search cancelled");
+      return;
+    }
+    console.error("Error searching cities:", error);
+    showErrorModal("Failed to search cities. Please try again.");
   }
 }
 
@@ -241,8 +252,15 @@ export function renderSavedCities() {
 
   savedCities.forEach((city, index) => {
     const card = createWeatherCard(city, index);
-    widget.appendChild(card);
+
+    if (card) {
+      fragment.appendChild(card);
+    } else {
+      console.warn(`Skipped invalid city at index ${index}:`, city);
+    }
   });
+
+  widget.appendChild(fragment);
 
   console.log(`Rendered ${savedCities.length} cities`);
 }
