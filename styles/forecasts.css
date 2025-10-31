@@ -27,8 +27,8 @@
   justify-self: center;
   align-items: center;
   flex-shrink: 0;
-  padding: 1rem 0.5rem;
-  margin-block: 0.5rem;
+  padding: var(--spacing-sm) var(--spacing-xs);
+  margin-block: var(--spacing-xs);
   inline-size: 3.125rem;
   max-block-size: 9.125rem;
   block-size: auto;
@@ -64,8 +64,8 @@
   display: flex;
   gap: 1.25rem;
   margin-top: 4.3rem;
-  margin-left: 1.25rem;
-  padding-right: 1.25rem;
+  margin-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
   inline-size: 100%;
   max-inline-size: var(--container-max-w);
   overflow-x: auto;
@@ -94,11 +94,6 @@
   block-size: 2.375rem;
 }
 
-.forecast-weather-icon[src$=".png"] {
-  inline-size: 4.5rem;
-  block-size: 3rem;
-}
-
 @media (max-width: 389px) {
   .temp-by-period {
     font-size: var(--body-size);
@@ -124,10 +119,5 @@
   .forecast-weather-icon {
     inline-size: 1.8rem;
     block-size: 1.8rem;
-  }
-
-  .forecast-weather-icon[src$=".png"] {
-    inline-size: 2.5rem;
-    block-size: 2rem;
   }
 }

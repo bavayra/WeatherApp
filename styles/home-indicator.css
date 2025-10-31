@@ -16,12 +16,12 @@
 
 #shape-toggle {
   display: flex;
-  margin-top: 0.5rem;
+  margin-top: var(--spacing-xs);
   justify-self: center;
   inline-size: 3rem;
   block-size: 0.3125rem;
   border: none;
-  border-radius: 0.625rem;
+  border-radius: var(--radius-sm);
   background-color: var(--black-03);
   box-shadow: var(--drop-shadow);
 }

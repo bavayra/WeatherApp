@@ -24,7 +24,7 @@
     opacity: 1;
     transform: scale(1);
     max-block-size: 200px;
-    margin-block-end: 1rem;
+    margin-block-end: var(--spacing-sm);
   }
   50% {
     opacity: 0;
@@ -101,7 +101,7 @@
 
 .weather-city-country {
   margin: 0;
-  margin-top: 0.625rem;
+  margin-top: var(--spacing-xs);
   font-size: var(--subheadline-size);
   line-height: var(--subheadline-height);
   letter-spacing: var(--subheadline-space);
@@ -137,8 +137,6 @@
     left: 0;
     top: 10.2rem;
     row-gap: 0;
-    inline-size: 100%;
-    max-inline-size: var(--container-max-w);
   }
 
   .weather-card {

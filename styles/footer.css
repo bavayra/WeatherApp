@@ -26,8 +26,8 @@
   justify-content: space-between;
   justify-self: center;
   align-items: center;
-  padding: 0 1.7rem;
-  margin-top: 1.25rem;
+  padding: 0 var(--spacing-lg);
+  margin-top: var(--spacing-md);
   box-sizing: border-box;
 }
 
@@ -115,13 +115,11 @@
 
 @media (max-width: 389px) {
   .app-footer {
-    inline-size: 100%;
-    max-inline-size: var(--container-max-w);
     block-size: 5.5rem;
   }
 
   #back-btns {
-    padding: 0 1rem;
+    padding: 0 var(--spacing-sm);
     inline-size: 100%;
     max-inline-size: var(--container-max-w);
   }

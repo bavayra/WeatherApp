@@ -17,7 +17,7 @@
   position: absolute;
   inline-size: 100%;
   max-inline-size: var(--container-max-w);
-  max-block-size: 100svh;
+  max-block-size: var(--container-max-h);
 }
 
 #rectangle1-bg {
@@ -29,7 +29,7 @@
     rgb(58, 63, 84, 0) 12%,
     rgb(58, 63, 84, 1) 58%
   );
-  border-radius: 1.875rem;
+  border-radius: var(--radius-xl);
 }
 
 #rectangle2-bg {

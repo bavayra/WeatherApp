@@ -1,36 +1,37 @@
 #map {
-  margin: 1.25rem 0;
+  margin: var(--spacing-md) 0;
   inline-size: 100%;
+  max-inline-size: var(--container-max-w);
   block-size: 42.75rem;
   max-block-size: 42.75rem;
-  border-radius: 0.75rem;
+  border-radius: var(--radius-sm);
   overflow: hidden;
   background: var(--surface-gradient);
 }
 
 #map-weather-info {
-  margin-top: 1.25rem;
+  margin-top: var(--spacing-md);
 }
 
 .map-weather-card {
-  padding: 1.25rem;
+  padding: var(--spacing-md);
   background-color: var(--tertiary-color);
-  border-radius: 0.75rem;
+  border-radius: var(--radius-md);
   backdrop-filter: blur(10px);
 }
 
 .map-weather-card p {
-  margin: 0.5rem 0;
+  margin: var(--spacing-xs) 0;
   font-size: var(--callout-size);
 }
 
 .map-weather-card button {
-  margin-top: 1rem;
-  padding: 0.625rem 1.25rem;
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-md);
   background-color: var(--tertiary-color);
   color: #7758d1;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   font-size: var(--callout-size);
   transition: transform 0.2s ease-in-out;
@@ -45,11 +46,11 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: var(--spacing-md);
 }
 
 #map-back-btn {
-  padding: 0.625rem 1rem;
+  padding: var(--spacing-xs) var(--spacing-sm);
   background-color: #7758d1;
   border: none;
   border-radius: 50%;
@@ -64,7 +65,7 @@
 
 #weather-map-search {
   margin: 0 auto;
-  padding: 1.25rem;
+  padding: var(--spacing-md);
   max-inline-size: var(--container-max-w);
 }
 
@@ -73,14 +74,14 @@
 #weather-map-search .leaflet-popup-content-wrapper {
   padding: 0;
   background: linear-gradient(135deg, #2e335a 0%, #1c1b33 100%);
-  border-radius: 1.25rem;
+  border-radius: var(--radius-lg);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 #weather-map-search .leaflet-popup-content {
   margin: 0;
-  padding: 1.5rem;
+  padding: var(--spacing-md);
   min-inline-size: 220px;
   font-family: inherit;
 }
@@ -94,7 +95,7 @@
   color: #f7cbfd;
   font-size: var(--title1-size);
   font-weight: 300;
-  padding: 0.5rem 0.75rem;
+  padding: var(--spacing-xs);
   opacity: 0.8;
   transition: opacity 0.2s;
   text-shadow: none;
@@ -115,7 +116,7 @@
 }
 
 .weather-popup h3 {
-  margin: 0 0 1rem 0;
+  margin: 0 0 var(--spacing-sm) 0;
   color: var(--secondary-color);
   font-size: var(--body-size);
   line-height: var(--body-height);
@@ -139,15 +140,15 @@
   letter-spacing: var(--large-title-space);
   color: var(--primary-color);
   font-weight: 700;
-  margin: 0.5rem 0;
+  margin: var(--spacing-xs) 0;
 }
 
 .add-from-popup-btn {
-  padding: 0.75rem 1.5rem;
+  padding: var(--spacing-xs) var(--spacing-md);
   background: var(--surface-gradient);
   color: #2e335a;
   border: none;
-  border-radius: 0.75rem;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   font-size: var(--body-size);
   font-weight: 700;
