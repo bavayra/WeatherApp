@@ -215,7 +215,7 @@
   left: 0;
   right: 0;
   z-index: 100;
-  background-color: #2e335a;
+  background-color: var(--dark-blue-color);
   border-radius: var(--radius-md);
   padding: var(--spacing-md);
   box-shadow: var(--drop-shadow);
@@ -238,8 +238,8 @@
   max-inline-size: var(--container-max-w);
   padding: var(--spacing-sm);
   margin-bottom: var(--spacing-xs);
-  background: rgba(72, 49, 157, 0.3);
-  border: 1px solid #1c1b33;
+  background: var(--purple-color-03);
+  border: 1px solid var(--darker-blue-color);
   border-radius: var(--radius-sm);
   color: var(--primary-color);
   font-size: var(--body-size);
@@ -249,7 +249,7 @@
 }
 
 .search-result-item:hover {
-  background: rgba(72, 49, 157, 0.5);
+  background: var(--purple-color-05);
   transform: translateX(5px);
 }
 

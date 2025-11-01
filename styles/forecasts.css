@@ -34,7 +34,7 @@
   block-size: auto;
   border: none;
   border-radius: var(--radius-xl);
-  background-color: rgba(72, 49, 157, 0.3);
+  background-color: var(--purple-color-03);
   color: var(--primary-color);
   text-align: center;
   box-shadow: var(--shadow-card);
@@ -43,12 +43,12 @@
 }
 
 .forecast:hover {
-  background-color: #48319d;
+  background-color: var(--purple-color);
   transform: scale(1.02);
 }
 
 .forecast.active {
-  background-color: #48319d;
+  background-color: var(--purple-color);
   transform: scale(1.08);
 }
 

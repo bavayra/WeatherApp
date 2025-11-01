@@ -73,7 +73,11 @@
 
 #weather-map-search .leaflet-popup-content-wrapper {
   padding: 0;
-  background: linear-gradient(135deg, #2e335a 0%, #1c1b33 100%);
+  background: linear-gradient(
+    135deg,
+    var(--dark-blue-color) 0%,
+    var(--darker-blue-color) 100%
+  );
   border-radius: var(--radius-lg);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -87,12 +91,12 @@
 }
 
 #weather-map-search .leaflet-popup-tip {
-  background: #1c1b33;
+  background: var(--darker-blue-color);
   box-shadow: none;
 }
 
 #weather-map-search .leaflet-popup-close-button {
-  color: #f7cbfd;
+  color: var(--pink-color);
   font-size: var(--title1-size);
   font-weight: 300;
   padding: var(--spacing-xs);
@@ -146,7 +150,7 @@
 .add-from-popup-btn {
   padding: var(--spacing-xs) var(--spacing-md);
   background: var(--surface-gradient);
-  color: #2e335a;
+  color: var(--dark-blue-color);
   border: none;
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -154,17 +158,17 @@
   font-weight: 700;
   transition: all 0.2s ease;
   inline-size: 100%;
-  box-shadow: 0 4px 12px rgba(72, 49, 157, 0.3);
+  box-shadow: 0 4px 12px var(--purple-color-03);
 }
 
 .add-from-popup-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(72, 49, 157, 0.5);
+  box-shadow: 0 6px 16px var(--purple-color-05);
 }
 
 .add-from-popup-btn:active {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(72, 49, 157, 0.3);
+  box-shadow: 0 2px 8px var(--purple-color-03);
 }
 
 .leaflet-popup {

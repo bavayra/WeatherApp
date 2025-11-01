@@ -69,9 +69,20 @@ body {
   --secondary-color: rgb(235, 235, 245, 0.6);
   --tertiary-color: rgb(235, 235, 245, 0.18);
 
+  --dark-blue-color: rgb(46, 51, 90);
+  --darker-blue-color: rgb(28, 27, 51);
+  --purple-color: rgb(72, 49, 157);
+  --purple-color-03: rgb(72, 49, 157, 0.3);
+  --purple-color-05: rgb(72, 49, 157, 0.5);
+  --pink-color: rgb(247, 203, 253);
+
   /*WEATHER COLOR STYLES*/
-  --primary-gradient: linear-gradient(120deg, #2e335a, #1c1b33);
-  --surface-gradient: radial-gradient(circle at 70% 70%, #f7cbfd, #7758d1);
+  --primary-gradient: linear-gradient(120deg, var(--dark-blue-color), #1c1b33);
+  --surface-gradient: radial-gradient(
+    circle at 70% 70%,
+    var(--pink-color),
+    #7758d1
+  );
   --accent-gradient: conic-gradient(
     from 180deg,
     rgb(97, 47, 171, 0) 14%,
@@ -233,7 +244,7 @@ img {
 
 .modal-message {
   margin: 1.5rem 0;
-  color: #f7cbfd;
+  color: var(--pink-color);
   font-size: var(--body-size);
   line-height: 1.5;
 }
@@ -241,7 +252,7 @@ img {
 .modal-ok-btn {
   margin-top: 1rem;
   padding: var(--spacing-sm) var(--spacing-lg);
-  background: linear-gradient(135deg, #48319d 0%, #6a4cb8 100%);
+  background: linear-gradient(135deg, var(--purple-color) 0%, #6a4cb8 100%);
   color: var(--primary-color);
   border: none;
   border-radius: var(--radius-sm);
@@ -253,7 +264,7 @@ img {
 
 .modal-ok-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(72, 49, 157, 0.4);
+  box-shadow: 0 5px 15px var(--purple-color);
 }
 
 .modal-confirm-btn,
@@ -263,8 +274,8 @@ img {
   block-size: auto;
   border: none;
   border-radius: var(--radius-sm);
-  background-color: #f7cbfd;
-  color: #2e335a;
+  background-color: var(--pink-color);
+  color: var(--dark-blue-color);
 }
 
 .modal-confirm-btn {
