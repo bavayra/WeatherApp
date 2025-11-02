@@ -302,6 +302,13 @@ img {
   }
 }
 
+.temp-unit {
+  font-size: 0.6em;
+  opacity: 0.9;
+  vertical-align: super;
+  margin-left: 2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

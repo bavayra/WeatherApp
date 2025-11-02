@@ -1,5 +1,6 @@
 import { addCity } from "./cityManager.js";
 import { getWeatherByCoords } from "./api.js";
+import { formatTempShort } from "./tempConverter.js";
 
 let map = null;
 let marker = null;
@@ -51,6 +52,16 @@ export async function initializeMap() {
   }
 
   setupMapClickListener();
+  document.addEventListener("tempUnitChanged", () => {
+    if (marker && marker.isPopupOpen()) {
+      const lat = marker.getLatLng().lat;
+      const lon = marker.getLatLng().lng;
+
+      getWeatherByCoords(lat, lon).then((weatherData) => {
+        displayWeatherOnMap(weatherData, lat, lon);
+      });
+    }
+  });
 }
 
 function setupMapClickListener() {
@@ -111,7 +122,7 @@ function displayWeatherOnMap(weatherData, lat, lon) {
   const popupContent = `
     <div class="weather-popup">
       <h3>${weatherData.name}, ${weatherData.country}</h3>
-      <p><strong>${weatherData.temp}°C</strong></p>
+      <p><strong>${formatTempShort(weatherData.temp)}</strong></p>
       <p>${weatherData.description}</p>
       <p>Humidity: ${weatherData.humidity}%</p>
       <button class="add-from-popup-btn" data-lat="${lat}" data-lon="${lon}">
@@ -167,7 +178,7 @@ async function showWeatherInfo(lat, lng) {
       <div class="map-weather-card">
         <h3>Weather at this location</h3>
         <p>Coordinates: ${lat.toFixed(2)}, ${lng.toFixed(2)}</p>
-        <p>Temperature: 18°C</p>
+        <p>Temperature: ${formatTempShort(weatherData.temp)}</p>
         <p>Humidity: 65%</p>
         <p>Description: Overcast</p>
         <button id="add-from-map" class="add-city-from-map-btn">

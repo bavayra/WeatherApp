@@ -1,5 +1,6 @@
 import { getForecast } from "./api.js";
 import { showErrorModal } from "./modal.js";
+import { formatTempShort } from "./tempConverter.js";
 
 export let weatherData = {
   hourly: [],
@@ -18,6 +19,15 @@ export function initForecastToggle() {
   }
 
   setupForecastListeners();
+
+  document.addEventListener("tempUnitChanged", () => {
+    const hourlyBtn = document.getElementById("hourly-forecast-btn");
+    if (hourlyBtn && hourlyBtn.getAttribute("aria-pressed") === "true") {
+      renderHourlyForecast();
+    } else {
+      renderDailyForecast();
+    }
+  });
 
   document.addEventListener("weatherDataUpdated", () => {
     const hourlyBtn = document.getElementById("hourly-forecast-btn");
@@ -110,7 +120,7 @@ export function renderHourlyForecast() {
         height="44"
         onerror="this.style.display='none'"
       />
-      <p class="temp-by-period">${item.temp}°</p>
+      <p class="temp-by-period">${formatTempShort(item.temp)}</p>
     `;
 
     forecastCard.addEventListener("click", () => {
@@ -154,7 +164,7 @@ export function renderDailyForecast() {
         height="44"
         onerror="this.style.display='none'"
       />
-      <p class="temp-by-period">${item.temp}°</p>
+      <p class="temp-by-period">${formatTempShort(item.temp)}</p>
     `;
 
     forecastCard.addEventListener("click", () => {

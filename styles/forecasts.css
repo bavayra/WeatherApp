@@ -48,9 +48,9 @@
 
 .temp-by-period {
   margin: 0;
-  font-size: var(--title3-size);
-  line-height: var(--title3-height);
-  letter-spacing: var(--title3-space);
+  font-size: var(--body-size);
+  line-height: var(--body-height);
+  letter-spacing: var(--body-space);
 }
 
 .forecast-by-hours,

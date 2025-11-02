@@ -6,6 +6,7 @@ import {
 } from "./api.js";
 
 import { showErrorModal, showConfirmModal } from "./modal.js";
+import { formatTempShort } from "./tempConverter.js";
 
 const maxCities = 5;
 
@@ -17,6 +18,10 @@ export function initCityManagement() {
   console.log("Initializing city management...");
 
   loadSavedCities();
+
+  document.addEventListener("tempUnitChanged", () => {
+    renderSavedCities();
+  });
 
   const searchInput = document.getElementById("search-input");
   const manageBtn = document.getElementById("manage-list-btn");
@@ -291,7 +296,7 @@ function createWeatherCard(city, index) {
       />
     </div>
     <div class="city-temp">
-      <p>${city.temp}°</p>
+      <p>${formatTempShort(city.temp)}</p>
     </div>
     <div class="weather-desc">
       <p class="weather-hum">Humidity: ${city.humidity}%</p>
