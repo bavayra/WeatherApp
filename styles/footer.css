@@ -113,6 +113,17 @@
   background: transparent;
 }
 
+#scroll-arrow {
+  position: absolute;
+  right: 0;
+  top: -2.7rem;
+  margin-inline-end: 1.7rem;
+  font-size: var(--title2-size);
+  background: none;
+  border: none;
+  color: var(--pink-color);
+}
+
 @media (max-width: 389px) {
   .app-footer {
     block-size: 5.5rem;

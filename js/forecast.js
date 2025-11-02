@@ -170,3 +170,54 @@ export function renderDailyForecast() {
 
   console.log("Daily forecast rendered", weatherData.daily);
 }
+
+export function initCarousel() {
+  const scrollArrow = document.getElementById("scroll-arrow");
+
+  if (!scrollArrow) {
+    console.warn("Scroll arrow button not found");
+    return;
+  }
+
+  scrollArrow.addEventListener("click", handleCarouselScroll);
+}
+
+function handleCarouselScroll() {
+  const hourlyBtn = document.getElementById("hourly-forecast-btn");
+  const isHourly =
+    hourlyBtn && hourlyBtn.getAttribute("aria-pressed") === "true";
+
+  const container = document.querySelector(
+    isHourly ? ".forecast-by-hours" : ".forecast-by-days"
+  );
+
+  if (!container) {
+    console.warn("Forecast container not found");
+    return;
+  }
+
+  const items = container.querySelectorAll(".forecast");
+
+  if (items.length === 0) {
+    console.warn("No forecast items found");
+    return;
+  }
+
+  const itemWidth = items[0].offsetWidth;
+  const gap = parseInt(getComputedStyle(container).gap) || 16;
+  const scrollStep = itemWidth + gap;
+  const currentScroll = container.scrollLeft;
+  const maxScroll = container.scrollWidth - container.clientWidth;
+
+  if (currentScroll >= maxScroll - 10) {
+    container.scrollTo({
+      left: 0,
+      behavior: "smooth",
+    });
+  } else {
+    container.scrollTo({
+      left: currentScroll + scrollStep,
+      behavior: "smooth",
+    });
+  }
+}

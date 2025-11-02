@@ -22,9 +22,8 @@
   display: grid;
   gap: 1rem;
   grid-template-rows: repeat(3, 1fr);
-  z-index: 999;
+  z-index: 998;
   justify-content: center;
-
   align-items: center;
   flex-shrink: 0;
   padding: var(--spacing-sm) var(--spacing-xs);
@@ -45,11 +44,6 @@
 .forecast:hover {
   background-color: var(--purple-color);
   transform: scale(1.02);
-}
-
-.forecast.active {
-  background-color: var(--purple-color);
-  transform: scale(1.08);
 }
 
 .temp-by-period {
@@ -92,21 +86,6 @@
 .forecast-weather-icon {
   inline-size: 2.75rem;
   block-size: 2.375rem;
-}
-
-#scroll-arrow {
-  position: absolute;
-  right: 0;
-  column-gap: 0.5rem;
-  top: 13rem;
-  display: flex;
-  align-items: center;
-  margin-inline-end: 1rem;
-  font-size: var(--subheadline-size);
-  background: none;
-  border: none;
-  color: var(--pink-color);
-  opacity: 0.7;
 }
 
 @media (max-width: 389px) {

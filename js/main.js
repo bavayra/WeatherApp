@@ -1,5 +1,5 @@
 import { initCurrentWeather } from "./currentWeather.js";
-import { initForecastToggle } from "./forecast.js";
+import { initForecastToggle, initCarousel } from "./forecast.js";
 import { initNavigation } from "./navigation.js";
 import { initCityManagement } from "./cityManager.js";
 import { showErrorModal } from "./modal.js";
@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setDynamicBackground();
     initCurrentWeather();
     initForecastToggle();
+    initCarousel();
     initCityManagement();
     initNavigation();
 
