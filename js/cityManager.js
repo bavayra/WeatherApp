@@ -11,6 +11,7 @@ const maxCities = 5;
 
 let savedCities = [];
 let isManageMode = false;
+let currentSearchController = null;
 
 export function initCityManagement() {
   console.log("Initializing city management...");
@@ -28,7 +29,6 @@ export function initCityManagement() {
 
   if (searchInput) {
     let searchTimeout;
-    let currentSearchController = null;
 
     searchInput.addEventListener("input", (e) => {
       clearTimeout(searchTimeout);
@@ -48,13 +48,7 @@ export function initCityManagement() {
 
       console.log("Search input:", query);
 
-      if (currentSearchController) {
-        currentSearchController.abort();
-      }
-
       filterCities(query.toLowerCase());
-
-      clearTimeout(searchTimeout);
     });
 
     searchInput.addEventListener("keydown", (e) => {
@@ -95,6 +89,9 @@ async function searchNewCities(query) {
   console.log("Searching for:", query);
 
   try {
+    if (currentSearchController) {
+      currentSearchController.abort();
+    }
     currentSearchController = new AbortController();
     const cities = await searchCities(query, currentSearchController.signal);
     displaySearchResults(cities);
@@ -354,6 +351,14 @@ export function addCity(cityData) {
     return false;
   }
 
+  const lat = Number(cityData.lat);
+  const lon = Number(cityData.lon);
+
+  if (isNaN(lat) || isNaN(lon)) {
+    showErrorModal("Invalid coordinates");
+    return false;
+  }
+
   if (savedCities.length >= maxCities) {
     showErrorModal(
       `You can only save up to ${maxCities} cities. Please remove a city first.`
@@ -366,7 +371,11 @@ export function addCity(cityData) {
   );
 
   if (!exists) {
-    savedCities.push(cityData);
+    savedCities.push({
+      ...cityData,
+      lat: lat,
+      lon: lon,
+    });
     saveCitiesToStorage();
     renderSavedCities();
     return true;
