@@ -94,6 +94,21 @@
   block-size: 2.375rem;
 }
 
+#scroll-arrow {
+  position: absolute;
+  right: 0;
+  column-gap: 0.5rem;
+  top: 13rem;
+  display: flex;
+  align-items: center;
+  margin-inline-end: 1rem;
+  font-size: var(--subheadline-size);
+  background: none;
+  border: none;
+  color: var(--pink-color);
+  opacity: 0.7;
+}
+
 @media (max-width: 389px) {
   .temp-by-period {
     font-size: var(--body-size);
