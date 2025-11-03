@@ -1,7 +1,10 @@
-import { getCurrentWeather } from "./api.js";
-import { getForecast } from "./api.js";
-import { weatherData } from "./forecast.js";
+import { getCurrentWeather, getWeatherByCoords, getForecast } from "./api.js";
 import { showErrorModal } from "./modal.js";
+import {
+  renderHourlyForecast,
+  renderDailyForecast,
+  weatherData,
+} from "./forecast.js";
 import {
   formatTempShort,
   toggleUnit,
@@ -120,19 +123,71 @@ function updateCurrentWeatherDisplay(weather) {
 }
 
 async function loadForecastForLocation(lat, lon) {
-  const forecastData = await getForecast(lat, lon);
+  try {
+    console.log("Loading forecast for location:", lat, lon);
+    const data = await getForecast(lat, lon);
 
-  if (forecastData) {
-    weatherData.hourly = forecastData.hourly;
-    weatherData.daily = forecastData.daily;
+    console.log("Raw forecast data:", data);
+    console.log("data.list exists?", !!data?.list);
+    console.log("data.list length:", data?.list?.length);
 
-    const hourlyBtn = document.getElementById("hourly-forecast-btn");
-    if (hourlyBtn && hourlyBtn.getAttribute("aria-pressed") === "true") {
-      const event = new Event("weatherDataUpdated");
-      document.dispatchEvent(event);
+    if (!data || !data.list || !Array.isArray(data.list)) {
+      console.error("Invalid forecast data structure!");
+      weatherData.hourly = [];
+      weatherData.daily = [];
+      renderHourlyForecast();
+      renderDailyForecast();
+      return;
     }
 
-    console.log("Forecast loaded for user location");
+    weatherData.hourly = data.list.slice(0, 8).map((item) => {
+      const date = new Date(item.dt * 1000);
+      let hours = date.getHours();
+
+      const period = hours >= 12 ? "PM" : "AM";
+      hours = hours % 12;
+      hours = hours ? hours : 12;
+
+      const time = `${hours}${period}`;
+
+      return {
+        time: time,
+        temp: Math.round(item.main.temp),
+        icon: item.weather[0].icon + ".svg",
+        description: item.weather[0].description,
+      };
+    });
+
+    weatherData.daily = data.list
+      .filter((item, index) => index % 8 === 4)
+      .slice(0, 5)
+      .map((item) => {
+        const date = new Date(item.dt * 1000);
+        const dayName = date.toLocaleDateString("en-US", { weekday: "short" });
+
+        return {
+          day: dayName,
+          temp: Math.round(item.main.temp),
+          icon: item.weather[0].icon + ".svg",
+          description: item.weather[0].description,
+        };
+      });
+
+    console.log("Processed forecast:", {
+      hourly: weatherData.hourly.length,
+      daily: weatherData.daily.length,
+    });
+
+    renderHourlyForecast();
+    renderDailyForecast();
+
+    console.log("Forecast rendered!");
+  } catch (error) {
+    console.error("Failed to load forecast:", error);
+    weatherData.hourly = [];
+    weatherData.daily = [];
+    renderHourlyForecast();
+    renderDailyForecast();
   }
 }
 

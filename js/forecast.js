@@ -101,7 +101,19 @@ function setupForecastListeners() {
 
 export function renderHourlyForecast() {
   const container = document.querySelector(".forecast-by-hours");
-  if (!container) return;
+  if (!container) {
+    console.error("Hourly forecast container not found");
+    return;
+  }
+  if (
+    !weatherData.hourly ||
+    !Array.isArray(weatherData.hourly) ||
+    weatherData.hourly.length === 0
+  ) {
+    container.innerHTML = '<p class="no-data">No hourly forecast available</p>';
+    console.warn("No hourly forecast data");
+    return;
+  }
 
   container.innerHTML = "";
   console.log("Rendering hourly forecast:", weatherData.hourly.length, "items");
@@ -139,7 +151,20 @@ export function renderHourlyForecast() {
 
 export function renderDailyForecast() {
   const container = document.querySelector(".forecast-by-days");
-  if (!container) return;
+  if (!container) {
+    console.error("Daily forecast container not found");
+    return;
+  }
+
+  if (
+    !weatherData.daily ||
+    !Array.isArray(weatherData.daily) ||
+    weatherData.daily.length === 0
+  ) {
+    container.innerHTML = '<p class="no-data">No daily forecast available</p>';
+    console.warn("No daily forecast data");
+    return;
+  }
 
   container.innerHTML = "";
 
