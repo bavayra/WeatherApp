@@ -130,7 +130,7 @@
 }
 
 #manage-list-btn.active {
-  color: #432d84;
+  color: rgb(67 45 132);
   font-weight: bold;
 }
 
@@ -170,8 +170,8 @@
   border-radius: var(--radius-sm);
   background: linear-gradient(
     180deg,
-    rgb(46, 51, 90, 0.26),
-    rgb(28, 27, 51, 0.26)
+    rgba(46, 51, 90, 0.26),
+    rgba(28, 27, 51, 0.26)
   );
   box-shadow: var(--shadow-inset);
   box-sizing: border-box;

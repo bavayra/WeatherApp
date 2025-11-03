@@ -11,8 +11,8 @@
   border-top-right-radius: 2.5rem;
   background: linear-gradient(
     45deg,
-    rgb(46, 51, 90, 0.26),
-    rgb(28, 27, 51, 0.26)
+    rgba(46, 51, 90, 0.26),
+    rgba(28, 27, 51, 0.26)
   );
   backdrop-filter: blur(15px);
   box-shadow: var(--inner-shadow);

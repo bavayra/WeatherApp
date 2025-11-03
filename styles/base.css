@@ -10,7 +10,6 @@ html {
 }
 
 body {
-  margin: 0;
   font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-optical-sizing: auto;
   background: var(--surface-gradient);
@@ -18,8 +17,7 @@ body {
 }
 
 body.daytime-bg {
-  background-image: url("../icons-base/bg-sky.webp") center/cover no-repeat
-    fixed;
+  background: url("../icons-base/bg-sky.webp") center/cover no-repeat fixed;
 }
 
 html,
@@ -44,52 +42,56 @@ body {
   --radius-lg: clamp(1rem, 2.56vw, 1.5rem); /* 16px-24px */
   --radius-xl: clamp(1.5rem, 3.84vw, 2rem);
 
-  /*COLORS W/ OPACITY*/
-  --black-03: rgba(var(--black-rgb), 0.3);
-  --black-025: rgba(var(--black-rgb), 0.25);
-  --black-05: rgba(var(--black-rgb), 0.5);
+  /*COLOR STYLES*/
+  --white-rgb: 255 255 255;
+  --black-rgb: 0 0 0;
 
-  --white-01: rgba(var(--white-rgb), 0.1);
-  --white-015: rgba(var(--white-rgb), 0.15);
-  --white-04: rgba(var(--white-rgb), 0.4);
+  --primary-color: #ffffff;
+  --secondary-color: rgb(235 235 245 / 60%);
+  --tertiary-color: rgb(235 235 245 / 18%);
+
+  --dark-blue-color: rgb(46 51 90);
+  --darker-blue-color: rgb(28 27 51);
+  --purple-color: rgb(72 49 157);
+  --purple-color-03: rgb(72 49 157 / 30%);
+  --purple-color-05: rgb(72 49 157 / 50%);
+  --pink-color: rgb(247 203 253);
+
+  /*WEATHER COLOR STYLES*/
+  --primary-gradient: linear-gradient(
+    120deg,
+    var(--dark-blue-color),
+    var(--darker-blue-color)
+  );
+  --surface-gradient: radial-gradient(
+    circle at 70% 70%,
+    var(--pink-color),
+    rgb(119 88 209)
+  );
+  --accent-gradient: conic-gradient(
+    from 180deg,
+    rgb(97 47 171 / 0%) 14%,
+    rgb(97 47 171 / 100%) 36%,
+    rgb(97 47 171 / 0%) 14%,
+    rgb(97 47 171 / 100%) 36%
+  );
+
+  /*COLORS W/ OPACITY*/
+  --black-03: rgb(var(--black-rgb) / 30%);
+  --black-025: rgb(var(--black-rgb) / 25%);
+  --black-05: rgb(var(--black-rgb) / 50%);
+
+  --white-01: rgb(var(--white-rgb) / 10%);
+  --white-015: rgb(var(--white-rgb) / 15%);
+  --white-04: rgb(var(--white-rgb) / 40%);
 
   /*SHADOWS*/
-  --inner-shadow: inset 0 1px 0 0 #ffffff;
-  --drop-shadow: 1px -1px 2px 0 #343030cb;
+  --inner-shadow: inset 0 1px 0 0 var(--primary-color);
+  --drop-shadow: 1px -1px 2px 0 rgb(52 48 48 / 80%);
   --shadow-card: 5px 4px 10px 0px var(--black-03),
     inset 1px 1px 0px 0px var(--white-015);
   --shadow-inset: inset 0px 4px 4px 0px var(--black-025);
   --shadow-separator: 0 1px 0 0 var(--black-03);
-
-  /*COLOR STYLES*/
-  --white-rgb: 255, 255, 255;
-  --black-rgb: 0, 0, 0;
-
-  --primary-color: #ffff;
-  --secondary-color: rgb(235, 235, 245, 0.6);
-  --tertiary-color: rgb(235, 235, 245, 0.18);
-
-  --dark-blue-color: rgb(46, 51, 90);
-  --darker-blue-color: rgb(28, 27, 51);
-  --purple-color: rgb(72, 49, 157);
-  --purple-color-03: rgb(72, 49, 157, 0.3);
-  --purple-color-05: rgb(72, 49, 157, 0.5);
-  --pink-color: rgb(247, 203, 253);
-
-  /*WEATHER COLOR STYLES*/
-  --primary-gradient: linear-gradient(120deg, var(--dark-blue-color), #1c1b33);
-  --surface-gradient: radial-gradient(
-    circle at 70% 70%,
-    var(--pink-color),
-    #7758d1
-  );
-  --accent-gradient: conic-gradient(
-    from 180deg,
-    rgb(97, 47, 171, 0) 14%,
-    rgb(97, 47, 171, 1) 36%,
-    rgb(97, 47, 171, 0) 63%,
-    rgb(97, 47, 171, 1) 75%
-  );
 
   /*FONTS*/
   --caption2-size: 0.68rem;
@@ -202,7 +204,7 @@ img {
   inline-size: 100svw;
   max-inline-size: var(--container-max-w);
   block-size: var(--container-max-h);
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgb(var(--black-rgb) / 60%);
   backdrop-filter: blur(5px);
 }
 
@@ -239,7 +241,7 @@ img {
 }
 
 .modal-close:hover {
-  color: #fff;
+  color: var(--primary-color);
 }
 
 .modal-message {
@@ -252,7 +254,11 @@ img {
 .modal-ok-btn {
   margin-top: 1rem;
   padding: var(--spacing-sm) var(--spacing-lg);
-  background: linear-gradient(135deg, var(--purple-color) 0%, #6a4cb8 100%);
+  background: linear-gradient(
+    135deg,
+    rgb(var(--purple-color) / 0%),
+    rgb(106 76 184 / 100%)
+  );
   color: var(--primary-color);
   border: none;
   border-radius: var(--radius-sm);

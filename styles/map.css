@@ -29,7 +29,7 @@
   margin-top: var(--spacing-sm);
   padding: var(--spacing-xs) var(--spacing-md);
   background-color: var(--tertiary-color);
-  color: #7758d1;
+  color: rgb(119 88 209);
   border: none;
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -39,7 +39,7 @@
 
 .map-weather-card button:hover {
   transform: scale(1.05);
-  color: #432d84;
+  color: rgb(67 45 132);
 }
 
 .map-header {
@@ -51,7 +51,7 @@
 
 #map-back-btn {
   padding: var(--spacing-xs) var(--spacing-sm);
-  background-color: #7758d1;
+  background-color: rgb(119 88 209);
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -60,7 +60,7 @@
 
 #map-back-btn:hover {
   transform: scale(1.05);
-  background-color: #432d84;
+  background-color: rgb(67 45 132);
 }
 
 #weather-map-search {
@@ -79,8 +79,8 @@
     var(--darker-blue-color) 100%
   );
   border-radius: var(--radius-lg);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgb(var(--black-rgb) / 50%);
+  border: 1px solid rgb(var(--white-rgb) / 10%);
 }
 
 #weather-map-search .leaflet-popup-content {
@@ -110,7 +110,7 @@
 #weather-map-search .leaflet-popup-close-button:hover {
   color: var(--primary-color);
   opacity: 1;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(var(--white-rgb) / 10%);
   border-radius: 0.25rem;
 }
 

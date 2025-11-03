@@ -26,8 +26,8 @@
   block-size: 31.25rem;
   background: linear-gradient(
     180deg,
-    rgb(58, 63, 84, 0) 12%,
-    rgb(58, 63, 84, 1) 58%
+    rgba(58, 63, 84, 0) 12%,
+    rgba(58, 63, 84, 1) 58%
   );
   border-radius: var(--radius-xl);
 }
@@ -60,7 +60,7 @@
   left: 3rem;
   inline-size: 17.875rem;
   block-size: 2rem;
-  background-color: rgb(196, 39, 251, 0.5);
+  background-color: rgb(196 39 251 / 50%);
   filter: blur(60px);
   overflow: hidden;
 }
@@ -78,10 +78,10 @@
   inline-size: 15.625rem;
   background: conic-gradient(
     from 180deg,
-    rgb(97, 47, 171, 0) 14%,
-    rgb(97, 47, 171, 1) 36%,
-    rgb(97, 47, 171, 0) 63%,
-    rgb(97, 47, 171, 1) 87%
+    rgba(97, 47, 171, 0) 14%,
+    rgba(97, 47, 171, 1) 36%,
+    rgba(97, 47, 171, 0) 63%,
+    rgba(97, 47, 171, 1) 87%
   );
   filter: blur(50px);
 }

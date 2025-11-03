@@ -82,7 +82,7 @@
 }
 
 .forecasts-btns button[aria-pressed="true"] {
-  color: #a384ffc1;
+  color: rgb(163 132 255 / 75%);
   font-weight: 600;
 }
 

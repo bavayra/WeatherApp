@@ -118,7 +118,7 @@
   justify-content: center;
   inline-size: 2.5rem;
   block-size: 2.5rem;
-  background: rgba(201, 1, 78, 0.8);
+  background: rgb(201 1 78 / 80%);
   color: var(--primary-color);
   border: none;
   border-radius: 50%;
@@ -128,7 +128,7 @@
 }
 
 .delete-city-btn:hover {
-  background: rgba(201, 1, 78);
+  background: rgb(201, 1, 78);
   transform: scale(1.05);
 }
 
