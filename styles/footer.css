@@ -102,10 +102,10 @@
   border: none;
   border-radius: 50%;
   background: linear-gradient(135deg, rgb(245 245 249), rgb(218 223 231));
-  box-shadow: 10px 10px 20px 7px rgba(13 20 49 / 50%),
+  box-shadow: 10px 10px 20px 7px rgb(13 20 49 / 50%),
     -10px -10px 15px 1px var(--white-015),
     inset 1px 1px 0.5px 0px var(--primary-color),
-    inset -2px -4px 8px 0px rgba(100 100 100 / 78%);
+    inset -2px -4px 8px 0px rgb(100 100 100 / 78%);
 }
 
 #add-city-btn img {
