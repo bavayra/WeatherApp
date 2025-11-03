@@ -4,6 +4,9 @@ import { formatTempShort } from "./tempConverter.js";
 
 let map = null;
 let marker = null;
+let tempUnitListener = null;
+let clickTimeout = null;
+let mapClickHandlerAttached = false;
 
 export async function initializeMap() {
   console.log("Initializing map...");
@@ -52,7 +55,58 @@ export async function initializeMap() {
   }
 
   setupMapClickListener();
-  document.addEventListener("tempUnitChanged", () => {
+
+  if (!mapClickHandlerAttached) {
+    console.log("📎 Attaching global click handler for map popups");
+
+    document.addEventListener("click", async function (e) {
+      if (!e.target.classList.contains("add-from-popup-btn")) {
+        return;
+      }
+
+      console.log("ADD BUTTON CLICKED (global handler)");
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      const btn = e.target;
+      btn.disabled = true;
+      btn.textContent = "Adding...";
+
+      const lat = parseFloat(btn.getAttribute("data-lat"));
+      const lon = parseFloat(btn.getAttribute("data-lon"));
+
+      console.log("Coordinates:", { lat, lon });
+
+      try {
+        const weatherData = await getWeatherByCoords(lat, lon);
+        console.log("Weather data:", weatherData);
+
+        const success = addCity(weatherData);
+        console.log("addCity result:", success);
+
+        if (success) {
+          alert(`${weatherData.name} was added to favorites!`);
+          if (marker) marker.closePopup();
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("Failed to add city");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Add to favorites";
+      }
+    });
+
+    mapClickHandlerAttached = true;
+    console.log(" Global handler attached");
+  }
+
+  if (tempUnitListener) {
+    document.removeEventListener("tempUnitChanged", tempUnitListener);
+  }
+
+  tempUnitListener = () => {
     if (marker && marker.isPopupOpen()) {
       const lat = marker.getLatLng().lat;
       const lon = marker.getLatLng().lng;
@@ -61,7 +115,8 @@ export async function initializeMap() {
         displayWeatherOnMap(weatherData, lat, lon);
       });
     }
-  });
+  };
+  document.addEventListener("tempUnitChanged", tempUnitListener);
 }
 
 function setupMapClickListener() {
@@ -70,12 +125,18 @@ function setupMapClickListener() {
   map.on("click", async (e) => {
     const { lat, lng } = e.latlng;
 
-    try {
-      const weatherData = await getWeatherByCoords(lat, lng);
-      displayWeatherOnMap(weatherData, lat, lng);
-    } catch (error) {
-      console.error("Failed to get weather for clicked location:", error);
-    }
+    clearTimeout(clickTimeout);
+
+    clickTimeout = setTimeout(async () => {
+      try {
+        const weatherData = await getWeatherByCoords(lat, lng);
+        displayWeatherOnMap(weatherData, lat, lng);
+      } catch (error) {
+        console.error("Failed to get weather for clicked location:", error);
+
+        alert("Failed to load weather. Please try again.");
+      }
+    }, 300);
   });
 }
 
@@ -113,7 +174,12 @@ function getUserLocation() {
 }
 
 function displayWeatherOnMap(weatherData, lat, lon) {
-  if (!map) return;
+  console.log("City:", weatherData.name);
+
+  if (!map) {
+    console.error("Map is null!");
+    return;
+  }
 
   if (marker) {
     map.removeLayer(marker);
@@ -132,73 +198,106 @@ function displayWeatherOnMap(weatherData, lat, lon) {
   `;
 
   marker = L.marker([lat, lon]).addTo(map).bindPopup(popupContent).openPopup();
-  marker.on("popupopen", () => {
-    const addBtn = document.querySelector(".add-from-popup-btn");
-    if (addBtn) {
-      addBtn.addEventListener("click", async () => {
-        const lat = parseFloat(addBtn.dataset.lat);
-        const lon = parseFloat(addBtn.dataset.lon);
+
+  console.log("Marker created, popup should be open");
+
+  marker.on("popupopen", function () {
+    console.log("POPUP OPENED!");
+
+    setTimeout(function () {
+      console.log("Timeout executed, searching for button...");
+
+      const addBtn = document.querySelector(".add-from-popup-btn");
+
+      if (!addBtn) {
+        console.error("Button NOT found in DOM!");
+        console.log(
+          "Popup HTML:",
+          document.querySelector(".leaflet-popup-content")?.innerHTML
+        );
+        return;
+      }
+
+      console.log("Button found:", addBtn);
+      console.log("Button attributes:", {
+        lat: addBtn.getAttribute("data-lat"),
+        lon: addBtn.getAttribute("data-lon"),
+        class: addBtn.className,
+      });
+
+      // Проверяем, не добавлен ли уже обработчик
+      if (addBtn.hasAttribute("data-listener-attached")) {
+        console.log("Listener already attached, skipping");
+        return;
+      }
+
+      console.log("Attaching click listener...");
+
+      // ВАРИАНТ 1: Прямой addEventListener (попробуем сначала его)
+      addBtn.addEventListener("click", async function (e) {
+        console.log("BUTTON CLICKED");
+        console.log("Event:", e);
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        addBtn.disabled = true;
+        addBtn.textContent = "Adding...";
+
+        const btnLat = parseFloat(addBtn.getAttribute("data-lat"));
+        const btnLon = parseFloat(addBtn.getAttribute("data-lon"));
+
+        console.log("Extracted coordinates:", { btnLat, btnLon });
+
+        if (isNaN(btnLat) || isNaN(btnLon)) {
+          console.error("Invalid coordinates!");
+          alert("Invalid coordinates");
+          addBtn.disabled = false;
+          addBtn.textContent = "Add to favorites";
+          return;
+        }
 
         try {
-          const weatherData = await getWeatherByCoords(lat, lon);
-          const success = addCity(weatherData);
+          console.log("Fetching weather data...");
+          const freshWeatherData = await getWeatherByCoords(btnLat, btnLon);
+
+          console.log("Weather data received:", freshWeatherData);
+
+          if (!freshWeatherData || !freshWeatherData.name) {
+            throw new Error("Invalid weather data");
+          }
+
+          console.log("Calling addCity...");
+          console.log("Type of addCity:", typeof addCity);
+
+          const success = addCity(freshWeatherData);
+
+          console.log("addCity result:", success);
 
           if (success) {
-            showErrorModal(`${weatherData.name} was added to favorites!`);
+            console.log("SUCCESS! City added!");
+            alert(`${freshWeatherData.name} was added to favorites!`);
+            marker.closePopup();
+          } else {
+            console.log("City not added (duplicate or limit)");
           }
         } catch (error) {
-          console.error("Error adding city from map:", error);
-          showErrorModal("Failed to add city. Please try again.");
+          console.error("Error:", error);
+          alert("Failed to add city: " + error.message);
+        } finally {
+          addBtn.disabled = false;
+          addBtn.textContent = "Add to favorites";
         }
       });
-    }
+
+      addBtn.setAttribute("data-listener-attached", "true");
+      console.log("Listener attached successfully!");
+    }, 100);
   });
-}
 
-async function showWeatherInfo(lat, lng) {
-  const weatherInfo = document.getElementById("map-weather-info");
+  marker.on("popupclose", function () {
+    console.log("Popup closed");
+  });
 
-  if (!weatherInfo) {
-    console.error("Map weather info container not found");
-    return;
-  }
-
-  weatherInfo.classList.remove("hidden");
-  weatherInfo.innerHTML = "<p>Loading weather...</p>";
-
-  const weatherData = await getWeatherByCoords(lat, lng);
-
-  if (!weatherData) {
-    weatherInfo.innerHTML =
-      '<p style="padding: 20px; color: #f00;">❌ Weather loading error /p>';
-    return;
-  }
-
-  weatherInfo.innerHTML = `
-      <div class="map-weather-card">
-        <h3>Weather at this location</h3>
-        <p>Coordinates: ${lat.toFixed(2)}, ${lng.toFixed(2)}</p>
-        <p>Temperature: ${formatTempShort(weatherData.temp)}</p>
-        <p>Humidity: 65%</p>
-        <p>Description: Overcast</p>
-        <button id="add-from-map" class="add-city-from-map-btn">
-          Add to favorites
-        </button>
-      </div>
-    `;
-
-  const addBtn = document.getElementById("add-from-map");
-  if (addBtn) {
-    addBtn.addEventListener("click", () => {
-      const cityData = {
-        name: weatherData.name,
-        country: weatherData.country,
-        temp: weatherData.temp,
-        humidity: weatherData.humidity,
-        icon: weatherData.icon,
-      };
-      addCity(cityData);
-      alert(`${weatherData.name} was added to favorites!`);
-    });
-  }
+  console.log("displayWeatherOnMap completed");
 }

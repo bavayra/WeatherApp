@@ -336,23 +336,12 @@ function toggleManageMode() {
 }
 
 export function addCity(cityData) {
-  if (!cityData || typeof cityData !== "object") {
+  console.log("=== addCity CALLED ===");
+  console.log("addCity called with:", cityData);
+
+  if (!cityData || !cityData.name || !cityData.lat || !cityData.lon) {
+    console.error("Invalid city data:", cityData);
     showErrorModal("Invalid city data");
-    return false;
-  }
-
-  if (!cityData.name || typeof cityData.name !== "string") {
-    showErrorModal("City name is required");
-    return false;
-  }
-
-  if (!cityData.country || typeof cityData.country !== "string") {
-    showErrorModal("Country is required");
-    return false;
-  }
-
-  if (typeof cityData.lat !== "number" || typeof cityData.lon !== "number") {
-    showErrorModal("Invalid coordinates");
     return false;
   }
 
@@ -365,29 +354,40 @@ export function addCity(cityData) {
   }
 
   if (savedCities.length >= maxCities) {
-    showErrorModal(
-      `You can only save up to ${maxCities} cities. Please remove a city first.`
-    );
+    console.log("Maximum cities reached");
+    showErrorModal(`Maximum ${maxCities} cities allowed`);
     return false;
   }
 
-  const exists = savedCities.some(
-    (city) => city.name === cityData.name && city.country === cityData.country
-  );
+  const isDuplicate = savedCities.some((city) => {
+    const latMatch = Math.abs(city.lat - cityData.lat) < 0.01;
+    const lonMatch = Math.abs(city.lon - cityData.lon) < 0.01;
+    return latMatch && lonMatch;
+  });
 
-  if (!exists) {
-    savedCities.push({
-      ...cityData,
-      lat: lat,
-      lon: lon,
-    });
-    saveCitiesToStorage();
-    renderSavedCities();
-    return true;
-  } else {
-    showErrorModal(`${cityData.name} is already on the favorites list`);
+  if (isDuplicate) {
+    console.log("City already exists");
+    showErrorModal(`${cityData.name} is already in your list`);
     return false;
   }
+
+  const newCity = {
+    name: cityData.name,
+    country: cityData.country,
+    lat: cityData.lat,
+    lon: cityData.lon,
+    temp: cityData.temp,
+    description: cityData.description,
+    humidity: cityData.humidity,
+    icon: cityData.icon,
+  };
+
+  savedCities.push(newCity);
+  saveCitiesToStorage();
+  renderSavedCities();
+
+  console.log("City added successfully:", newCity);
+  return true;
 }
 
 function removeCity(index) {

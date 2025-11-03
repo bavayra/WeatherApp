@@ -112,7 +112,7 @@ function updateCurrentWeatherDisplay(weather) {
   const currentDesc = document.querySelector(".current-desc");
   const currentHum = document.querySelector(".current-hum");
 
-  if (currentCity) currentCity.textContent = weather.city;
+  if (currentCity) currentCity.textContent = weather.name;
   if (currentTemp) currentTemp.innerHTML = formatTempShort(weather.temp);
   if (currentDesc)
     currentDesc.textContent = capitalizeFirstLetter(weather.description);
