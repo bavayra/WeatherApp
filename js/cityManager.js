@@ -14,6 +14,25 @@ let savedCities = [];
 let isManageMode = false;
 let currentSearchController = null;
 
+function validateCoordinates(lat, lon) {
+  const latNum = Number(lat);
+  const lonNum = Number(lon);
+
+  if (isNaN(latNum) || isNaN(lonNum)) {
+    return { valid: false, error: "Coordinates must be numbers" };
+  }
+
+  if (latNum < -90 || latNum > 90) {
+    return { valid: false, error: "Latitude must be between -90 and 90" };
+  }
+
+  if (lonNum < -180 || lonNum > 180) {
+    return { valid: false, error: "Longitude must be between -180 and 180" };
+  }
+
+  return { valid: true, lat: latNum, lon: lonNum };
+}
+
 export function initCityManagement() {
   console.log("Initializing city management...");
 
@@ -336,7 +355,6 @@ function toggleManageMode() {
 }
 
 export function addCity(cityData) {
-  console.log("=== addCity CALLED ===");
   console.log("addCity called with:", cityData);
 
   if (!cityData || !cityData.name || !cityData.lat || !cityData.lon) {
@@ -353,8 +371,13 @@ export function addCity(cityData) {
     return false;
   }
 
+  const validation = validateCoordinates(cityData.lat, cityData.lon);
+  if (!validation.valid) {
+    showErrorModal(validation.error);
+    return false;
+  }
+
   if (savedCities.length >= maxCities) {
-    console.log("Maximum cities reached");
     showErrorModal(`Maximum ${maxCities} cities allowed`);
     return false;
   }
@@ -366,7 +389,6 @@ export function addCity(cityData) {
   });
 
   if (isDuplicate) {
-    console.log("City already exists");
     showErrorModal(`${cityData.name} is already in your list`);
     return false;
   }
