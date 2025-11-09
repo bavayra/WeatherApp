@@ -4,7 +4,6 @@ const API_BASE = "https://api.openweathermap.org/data/2.5";
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
 if (!API_KEY) {
-  console.error(" API KEY is missing!");
   console.error("Make sure you created .env file with VITE_WEATHER_API_KEY");
   throw new Error("Weather API key is not configured");
 }
@@ -125,6 +124,6 @@ function formatWeatherData(data) {
     humidity: data.main.humidity,
     lat: data.coord.lat,
     lon: data.coord.lon,
-    icon: data.weather[0].icon,
+    icon: `${data.weather[0].icon}.svg`,
   };
 }

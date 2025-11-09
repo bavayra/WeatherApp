@@ -24,7 +24,7 @@ class Modal {
       modal.innerHTML = `
         <div class="modal-content">
           <button class="modal-close" aria-label="Close modal">&times;</button>
-          <div class="modal-icon error-icon" aria-hidden="true">⚠️</div>
+          <div class="modal-icon error-icon" aria-hidden="true"></div>
           <h2 class="modal-title visually-hidden">Error</h2>
           <p class="modal-message" id="${type}-modal-desc"></p>
           <button class="modal-ok-btn" autofocus>OK</button>
@@ -33,7 +33,7 @@ class Modal {
     } else if (type === "confirm") {
       modal.innerHTML = `
         <div class="modal-content">
-          <div class="modal-icon confirm-icon" aria-hidden="true">❓</div>
+          <div class="modal-icon confirm-icon" aria-hidden="true"></div>
           <h2 class="modal-title visually-hidden">Confirmation</h2>
           <p class="modal-message" id="${type}-modal-desc"></p>
           <div class="modal-buttons">

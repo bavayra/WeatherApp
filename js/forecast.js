@@ -125,7 +125,7 @@ export function renderHourlyForecast() {
       <p class="hour">${item.time}</p>
       <img
         class="forecast-weather-icon"
-        src="/icons-weather/${item.icon}"
+        src="./icons-weather/${item.icon}.svg"
         alt="Weather at ${item.time}"
         loading="lazy"
         width="44"
@@ -182,7 +182,7 @@ export function renderDailyForecast() {
       <p class="day">${item.day}</p>
       <img
         class="forecast-weather-icon"
-        src="/icons-weather/${item.icon}"
+        src="./icons-weather/${item.icon}.svg"
         alt="Weather on ${item.day}"
         loading="lazy"
         width="44"

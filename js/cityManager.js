@@ -309,7 +309,7 @@ function createWeatherCard(city, index) {
     </div>
     <div class="weather-icon">
       <img
-        src="icons-weather/${city.icon}"
+        src="./icons-weather/${city.icon}.svg"
         alt="Current weather in ${city.name}"
         loading="lazy"
       />
