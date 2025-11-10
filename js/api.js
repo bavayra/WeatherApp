@@ -8,7 +8,7 @@ if (!API_KEY) {
   throw new Error("Weather API key is not configured");
 }
 
-console.log("✅ API KEY loaded successfully");
+console.log("API KEY loaded successfully");
 
 async function fetchWithRetry(url, options = {}, retries = 3) {
   for (let i = 0; i < retries; i++) {

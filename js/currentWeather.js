@@ -86,21 +86,6 @@ function setupTempToggle() {
 }
 
 async function loadCurrentWeather(lat, lon) {
-  try {
-    const data = await getCurrentWeather(lat, lon);
-    if (!data) return;
-
-    const timeOfDay = getDayOrNight();
-    const baseIcon = data.weather[0].icon.slice(0, 2);
-    data.weather[0].icon = baseIcon + timeOfDay;
-
-    currentWeatherData = formatWeatherData(data);
-    renderCurrentWeather();
-
-    await loadForecastForLocation(lat, lon);
-  } catch (error) {
-    console.error("Failed to load current weather:", error);
-  }
   const currentCity = document.querySelector(".current-city");
   const currentTemp = document.querySelector(".current-temp");
   const currentDesc = document.querySelector(".current-desc");
@@ -111,17 +96,27 @@ async function loadCurrentWeather(lat, lon) {
   if (currentDesc) currentDesc.textContent = "--";
   if (currentHum) currentHum.textContent = "Humidity: --%";
 
-  const weather = await getCurrentWeather(lat, lon);
+  try {
+    const data = await getCurrentWeather(lat, lon);
 
-  if (weather) {
-    currentWeatherData = weather;
-    updateCurrentWeatherDisplay(weather);
-    console.log("Current weather loaded:", weather);
-  } else {
-    if (currentCity) currentCity.textContent = "Error";
-    if (currentTemp) currentTemp.textContent = "--°";
-    if (currentDesc) currentDesc.textContent = "Unable to load weather";
-    if (currentHum) currentHum.textContent = "Humidity: --%";
+    if (!data || !data.name) {
+      console.error("Invalid current weather response:", data);
+      throw new Error("Invalid current weather data from API");
+    }
+
+    const timeOfDay = getDayOrNight();
+    if (data.icon && typeof data.icon === "string") {
+      const baseIcon = data.icon.slice(0, 2);
+      data.icon = baseIcon + timeOfDay;
+    } else {
+      data.icon = "01" + timeOfDay;
+    }
+
+    currentWeatherData = data;
+    updateCurrentWeatherDisplay(currentWeatherData);
+  } catch (error) {
+    console.error("Failed to load current weather:", error);
+    showErrorModal("Failed to load current weather. Using placeholders.");
   }
 }
 
