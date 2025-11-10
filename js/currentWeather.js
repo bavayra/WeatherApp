@@ -10,6 +10,7 @@ import {
   toggleUnit,
   getCurrentUnit,
 } from "./tempConverter.js";
+import { getDayOrNight } from "./weatherIcons.js";
 
 let userLocation = null;
 let currentWeatherData = null;
@@ -85,6 +86,21 @@ function setupTempToggle() {
 }
 
 async function loadCurrentWeather(lat, lon) {
+  try {
+    const data = await getCurrentWeather(lat, lon);
+    if (!data) return;
+
+    const timeOfDay = getDayOrNight();
+    const baseIcon = data.weather[0].icon.slice(0, 2);
+    data.weather[0].icon = baseIcon + timeOfDay;
+
+    currentWeatherData = formatWeatherData(data);
+    renderCurrentWeather();
+
+    await loadForecastForLocation(lat, lon);
+  } catch (error) {
+    console.error("Failed to load current weather:", error);
+  }
   const currentCity = document.querySelector(".current-city");
   const currentTemp = document.querySelector(".current-temp");
   const currentDesc = document.querySelector(".current-desc");
@@ -128,8 +144,6 @@ async function loadForecastForLocation(lat, lon) {
     const data = await getForecast(lat, lon);
 
     console.log("Raw forecast data:", data);
-    console.log("data.list exists?", !!data?.list);
-    console.log("data.list length:", data?.list?.length);
 
     if (!data || !data.list || !Array.isArray(data.list)) {
       console.error("Invalid forecast data structure!");
@@ -143,24 +157,21 @@ async function loadForecastForLocation(lat, lon) {
     weatherData.hourly = data.list.slice(0, 8).map((item) => {
       const date = new Date(item.dt * 1000);
       let hours = date.getHours();
-
       const period = hours >= 12 ? "PM" : "AM";
-      hours = hours % 12;
-      hours = hours ? hours : 12;
-
-      const time = `${hours}${period}`;
+      const formattedHours = hours % 12 || 12;
+      const time = `${formattedHours}${period}`;
 
       return {
         time: time,
         temp: Math.round(item.main.temp),
-        icon: item.weather[0].icon + ".svg",
+        icon: item.weather[0].icon,
         description: item.weather[0].description,
       };
     });
 
     weatherData.daily = data.list
-      .filter((item, index) => index % 8 === 4)
-      .slice(0, 5)
+      .filter((_, index) => index % 8 === 0)
+      .slice(0, 7)
       .map((item) => {
         const date = new Date(item.dt * 1000);
         const dayName = date.toLocaleDateString("en-US", { weekday: "short" });
@@ -168,7 +179,7 @@ async function loadForecastForLocation(lat, lon) {
         return {
           day: dayName,
           temp: Math.round(item.main.temp),
-          icon: item.weather[0].icon + ".svg",
+          icon: item.weather[0].icon,
           description: item.weather[0].description,
         };
       });
@@ -186,8 +197,6 @@ async function loadForecastForLocation(lat, lon) {
     console.error("Failed to load forecast:", error);
     weatherData.hourly = [];
     weatherData.daily = [];
-    renderHourlyForecast();
-    renderDailyForecast();
   }
 }
 

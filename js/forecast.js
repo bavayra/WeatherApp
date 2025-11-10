@@ -1,6 +1,7 @@
 import { getForecast } from "./api.js";
 import { showErrorModal } from "./modal.js";
 import { formatTempShort } from "./tempConverter.js";
+import { getWeatherIcon, getDayOrNight } from "./weatherIcons.js";
 
 export let weatherData = {
   hourly: [],
@@ -43,9 +44,19 @@ export async function updateForecastForCity(lat, lon) {
   try {
     const forecastData = await getForecast(lat, lon);
 
-    if (forecastData) {
-      weatherData.hourly = forecastData.hourly;
-      weatherData.daily = forecastData.daily;
+    if (forecastData && forecastData.list) {
+      weatherData.hourly = forecastData.list.slice(0, 8);
+      weatherData.daily = forecastData.list
+        .filter((_, index) => index % 8 === 0)
+        .slice(0, 7)
+        .map((item) => ({
+          day: new Date(item.dt * 1000).toLocaleDateString("en-US", {
+            weekday: "short",
+          }),
+          temp: Math.round(item.main.temp),
+          icon: item.weather[0].icon,
+          description: item.weather[0].description,
+        }));
 
       console.log("Weather data updated:", weatherData);
 
@@ -102,35 +113,31 @@ function setupForecastListeners() {
 export function renderHourlyForecast() {
   const container = document.querySelector(".forecast-by-hours");
   if (!container) {
-    console.error("Hourly forecast container not found");
     return;
   }
-  if (
-    !weatherData.hourly ||
-    !Array.isArray(weatherData.hourly) ||
-    weatherData.hourly.length === 0
-  ) {
+  if (!weatherData.hourly || !weatherData.hourly.length) {
     container.innerHTML = '<p class="no-data">No hourly forecast available</p>';
-    console.warn("No hourly forecast data");
     return;
   }
 
   container.innerHTML = "";
-  console.log("Rendering hourly forecast:", weatherData.hourly.length, "items");
 
-  weatherData.hourly.forEach((item, index) => {
+  weatherData.hourly.forEach((item) => {
+    const timeOfDay = getDayOrNight();
+    const baseIcon = item.icon.slice(0, 2);
+    const currentIcon = baseIcon + timeOfDay;
+
     const forecastCard = document.createElement("div");
     forecastCard.className = "forecast";
     forecastCard.innerHTML = `
       <p class="hour">${item.time}</p>
       <img
         class="forecast-weather-icon"
-        src="./icons-weather/${item.icon}.svg"
+       src="${getWeatherIcon(currentIcon, "small")}"
         alt="Weather at ${item.time}"
         loading="lazy"
         width="44"
         height="44"
-        onerror="this.style.display='none'"
       />
       <p class="temp-by-period">${formatTempShort(item.temp)}</p>
     `;
@@ -152,25 +159,23 @@ export function renderHourlyForecast() {
 export function renderDailyForecast() {
   const container = document.querySelector(".forecast-by-days");
   if (!container) {
-    console.error("Daily forecast container not found");
     return;
   }
 
-  if (
-    !weatherData.daily ||
-    !Array.isArray(weatherData.daily) ||
-    weatherData.daily.length === 0
-  ) {
+  if (!weatherData.daily || !weatherData.daily.length) {
     container.innerHTML = '<p class="no-data">No daily forecast available</p>';
-    console.warn("No daily forecast data");
     return;
   }
 
   container.innerHTML = "";
 
-  console.log("Rendering daily forecast:", weatherData.daily.length, "items");
+  console.log("Rendering daily forecast:", weatherData.daily);
 
-  weatherData.daily.forEach((item, index) => {
+  weatherData.daily.forEach((day, index) => {
+    const timeOfDay = getDayOrNight();
+    const baseIcon = day.icon.slice(0, 2);
+    const currentIcon = baseIcon + timeOfDay;
+
     const forecastCard = document.createElement("div");
     forecastCard.className = "forecast";
 
@@ -179,17 +184,16 @@ export function renderDailyForecast() {
     }
 
     forecastCard.innerHTML = `
-      <p class="day">${item.day}</p>
+      <p class="day">${day.day}</p>
       <img
         class="forecast-weather-icon"
-        src="./icons-weather/${item.icon}.svg"
-        alt="Weather on ${item.day}"
+        src="${getWeatherIcon(currentIcon, "small")}"
+        alt="Weather on ${day.day}"
         loading="lazy"
         width="44"
         height="44"
-        onerror="this.style.display='none'"
       />
-      <p class="temp-by-period">${formatTempShort(item.temp)}</p>
+      <p class="temp-by-period">${formatTempShort(day.temp)}</p>
     `;
 
     forecastCard.addEventListener("click", () => {

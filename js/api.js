@@ -124,6 +124,6 @@ function formatWeatherData(data) {
     humidity: data.main.humidity,
     lat: data.coord.lat,
     lon: data.coord.lon,
-    icon: `${data.weather[0].icon}.svg`,
+    icon: data.weather[0].icon,
   };
 }

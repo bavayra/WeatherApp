@@ -7,6 +7,7 @@ import {
 
 import { showErrorModal, showConfirmModal } from "./modal.js";
 import { formatTempShort } from "./tempConverter.js";
+import { getWeatherIcon, getDayOrNight } from "./weatherIcons.js";
 
 const maxCities = 5;
 
@@ -287,6 +288,15 @@ export function renderSavedCities() {
 }
 
 function createWeatherCard(city, index) {
+  if (!city || !city.icon) {
+    console.error("Invalid city data:", city);
+    return null;
+  }
+
+  const timeOfDay = getDayOrNight();
+  const baseIcon = city.icon.slice(0, 2);
+  const currentIcon = baseIcon + timeOfDay;
+
   const card = document.createElement("div");
   card.className = "weather-card";
   card.dataset.index = index;
@@ -296,6 +306,7 @@ function createWeatherCard(city, index) {
     "aria-label",
     `Weather for ${city.name}, ${city.country}. Temperature ${city.temp} degrees, humidity ${city.humidity} percent`
   );
+  const iconPath = getWeatherIcon(city.icon, "large");
 
   card.innerHTML = `
     <div class="weather-card-bg">
@@ -309,7 +320,7 @@ function createWeatherCard(city, index) {
     </div>
     <div class="weather-icon">
       <img
-        src="./icons-weather/${city.icon}.svg"
+       src="${getWeatherIcon(currentIcon, "large")}"
         alt="Current weather in ${city.name}"
         loading="lazy"
       />
