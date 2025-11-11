@@ -26,13 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const runDeferred = () => {
       if ("requestIdleCallback" in window) {
         requestIdleCallback(
-          () => {
-            initCurrentWeather();
-            initForecastToggle();
-            initCarousel();
-            initCityManagement();
-            initNavigation();
-          },
           async () => {
             const [
               { initCurrentWeather },
@@ -55,13 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
           { timeout: 2000 }
         );
       } else {
-        setTimeout(() => {
-          initCurrentWeather();
-          initForecastToggle();
-          initCarousel();
-          initCityManagement();
-          initNavigation();
-        }, 200);
         setTimeout(async () => {
           const [
             { initCurrentWeather },

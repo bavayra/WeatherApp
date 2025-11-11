@@ -33,11 +33,6 @@
     <link rel="stylesheet" href="index.css" />
 
     <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    />
-
-    <link
       rel="icon"
       type="png"
       sizes="192x192"
@@ -73,6 +68,7 @@
       as="image"
       type="image/svg"
     />
+
     <link
       rel="preload"
       href="./icons-base/bg-sky.webp"
@@ -90,11 +86,6 @@
     </script>
 
     <script type="module" src="./js/main.js" defer></script>
-    <script
-      defer
-      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    ></script>
-
     <title>Weather App</title>
   </head>
 
@@ -108,6 +99,33 @@
         ></div>
       </header>
       <section id="hero-section" aria-label="Hero">
+        <img
+          id="hero-bg-image"
+          class="daytime-bg"
+          src="icons-base/bg-sky.webp"
+          alt=""
+          width="390"
+          height="844"
+          fetchpriority="high"
+          style="
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+          "
+        />
+        <img
+          id="house-img-bg"
+          src="./icons-base/House.svg"
+          alt=""
+          aria-hidden="true"
+          width="390"
+          height="844"
+          fetchpriority="high"
+        />
+
         <div id="hero-bg" class="container" aria-hidden="true">
           <div
             id="rectangle1-bg"
@@ -115,14 +133,6 @@
             role="presentation"
             aria-hidden="true"
           ></div>
-          <img
-            id="house-img-bg"
-            src="./icons-base/House.svg"
-            alt=""
-            aria-hidden="true"
-            width="120"
-            height="120"
-          />
           <div
             id="rectangle2-bg"
             class="rectangle"

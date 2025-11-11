@@ -16,8 +16,6 @@ let userLocation = null;
 let currentWeatherData = null;
 
 export function initCurrentWeather() {
-  console.log("Initializing current weather...");
-
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(
       async (position) => {
@@ -40,7 +38,6 @@ export function initCurrentWeather() {
       }
     );
   } else {
-    console.warn("Geolocation not supported");
     showErrorModal(
       "Geolocation is not supported by your browser. Using default location (Montreal)."
     );
@@ -63,7 +60,6 @@ function setupTempToggle() {
   const currentTemp = document.querySelector(".current-temp");
 
   if (!currentTemp) {
-    console.warn("Current temp element not found");
     return;
   }
 
@@ -100,7 +96,6 @@ async function loadCurrentWeather(lat, lon) {
     const data = await getCurrentWeather(lat, lon);
 
     if (!data || !data.name) {
-      console.error("Invalid current weather response:", data);
       throw new Error("Invalid current weather data from API");
     }
 
@@ -115,7 +110,6 @@ async function loadCurrentWeather(lat, lon) {
     currentWeatherData = data;
     updateCurrentWeatherDisplay(currentWeatherData);
   } catch (error) {
-    console.error("Failed to load current weather:", error);
     showErrorModal("Failed to load current weather. Using placeholders.");
   }
 }
@@ -138,10 +132,7 @@ async function loadForecastForLocation(lat, lon) {
     console.log("Loading forecast for location:", lat, lon);
     const data = await getForecast(lat, lon);
 
-    console.log("Raw forecast data:", data);
-
     if (!data || !data.list || !Array.isArray(data.list)) {
-      console.error("Invalid forecast data structure!");
       weatherData.hourly = [];
       weatherData.daily = [];
       renderHourlyForecast();

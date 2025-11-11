@@ -9,13 +9,10 @@ export let weatherData = {
 };
 
 export function initForecastToggle() {
-  console.log("Initializing forecast toggle...");
-
   const forecastByHours = document.querySelector(".forecast-by-hours");
   const forecastByDays = document.querySelector(".forecast-by-days");
 
   if (!forecastByHours || !forecastByDays) {
-    console.error("Forecast containers not found in HTML");
     return;
   }
 
@@ -58,8 +55,6 @@ export async function updateForecastForCity(lat, lon) {
           description: item.weather[0].description,
         }));
 
-      console.log("Weather data updated:", weatherData);
-
       const hourlyBtn = document.getElementById("hourly-forecast-btn");
       if (hourlyBtn && hourlyBtn.classList.contains("active")) {
         renderHourlyForecast();
@@ -68,7 +63,6 @@ export async function updateForecastForCity(lat, lon) {
       }
     }
   } catch (error) {
-    console.error("Failed to update forecast:", error);
     showErrorModal("Failed to load weather forecast. Please try again later.");
   }
 }
@@ -214,7 +208,6 @@ export function initCarousel() {
   const scrollArrow = document.getElementById("scroll-arrow");
 
   if (!scrollArrow) {
-    console.warn("Scroll arrow button not found");
     return;
   }
 
@@ -231,7 +224,6 @@ function handleCarouselScroll() {
   );
 
   if (!container) {
-    console.warn("Forecast container not found");
     return;
   }
 

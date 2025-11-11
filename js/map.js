@@ -8,7 +8,55 @@ let tempUnitListener = null;
 let clickTimeout = null;
 let mapClickHandlerAttached = false;
 
+function ensureLeaflet() {
+  return new Promise((resolve, reject) => {
+    if (window.L) return resolve(window.L);
+
+    if (!document.querySelector('link[href*="leaflet.css"]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+      document.head.appendChild(link);
+    }
+
+    const src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+    const existing = document.querySelector(`script[src="${src}"]`);
+
+    if (existing) {
+      if (window.L) {
+        return resolve(window.L);
+      }
+
+      existing.addEventListener("load", () => resolve(window.L));
+      existing.addEventListener("error", reject);
+      return;
+    }
+    const s = document.createElement("script");
+    s.src = src;
+    s.async = true;
+    s.onload = () => {
+      if (window.L) {
+        resolve(window.L);
+      } else {
+        setTimeout(() => resolve(window.L), 50);
+      }
+    };
+    s.onerror = (err) => {
+      console.error("Failed to load Leaflet:", err);
+      reject(err);
+    };
+    document.head.appendChild(s);
+  });
+}
+
 export async function initializeMap() {
+  try {
+    await ensureLeaflet();
+  } catch (error) {
+    console.error("Failed to load Leaflet library:", error);
+    return;
+  }
+
   const mapContainer = document.getElementById("map");
 
   if (!mapContainer) {

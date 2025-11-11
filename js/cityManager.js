@@ -35,8 +35,6 @@ function validateCoordinates(lat, lon) {
 }
 
 export function initCityManagement() {
-  console.log("Initializing city management...");
-
   loadSavedCities();
 
   document.addEventListener("tempUnitChanged", () => {
@@ -71,8 +69,6 @@ export function initCityManagement() {
         }
       }
 
-      console.log("Search input:", query);
-
       filterCities(query.toLowerCase());
     });
 
@@ -80,7 +76,6 @@ export function initCityManagement() {
       if (e.key === "Enter") {
         e.preventDefault();
         const query = e.target.value.trim();
-        console.log("Enter pressed, searching for:", query);
 
         if (query.length >= 3) {
           searchNewCities(query);
@@ -93,7 +88,6 @@ export function initCityManagement() {
     searchBtn.addEventListener("click", (e) => {
       e.preventDefault();
       const query = searchInput.value.trim();
-      console.log("Search button clicked:", query);
 
       if (query.length >= 3) {
         searchNewCities(query);
@@ -125,7 +119,6 @@ async function searchNewCities(query) {
       console.log("Search cancelled");
       return;
     }
-    console.error("Error searching cities:", error);
     showErrorModal("Failed to search cities. Please try again.");
   }
 }
@@ -165,7 +158,6 @@ function displaySearchResults(cities) {
     }`;
 
     cityBtn.addEventListener("click", async () => {
-      console.log("City clicked:", city.name, "Coords:", city.lat, city.lon);
       await addCityFromSearch(city.lat, city.lon);
     });
 
@@ -197,7 +189,6 @@ async function addCityFromSearch(lat, lon) {
       }
     }
   } catch (error) {
-    console.error("Error adding city:", error);
     showErrorModal("Could not load city data. Please try again.");
   }
 }
@@ -255,7 +246,6 @@ function saveCitiesToStorage() {
 export function renderSavedCities() {
   const widget = document.getElementById("weather-widget");
   if (!widget) {
-    console.error("Weather widget not found");
     return;
   }
 
@@ -266,7 +256,6 @@ export function renderSavedCities() {
     emptyMessage.className = "empty-message";
     emptyMessage.textContent = "No saved cities yet. Add your first city!";
     widget.appendChild(emptyMessage);
-    console.log("No cities to render");
     return;
   }
 
@@ -366,10 +355,7 @@ function toggleManageMode() {
 }
 
 export function addCity(cityData) {
-  console.log("addCity called with:", cityData);
-
   if (!cityData || !cityData.name || !cityData.lat || !cityData.lon) {
-    console.error("Invalid city data:", cityData);
     showErrorModal("Invalid city data");
     return false;
   }
