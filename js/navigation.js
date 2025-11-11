@@ -4,10 +4,7 @@ import { renderSavedCities } from "./cityManager.js";
 let listenersInitialized = false;
 
 export function initNavigation() {
-  console.log("Initializing navigation...");
-
   if (listenersInitialized) {
-    console.log("Navigation already initialized, skipping...");
     return;
   }
 
@@ -16,7 +13,6 @@ export function initNavigation() {
   const mapSection = document.getElementById("weather-map-search");
 
   if (!heroSection || !citiesSection || !mapSection) {
-    console.error("One or more sections not found");
     return;
   }
   listenersInitialized = true;
@@ -36,7 +32,6 @@ function setupNavigationListeners() {
   const mapBackBtn = document.getElementById("map-back-btn");
 
   const handleMapClick = () => {
-    console.log("Opening map...");
     heroSection.style.display = "none";
     citiesSection.style.display = "none";
     mapSection.style.display = "block";
@@ -50,7 +45,6 @@ function setupNavigationListeners() {
   };
 
   const handleCitiesClick = () => {
-    console.log("Opening cities list...");
     heroSection.style.display = "none";
     citiesSection.style.display = "block";
     mapSection.style.display = "none";
@@ -58,7 +52,6 @@ function setupNavigationListeners() {
   };
 
   const handleAddCityClick = () => {
-    console.log("Opening add city...");
     heroSection.style.display = "none";
     citiesSection.style.display = "block";
     mapSection.style.display = "none";
@@ -69,14 +62,12 @@ function setupNavigationListeners() {
   };
 
   const handleHeadBackClick = () => {
-    console.log("Going back to hero...");
     citiesSection.style.display = "none";
     heroSection.style.display = "block";
     mapSection.style.display = "none";
   };
 
   const handleMapBackClick = () => {
-    console.log("Going back from map...");
     mapSection.style.display = "none";
     heroSection.style.display = "block";
     citiesSection.style.display = "none";
