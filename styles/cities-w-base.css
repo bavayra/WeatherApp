@@ -91,7 +91,7 @@
 
 #head-left-title {
   position: absolute;
-  top: 1rem;
+  top: 1.2rem;
   left: 2.44rem;
   margin: 0;
   display: flex;
@@ -278,7 +278,7 @@
   }
 
   #search-btn {
-    top: 0.45rem;
+    top: 0.85rem;
   }
 
   #search-input {

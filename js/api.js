@@ -5,7 +5,9 @@ const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
 if (!API_KEY) {
   console.error("Make sure you created .env file with VITE_WEATHER_API_KEY");
-  throw new Error("Weather API key is not configured");
+  console.warn(
+    "VITE_WEATHER_API_KEY not set — API calls will fail, but page rendering will continue"
+  );
 }
 
 console.log("API KEY loaded successfully");

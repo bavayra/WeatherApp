@@ -28,23 +28,7 @@
       rel="stylesheet"
     />
 
-    <!--Althought the designer from Figma used SF Pro Display Font, it's suitable only for iOs devices. I tried to used as similar one as possible-->
-
-    <link rel="preload" as="image" href="./icons-base/House.svg" />
-
-    <script>
-      const saved = localStorage.getItem("theme");
-      const prefersDark = matchMedia("(prefers-color-scheme: dark)").matches;
-      document.documentElement.setAttribute(
-        "data-theme",
-        saved ?? (prefersDark ? "dark" : "light")
-      );
-    </script>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script type="module" src="./js/main.js"></script>
-
-    <title>Weather App</title>
+    <!--Althought the designer from Figma used SF Pro Display Font, it's suitable only for iOs devices. I tried to use as similar one as possible-->
 
     <link rel="stylesheet" href="index.css" />
 
@@ -82,12 +66,49 @@
       sizes="180x180"
       href="images/favicon/apple-touch-icon.png"
     />
+
+    <link
+      rel="preload"
+      href="./icons-base/House.svg"
+      as="image"
+      type="image/svg"
+    />
+    <link
+      rel="preload"
+      href="./icons-base/bg-sky.webp"
+      as="image"
+      type="image/webp"
+    />
+
+    <script>
+      const saved = localStorage.getItem("theme");
+      const prefersDark = matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute(
+        "data-theme",
+        saved ?? (prefersDark ? "dark" : "light")
+      );
+    </script>
+
+    <script type="module" src="./js/main.js" defer></script>
+    <script
+      defer
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    ></script>
+
+    <title>Weather App</title>
   </head>
 
   <body>
     <main class="container">
-      <section id="hero-section">
-        <div id="hero-bg" class="container">
+      <header id="hero-header">
+        <h1 class="visually-hidden" id="hero-header title">Weather App</h1>
+        <div
+          style="height: 1px; width: 1px; overflow: hidden"
+          aria-hidden="true"
+        ></div>
+      </header>
+      <section id="hero-section" aria-label="Hero">
+        <div id="hero-bg" class="container" aria-hidden="true">
           <div
             id="rectangle1-bg"
             class="rectangle"

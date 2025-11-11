@@ -1,5 +1,5 @@
 import { renderSavedCities } from "./cityManager.js";
-import { initializeMap } from "./map.js";
+/*import { initializeMap } from "./map.js";*/
 
 let listenersInitialized = false;
 
@@ -40,7 +40,13 @@ function setupNavigationListeners() {
     heroSection.style.display = "none";
     citiesSection.style.display = "none";
     mapSection.style.display = "block";
-    setTimeout(() => initializeMap(), 100);
+    setTimeout(() => {
+      import("./map.js")
+        .then((m) => m.initializeMap())
+        .catch((err) => {
+          console.error("Failed to load map module:", err);
+        });
+    }, 100);
   };
 
   const handleCitiesClick = () => {

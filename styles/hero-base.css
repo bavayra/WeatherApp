@@ -1,5 +1,5 @@
 #hero-bg {
-  background: url(/icons-base/bg.svg) no-repeat;
+  background: url(../icons-base/bg.svg) no-repeat;
   background-size: auto;
   background-position: center;
   overflow: hidden;
@@ -7,7 +7,7 @@
 }
 
 #hero-bg.daytime-bg {
-  background-image: url(/icons-base/bg-sky.webp);
+  background-image: url(../icons-base/bg-sky.webp);
   background-size: cover;
   background-position: center;
 }
