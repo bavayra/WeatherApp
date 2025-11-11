@@ -96,5 +96,5 @@ function setupNavigationListeners() {
 
 export function cleanupNavigation() {
   listenersInitialized = false;
-  console.log("Navigation listeners cleaned up");
+  if (import.meta.env.DEV) console.log("Navigation listeners cleaned up");
 }

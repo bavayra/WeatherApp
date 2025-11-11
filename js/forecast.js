@@ -146,8 +146,6 @@ export function renderHourlyForecast() {
 
     container.appendChild(forecastCard);
   });
-
-  console.log("Hourly forecast rendered");
 }
 
 export function renderDailyForecast() {
@@ -162,8 +160,6 @@ export function renderDailyForecast() {
   }
 
   container.innerHTML = "";
-
-  console.log("Rendering daily forecast:", weatherData.daily);
 
   weatherData.daily.forEach((day, index) => {
     const timeOfDay = getDayOrNight();
@@ -200,8 +196,6 @@ export function renderDailyForecast() {
 
     container.appendChild(forecastCard);
   });
-
-  console.log("Daily forecast rendered", weatherData.daily);
 }
 
 export function initCarousel() {
@@ -230,7 +224,7 @@ function handleCarouselScroll() {
   const items = container.querySelectorAll(".forecast");
 
   if (items.length === 0) {
-    console.warn("No forecast items found");
+    if (import.meta.env.DEV) console.warn("No forecast items found");
     return;
   }
 

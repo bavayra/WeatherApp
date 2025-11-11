@@ -1,24 +1,21 @@
-/*import { initCurrentWeather } from "./currentWeather.js";
-import { initForecastToggle, initCarousel } from "./forecast.js";
-import { initNavigation } from "./navigation.js";
-import { initCityManagement } from "./cityManager.js";
-import { showErrorModal } from "./modal.js";*/
-
 function setDynamicBackground() {
   const currentHour = new Date().getHours();
-  const background = document.getElementById("hero-bg");
+  const bgImage = document.getElementById("hero-bg-image");
+
+  if (!bgImage) {
+    console.error("Hero background image not found");
+    return;
+  }
 
   if (currentHour >= 6 && currentHour < 19) {
-    background.classList.add("daytime-bg");
-    console.log("Daytime background applied");
+    bgImage.src = "icons-base/bg-sky.webp";
   } else {
-    background.classList.remove("daytime-bg");
-    console.log("Nighttime background applied");
+    bgImage.src = "icons-base/bg.svg";
   }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Weather App initialized");
+  if (import.meta.env.DEV) console.log("Weather App initialized");
 
   try {
     setDynamicBackground();
@@ -45,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
             initCityManagement();
             initNavigation();
           },
-          { timeout: 2000 }
+          { timeout: 500 }
         );
       } else {
         setTimeout(async () => {
@@ -72,7 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     requestAnimationFrame(runDeferred);
 
-    console.log("Core UI prepared, deferred modules scheduled");
+    if (import.meta.env.DEV)
+      console.log("Core UI prepared, deferred modules scheduled");
   } catch (error) {
     console.error("Error initializing app:", error);
   }

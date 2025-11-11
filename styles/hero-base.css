@@ -1,23 +1,15 @@
-#hero-bg {
-  background: url(../icons-base/bg.svg) no-repeat;
-  background-size: auto;
-  background-position: center;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-#hero-bg.daytime-bg {
-  background-image: url(../icons-base/bg-sky.webp);
-  background-size: cover;
-  background-position: center;
-}
-
 #hero-bg,
 #house-img-bg {
   position: absolute;
   inline-size: 100%;
   max-inline-size: var(--container-max-w);
   max-block-size: var(--container-max-h);
+}
+
+#hero-bg-overlay {
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 #rectangle1-bg {

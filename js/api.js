@@ -7,8 +7,6 @@ if (!API_KEY) {
   console.error("Make sure you created .env file with VITE_WEATHER_API_KEY");
 }
 
-console.log("API KEY loaded successfully");
-
 async function fetchWithRetry(url, options = {}, retries = 3) {
   for (let i = 0; i < retries; i++) {
     try {

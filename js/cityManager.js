@@ -105,7 +105,7 @@ export function initCityManagement() {
 }
 
 async function searchNewCities(query) {
-  console.log("Searching for:", query);
+  if (import.meta.env.DEV) console.log("Searching for:", query);
 
   try {
     if (currentSearchController) {
@@ -116,7 +116,6 @@ async function searchNewCities(query) {
     displaySearchResults(cities);
   } catch (error) {
     if (error.name === "AbortError") {
-      console.log("Search cancelled");
       return;
     }
     showErrorModal("Failed to search cities. Please try again.");
@@ -267,13 +266,14 @@ export function renderSavedCities() {
     if (card) {
       fragment.appendChild(card);
     } else {
-      console.warn(`Skipped invalid city at index ${index}:`, city);
+      if (import.meta.env.DEV)
+        console.warn(`Skipped invalid city at index ${index}:`, city);
     }
   });
 
   widget.appendChild(fragment);
 
-  console.log(`Rendered ${savedCities.length} cities`);
+  if (import.meta.env.DEV) console.log(`Rendered ${savedCities.length} cities`);
 }
 
 function createWeatherCard(city, index) {
@@ -404,8 +404,6 @@ export function addCity(cityData) {
   savedCities.push(newCity);
   saveCitiesToStorage();
   renderSavedCities();
-
-  console.log("City added successfully:", newCity);
   return true;
 }
 

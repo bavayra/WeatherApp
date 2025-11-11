@@ -64,14 +64,14 @@
 
     <link
       rel="preload"
-      href="./icons-base/House.svg"
+      href="icons-base/House.svg"
       as="image"
       type="image/svg"
     />
 
     <link
       rel="preload"
-      href="./icons-base/bg-sky.webp"
+      href="icons-base/bg-sky.webp"
       as="image"
       type="image/webp"
     />
@@ -85,7 +85,11 @@
       );
     </script>
 
+    <link rel="modulepreload" href="./js/currentWeather.js" />
+    <link rel="modulepreload" href="./js/forecast.js" />
+    <link rel="modulepreload" href="./js/api.js" />
     <script type="module" src="./js/main.js" defer></script>
+
     <title>Weather App</title>
   </head>
 
@@ -104,8 +108,8 @@
           class="daytime-bg"
           src="icons-base/bg-sky.webp"
           alt=""
-          width="390"
-          height="844"
+          width="200"
+          height="300"
           fetchpriority="high"
           style="
             position: absolute;
@@ -118,15 +122,15 @@
         />
         <img
           id="house-img-bg"
-          src="./icons-base/House.svg"
+          src="icons-base/House.svg"
           alt=""
           aria-hidden="true"
-          width="390"
-          height="844"
-          fetchpriority="high"
+          width="200"
+          height="300"
+          loading="eager"
         />
 
-        <div id="hero-bg" class="container" aria-hidden="true">
+        <div id="hero-bg-overlay" class="container" aria-hidden="true">
           <div
             id="rectangle1-bg"
             class="rectangle"

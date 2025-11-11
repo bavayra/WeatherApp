@@ -28,7 +28,8 @@ export function initCurrentWeather() {
       },
 
       async (error) => {
-        console.warn("Geolocation denied or unavailable:", error.message);
+        if (import.meta.env.DEV)
+          console.warn("Geolocation denied or unavailable:", error.message);
         const defaultLat = 45.5017;
         const defaultLon = -73.5673;
         userLocation = { lat: defaultLat, lon: defaultLon };
@@ -70,7 +71,8 @@ function setupTempToggle() {
 
   currentTemp.addEventListener("click", () => {
     const newUnit = toggleUnit();
-    console.log(`Temperature unit changed to: ${newUnit}`);
+    if (import.meta.env.DEV)
+      console.log(`Temperature unit changed to: ${newUnit}`);
   });
 
   currentTemp.addEventListener("keydown", (e) => {
@@ -129,7 +131,6 @@ function updateCurrentWeatherDisplay(weather) {
 
 async function loadForecastForLocation(lat, lon) {
   try {
-    console.log("Loading forecast for location:", lat, lon);
     const data = await getForecast(lat, lon);
 
     if (!data || !data.list || !Array.isArray(data.list)) {
@@ -170,15 +171,14 @@ async function loadForecastForLocation(lat, lon) {
         };
       });
 
-    console.log("Processed forecast:", {
-      hourly: weatherData.hourly.length,
-      daily: weatherData.daily.length,
-    });
+    if (import.meta.env.DEV)
+      console.log("Processed forecast:", {
+        hourly: weatherData.hourly.length,
+        daily: weatherData.daily.length,
+      });
 
     renderHourlyForecast();
     renderDailyForecast();
-
-    console.log("Forecast rendered!");
   } catch (error) {
     console.error("Failed to load forecast:", error);
     weatherData.hourly = [];

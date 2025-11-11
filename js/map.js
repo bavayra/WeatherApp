@@ -117,8 +117,6 @@ export async function initializeMap() {
       const lat = parseFloat(btn.getAttribute("data-lat"));
       const lon = parseFloat(btn.getAttribute("data-lon"));
 
-      console.log("Coordinates:", { lat, lon });
-
       try {
         const weatherData = await getWeatherByCoords(lat, lon);
         const success = addCity(weatherData);
@@ -208,8 +206,6 @@ function getUserLocation() {
 }
 
 function displayWeatherOnMap(weatherData, lat, lon) {
-  console.log("City:", weatherData.name);
-
   if (!map) {
     return;
   }
@@ -237,26 +233,26 @@ function displayWeatherOnMap(weatherData, lat, lon) {
       const addBtn = document.querySelector(".add-from-popup-btn");
 
       if (!addBtn) {
-        console.log(
-          "Popup HTML:",
-          document.querySelector(".leaflet-popup-content")?.innerHTML
-        );
+        if (import.meta.env.DEV)
+          console.log(
+            "Popup HTML:",
+            document.querySelector(".leaflet-popup-content")?.innerHTML
+          );
         return;
       }
 
-      console.log("Button attributes:", {
-        lat: addBtn.getAttribute("data-lat"),
-        lon: addBtn.getAttribute("data-lon"),
-        class: addBtn.className,
-      });
+      if (import.meta.env.DEV)
+        console.log("Button attributes:", {
+          lat: addBtn.getAttribute("data-lat"),
+          lon: addBtn.getAttribute("data-lon"),
+          class: addBtn.className,
+        });
 
       if (addBtn.hasAttribute("data-listener-attached")) {
         return;
       }
 
       addBtn.addEventListener("click", async function (e) {
-        console.log("Event:", e);
-
         e.preventDefault();
         e.stopPropagation();
 
@@ -266,8 +262,6 @@ function displayWeatherOnMap(weatherData, lat, lon) {
         const btnLat = parseFloat(addBtn.getAttribute("data-lat"));
         const btnLon = parseFloat(addBtn.getAttribute("data-lon"));
 
-        console.log("Extracted coordinates:", { btnLat, btnLon });
-
         if (isNaN(btnLat) || isNaN(btnLon)) {
           alert("Invalid coordinates");
           addBtn.disabled = false;
@@ -276,20 +270,21 @@ function displayWeatherOnMap(weatherData, lat, lon) {
         }
 
         try {
-          console.log("Fetching weather data...");
           const freshWeatherData = await getWeatherByCoords(btnLat, btnLon);
 
           if (!freshWeatherData || !freshWeatherData.name) {
             throw new Error("Invalid weather data");
           }
-          console.log("Type of addCity:", typeof addCity);
+          if (import.meta.env.DEV)
+            console.log("Type of addCity:", typeof addCity);
 
           const success = addCity(freshWeatherData);
           if (success) {
             alert(`${freshWeatherData.name} was added to favorites!`);
             marker.closePopup();
           } else {
-            console.log("City not added (duplicate or limit)");
+            if (import.meta.env.DEV)
+              console.log("City not added (duplicate or limit)");
           }
         } catch (error) {
           alert("Failed to add city: " + error.message);
@@ -304,6 +299,6 @@ function displayWeatherOnMap(weatherData, lat, lon) {
   });
 
   marker.on("popupclose", function () {
-    console.log("Popup closed");
+    if (import.meta.env.DEV) console.log("Popup closed");
   });
 }
