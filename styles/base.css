@@ -1,5 +1,6 @@
 html {
   -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   font-synthesis: none;
 }
 
@@ -88,8 +89,8 @@ body {
   /*SHADOWS*/
   --inner-shadow: inset 0 1px 0 0 var(--primary-color);
   --drop-shadow: 1px -1px 2px 0 rgb(52 48 48 / 80%);
-  --shadow-card: 5px 4px 10px 0px var(--black-03),
-    inset 1px 1px 0px 0px var(--white-015);
+  --shadow-card:
+    5px 4px 10px 0px var(--black-03), inset 1px 1px 0px 0px var(--white-015);
   --shadow-inset: inset 0px 4px 4px 0px var(--black-025);
   --shadow-separator: 0 1px 0 0 var(--black-03);
 
@@ -147,10 +148,6 @@ img {
   block-size: auto;
 }
 
-.visually-hidden {
-  display: none !important;
-}
-
 .hidden {
   display: none !important;
 }
@@ -205,6 +202,7 @@ img {
   max-inline-size: var(--container-max-w);
   block-size: var(--container-max-h);
   background-color: rgb(var(--black-rgb) / 60%);
+  -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 }
 
@@ -265,7 +263,9 @@ img {
   font-size: var(--body-size);
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .modal-ok-btn:hover {

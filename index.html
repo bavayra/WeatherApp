@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -28,31 +28,29 @@
       rel="stylesheet"
     />
 
-    <!--Althought the designer from Figma used SF Pro Display Font, it's suitable only for iOs devices. I tried to use as similar one as possible-->
-
     <link rel="stylesheet" href="index.css" />
 
     <link
       rel="icon"
-      type="png"
+      type="image/png"
       sizes="192x192"
       href="images/favicon/android-chrome-192x192.png"
     />
     <link
       rel="icon"
-      type="png"
+      type="image/png"
       sizes="512x512"
       href="images/favicon/android-chrome-512x512.png"
     />
     <link
       rel="icon"
-      type="png"
+      type="image/png"
       sizes="16x16"
       href="images/favicon/favicon-16x16.png"
     />
     <link
       rel="icon"
-      type="png"
+      type="image/png"
       sizes="32x32"
       href="images/favicon/favicon-32x32.png"
     />
@@ -66,7 +64,7 @@
       rel="preload"
       href="icons-base/House.svg"
       as="image"
-      type="image/svg"
+      type="image/svg+xml"
     />
 
     <link
@@ -81,7 +79,7 @@
       const prefersDark = matchMedia("(prefers-color-scheme: dark)").matches;
       document.documentElement.setAttribute(
         "data-theme",
-        saved ?? (prefersDark ? "dark" : "light")
+        saved ?? (prefersDark ? "dark" : "light"),
       );
     </script>
 
@@ -96,7 +94,7 @@
   <body>
     <main class="container">
       <header id="hero-header">
-        <h1 class="visually-hidden" id="hero-header title">Weather App</h1>
+        <h1 class="hidden" id="hero-header-title">Weather App</h1>
         <div
           style="height: 1px; width: 1px; overflow: hidden"
           aria-hidden="true"
@@ -250,10 +248,9 @@
                   alt="Cities list"
                   loading="lazy"
                 />
-
-                <button id="scroll-arrow" aria-label="Scroll to next forecast">
-                  →
-                </button>
+              </button>
+              <button id="scroll-arrow" aria-label="Scroll to next forecast">
+                →
               </button>
             </div>
           </div>

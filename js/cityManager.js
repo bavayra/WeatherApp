@@ -169,7 +169,7 @@ function displaySearchResults(cities) {
 async function addCityFromSearch(lat, lon) {
   if (savedCities.length >= maxCities) {
     showErrorModal(
-      `Maximum ${maxCities} cities allowed. Remove a city to add a new one.`
+      `Maximum ${maxCities} cities allowed. Remove a city to add a new one.`,
     );
     return;
   }
@@ -194,7 +194,7 @@ async function addCityFromSearch(lat, lon) {
 
 function filterCities(query) {
   const weatherCards = document.querySelectorAll(
-    "#weather-widget .weather-card"
+    "#weather-widget .weather-card",
   );
 
   weatherCards.forEach((card) => {
@@ -293,9 +293,8 @@ function createWeatherCard(city, index) {
   card.setAttribute("role", "article");
   card.setAttribute(
     "aria-label",
-    `Weather for ${city.name}, ${city.country}. Temperature ${city.temp} degrees, humidity ${city.humidity} percent`
+    `Weather for ${city.name}, ${city.country}. Temperature ${city.temp} degrees, humidity ${city.humidity} percent`,
   );
-  const iconPath = getWeatherIcon(city.icon, "large");
 
   card.innerHTML = `
     <div class="weather-card-bg">

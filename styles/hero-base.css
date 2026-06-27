@@ -29,6 +29,7 @@
   z-index: 1;
   block-size: 20.3rem;
   box-shadow: var(--inner-shadow);
+  -webkit-backdrop-filter: blur(22px);
   backdrop-filter: blur(22px);
   mix-blend-mode: overlay;
   border-top-left-radius: 2.75rem;

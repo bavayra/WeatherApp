@@ -17,6 +17,7 @@
   padding: var(--spacing-md);
   background-color: var(--tertiary-color);
   border-radius: var(--radius-md);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 

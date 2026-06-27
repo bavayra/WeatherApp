@@ -48,7 +48,7 @@
   block-size: 3rem;
   font-size: var(--title3-size);
   letter-spacing: var(--title3-space);
-  text-wrap: nowrap;
+  white-space: nowrap;
   font-weight: 400;
 }
 
