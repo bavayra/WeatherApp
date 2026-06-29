@@ -95,10 +95,6 @@
     <main class="container">
       <header id="hero-header">
         <h1 class="hidden" id="hero-header-title">Weather App</h1>
-        <div
-          style="height: 1px; width: 1px; overflow: hidden"
-          aria-hidden="true"
-        ></div>
       </header>
       <section id="hero-section" aria-label="Hero">
         <img
@@ -108,15 +104,6 @@
           alt=""
           width="200"
           height="300"
-          fetchpriority="high"
-          style="
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-          "
         />
         <img
           id="house-img-bg"
@@ -346,7 +333,7 @@
               aria-label="Search input bar"
               role="search"
               type="search"
-              autocomplete="city"
+              autocomplete="off"
             />
           </div>
         </div>

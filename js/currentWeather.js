@@ -5,11 +5,7 @@ import {
   renderDailyForecast,
   weatherData,
 } from "./forecast.js";
-import {
-  formatTempShort,
-  toggleUnit,
-  getCurrentUnit,
-} from "./tempConverter.js";
+import { formatTempShort, toggleUnit } from "./tempConverter.js";
 import { getDayOrNight } from "./weatherIcons.js";
 
 let userLocation = null;
@@ -36,11 +32,11 @@ export function initCurrentWeather() {
 
         await loadCurrentWeather(defaultLat, defaultLon);
         await loadForecastForLocation(defaultLat, defaultLon);
-      }
+      },
     );
   } else {
     showErrorModal(
-      "Geolocation is not supported by your browser. Using default location (Montreal)."
+      "Geolocation is not supported by your browser. Using default location (Montreal).",
     );
     const defaultLat = 45.5017;
     const defaultLon = -73.5673;

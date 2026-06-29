@@ -67,8 +67,7 @@
   overflow-y: hidden;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .forecast-by-hours::-webkit-scrollbar,

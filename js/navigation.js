@@ -1,5 +1,4 @@
 import { renderSavedCities } from "./cityManager.js";
-/*import { initializeMap } from "./map.js";*/
 
 let listenersInitialized = false;
 
