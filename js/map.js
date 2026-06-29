@@ -1,6 +1,7 @@
 import { addCity } from "./cityManager.js";
 import { getWeatherByCoords } from "./api.js";
 import { formatTempShort } from "./tempConverter.js";
+import { showErrorModal } from "./modal.js";
 
 let map = null;
 let marker = null;
@@ -126,7 +127,7 @@ export async function initializeMap() {
           if (marker) marker.closePopup();
         }
       } catch (error) {
-        alert("Failed to add city");
+        showErrorModal("Failed to add city");
       } finally {
         btn.disabled = false;
         btn.textContent = "Add to favorites";
@@ -200,7 +201,7 @@ function getUserLocation() {
         enableHighAccuracy: true,
         timeout: 5000,
         maximumAge: 0,
-      }
+      },
     );
   });
 }
@@ -236,7 +237,7 @@ function displayWeatherOnMap(weatherData, lat, lon) {
         if (import.meta.env.DEV)
           console.log(
             "Popup HTML:",
-            document.querySelector(".leaflet-popup-content")?.innerHTML
+            document.querySelector(".leaflet-popup-content")?.innerHTML,
           );
         return;
       }
@@ -287,7 +288,7 @@ function displayWeatherOnMap(weatherData, lat, lon) {
               console.log("City not added (duplicate or limit)");
           }
         } catch (error) {
-          alert("Failed to add city: " + error.message);
+          showErrorModal("Failed to add city: " + error.message);
         } finally {
           addBtn.disabled = false;
           addBtn.textContent = "Add to favorites";
