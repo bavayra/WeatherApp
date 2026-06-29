@@ -33,9 +33,9 @@ export function formatTemp(celsius) {
 
 export function formatTempShort(celsius) {
   if (currentUnit === "F") {
-    return `${celsiusToFahrenheit(celsius)}<span class="temp-unit">°F</span>`;
+    return `${celsiusToFahrenheit(celsius)}`;
   }
-  return `${celsius}<span class="temp-unit">°C</span>`;
+  return `${celsius}`;
 }
 
 export function convertStoredTemp(temp) {

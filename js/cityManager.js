@@ -6,9 +6,12 @@ import {
 } from "./api.js";
 
 import { showErrorModal, showConfirmModal } from "./modal.js";
-import { formatTempShort } from "./tempConverter.js";
+import { formatTempShort, getCurrentUnit } from "./tempConverter.js";
 import { getWeatherIcon, getDayOrNight } from "./weatherIcons.js";
 
+function getTemplate() {
+  return document.getElementById("weather-card-template");
+}
 const maxCities = 5;
 
 let savedCities = [];
@@ -139,7 +142,10 @@ function displaySearchResults(cities) {
   searchResults.innerHTML = "";
 
   if (cities.length === 0) {
-    searchResults.innerHTML = '<p class="no-results">No cities found</p>';
+    const noEl = document.createElement("p");
+    noEl.className = "no-results";
+    noEl.textContent = "No cities found";
+    searchResults.appendChild(noEl);
     searchResults.style.display = "block";
     return;
   }
@@ -281,61 +287,46 @@ function createWeatherCard(city, index) {
     console.error("Invalid city data:", city);
     return null;
   }
+  const tpl = getTemplate();
+  if (!tpl) {
+    console.error("weather-card-template not found in DOM");
+    return null;
+  }
 
+  const el = tpl.content.firstElementChild.cloneNode(true);
+  el.dataset.index = index;
   const timeOfDay = getDayOrNight();
   const baseIcon = city.icon.slice(0, 2);
   const currentIcon = baseIcon + timeOfDay;
 
-  const card = document.createElement("div");
-  card.className = "weather-card";
-  card.dataset.index = index;
+  const iconImg = el.querySelector(".weather-icon img");
+  iconImg.src = getWeatherIcon(currentIcon, "large");
+  iconImg.alt = `Current weather in ${city.name}`;
 
-  card.setAttribute("role", "article");
-  card.setAttribute(
+  const tempValueEl = el.querySelector(".city-temp .temp-value");
+  const tempUnitEl = el.querySelector(".city-temp .temp-unit");
+
+  tempValueEl.textContent = formatTempShort(city.temp);
+  tempUnitEl.textContent = getCurrentUnit() === "F" ? "°F" : "°C";
+
+  el.querySelector(".weather-hum").textContent = `Humidity: ${city.humidity}%`;
+  el.querySelector(".weather-city-country").textContent =
+    `${city.name}, ${city.country}`;
+
+  el.setAttribute(
     "aria-label",
     `Weather for ${city.name}, ${city.country}. Temperature ${city.temp} degrees, humidity ${city.humidity} percent`,
   );
 
-  card.innerHTML = `
-    <div class="weather-card-bg">
-      <img
-        src="icons-base/Rectangle-3.svg"
-        role="presentation"
-        alt=""
-        aria-hidden="true"
-        loading="lazy"
-      />
-    </div>
-    <div class="weather-icon">
-      <img
-       src="${getWeatherIcon(currentIcon, "large")}"
-        alt="Current weather in ${city.name}"
-        loading="lazy"
-      />
-    </div>
-    <div class="city-temp">
-      <p>${formatTempShort(city.temp)}</p>
-    </div>
-    <div class="weather-desc">
-      <p class="weather-hum">Humidity: ${city.humidity}%</p>
-      <p class="weather-city-country">${city.name}, ${city.country}</p>
-    </div>
-    ${
-      isManageMode
-        ? '<button class="delete-city-btn" aria-label="Delete city">×</button>'
-        : ""
-    }
-  `;
-
   if (isManageMode) {
-    const deleteBtn = card.querySelector(".delete-city-btn");
-    deleteBtn.addEventListener("click", (e) => {
+    const btn = el.querySelector(".delete-city-btn");
+    btn.hidden = false;
+    btn.addEventListener("click", (e) => {
       e.stopPropagation();
       removeCity(index);
     });
   }
-
-  return card;
+  return el;
 }
 
 function toggleManageMode() {

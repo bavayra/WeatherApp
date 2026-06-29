@@ -337,6 +337,33 @@
             />
           </div>
         </div>
+        <template id="weather-card-template">
+          <div class="weather-card" role="article">
+            <div class="weather-card-bg">
+              <img
+                src="icons-base/Rectangle-3.svg"
+                role="presentation"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+              />
+            </div>
+            <div class="weather-icon"><img loading="lazy" /></div>
+            <div class="city-temp">
+              <p>
+                <span class="temp-value"></span>
+                <span class="temp-unit"></span>
+              </p>
+            </div>
+            <div class="weather-desc">
+              <p class="weather-hum"></p>
+              <p class="weather-city-country"></p>
+            </div>
+            <button class="delete-city-btn" aria-label="Delete city" hidden>
+              ×
+            </button>
+          </div>
+        </template>
         <section id="weather-widget"></section>
       </section>
 
