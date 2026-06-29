@@ -8,12 +8,16 @@ if (!API_KEY) {
 }
 
 async function fetchWithRetry(url, options = {}, retries = 3) {
+  const { signal: externalSignal, ...restOptions } = options;
+
   for (let i = 0; i < retries; i++) {
     try {
-      const response = await fetch(url, {
-        ...options,
-        signal: AbortSignal.timeout(10000),
-      });
+      const timeoutSignal = AbortSignal.timeout(10000);
+      const signal = externalSignal
+        ? AbortSignal.any([externalSignal, timeoutSignal])
+        : timeoutSignal;
+
+      const response = await fetch(url, { ...restOptions, signal });
 
       if (!response.ok) {
         if (response.status === 429) {
@@ -24,6 +28,7 @@ async function fetchWithRetry(url, options = {}, retries = 3) {
 
       return response;
     } catch (error) {
+      if (error.name === "AbortError") throw error; // не повторяем при отмене
       if (i === retries - 1) throw error;
       await new Promise((r) => setTimeout(r, 1000 * (i + 1)));
     }
@@ -36,7 +41,7 @@ export async function getCurrentWeather(lat, lon) {
   }
   try {
     const response = await fetchWithRetry(
-      `${API_BASE}/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+      `${API_BASE}/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`,
     );
 
     const data = await response.json();
@@ -51,7 +56,7 @@ export async function getCurrentWeather(lat, lon) {
 export async function getWeatherByCoords(lat, lon) {
   try {
     const response = await fetchWithRetry(
-      `${API_BASE}/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+      `${API_BASE}/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`,
     );
 
     const data = await response.json();
@@ -65,7 +70,7 @@ export async function getWeatherByCoords(lat, lon) {
 export async function getForecast(lat, lon) {
   try {
     const response = await fetchWithRetry(
-      `${API_BASE}/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+      `${API_BASE}/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`,
     );
 
     const data = await response.json();
@@ -76,7 +81,7 @@ export async function getForecast(lat, lon) {
   }
 }
 
-export async function searchCities(query) {
+export async function searchCities(query, signal) {
   if (!query || query.length < 2) {
     return [];
   }
@@ -84,8 +89,9 @@ export async function searchCities(query) {
   try {
     const response = await fetchWithRetry(
       `${GEO_API_BASE}/direct?q=${encodeURIComponent(
-        query
-      )}&limit=5&appid=${API_KEY}`
+        query,
+      )}&limit=5&appid=${API_KEY}`,
+      { signal },
     );
 
     const data = await response.json();
@@ -100,8 +106,8 @@ export async function getWeatherByCity(cityName) {
   try {
     const response = await fetchWithRetry(
       `${API_BASE}/weather?q=${encodeURIComponent(
-        cityName
-      )}&appid=${API_KEY}&units=metric`
+        cityName,
+      )}&appid=${API_KEY}&units=metric`,
     );
 
     const data = await response.json();
