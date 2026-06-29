@@ -215,8 +215,44 @@ function filterCities(query) {
 async function loadSavedCities() {
   const saved = localStorage.getItem("savedCities");
   if (saved) {
-    savedCities = JSON.parse(saved);
-    await updateAllCitiesWeather();
+    try {
+      const parsed = JSON.parse(saved);
+
+      // Базовая валидация: ожидаем массив
+      if (!Array.isArray(parsed)) {
+        throw new Error("savedCities has invalid format (not an array)");
+      }
+
+      // Дополнительная валидация/нормализация каждого элемента (необязательно,
+      // но рекомендую) — привести lat/lon к числам и отфильтровать мусор
+      savedCities = parsed
+        .map((c) => {
+          if (!c || !c.name) return null;
+          return {
+            name: c.name,
+            country: c.country || "",
+            lat: Number(c.lat),
+            lon: Number(c.lon),
+            temp: c.temp ?? null,
+            description: c.description ?? "",
+            humidity: c.humidity ?? null,
+            icon: c.icon ?? "",
+          };
+        })
+        .filter(Boolean);
+
+      // Если после фильтрации ничего нет — оставим пустой список
+      if (savedCities.length === 0) {
+        savedCities = [];
+      }
+
+      await updateAllCitiesWeather();
+    } catch (err) {
+      console.warn("Failed to parse savedCities from localStorage:", err);
+      // Очищаем повреждённые данные, чтобы не падать при следующей загрузке
+      localStorage.removeItem("savedCities");
+      savedCities = [];
+    }
   } else {
     savedCities = [];
     try {
