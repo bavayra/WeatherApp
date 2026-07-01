@@ -170,8 +170,8 @@
   border-radius: var(--radius-sm);
   background: linear-gradient(
     180deg,
-    rgba(46, 51, 90, 0.26),
-    rgba(28, 27, 51, 0.26)
+    rgb(46 51 90 / 0.26),
+    rgb(28 27 51 / 0.26)
   );
   box-shadow: var(--shadow-inset);
   box-sizing: border-box;
@@ -245,7 +245,9 @@
   font-size: var(--body-size);
   text-align: left;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.2s;
 }
 
 .search-result-item:hover {
