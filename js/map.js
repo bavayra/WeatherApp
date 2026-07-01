@@ -215,19 +215,36 @@ function displayWeatherOnMap(weatherData, lat, lon) {
     map.removeLayer(marker);
   }
 
-  const popupContent = `
-    <div class="weather-popup">
-      <h3>${weatherData.name}, ${weatherData.country}</h3>
-      <p><strong>${formatTempShort(weatherData.temp)}</strong></p>
-      <p>${weatherData.description}</p>
-      <p>Humidity: ${weatherData.humidity}%</p>
-      <button class="add-from-popup-btn" data-lat="${lat}" data-lon="${lon}">
-        Add to favorites
-      </button>
-    </div>
-  `;
+  function createPopupContent(weatherData, lat, lon) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "weather-popup";
 
-  marker = L.marker([lat, lon]).addTo(map).bindPopup(popupContent).openPopup();
+    const title = document.createElement("h3");
+    title.textContent = `${weatherData.name}, ${weatherData.country}`;
+
+    const temp = document.createElement("p");
+    temp.innerHTML = `<strong>${formatTempShort(weatherData.temp)}</strong>`;
+
+    const desc = document.createElement("p");
+    desc.textContent = weatherData.description;
+
+    const hum = document.createElement("p");
+    hum.textContent = `Humidity: ${weatherData.humidity}%`;
+
+    const btn = document.createElement("button");
+    btn.className = "add-from-popup-btn";
+    btn.textContent = "Add to favorites";
+    btn.dataset.lat = lat;
+    btn.dataset.lon = lon;
+
+    wrapper.append(title, temp, desc, hum, btn);
+    return wrapper;
+  }
+
+  marker = L.marker([lat, lon])
+    .addTo(map)
+    .bindPopup(createPopupContent(weatherData, lat, lon))
+    .openPopup();
 
   marker.on("popupopen", function () {
     setTimeout(function () {
