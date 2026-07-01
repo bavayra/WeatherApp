@@ -254,15 +254,21 @@ async function loadSavedCities() {
 }
 
 async function updateAllCitiesWeather() {
-  for (let i = 0; i < savedCities.length; i++) {
-    const city = savedCities[i];
-    try {
-      const weatherData = await getWeatherByCity(city.name);
-      savedCities[i] = weatherData;
-    } catch (error) {
-      console.error(`Failed to update weather for ${city.name}:`, error);
+  const results = await Promise.allSettled(
+    savedCities.map((city) => getWeatherByCoords(city.lat, city.lon)),
+  );
+
+  results.forEach((result, i) => {
+    if (result.status === "fulfilled") {
+      savedCities[i] = result.value;
+    } else {
+      console.error(
+        `Failed to update weather for ${savedCities[i].name}:`,
+        result.reason,
+      );
     }
-  }
+  });
+
   saveCitiesToStorage();
   renderSavedCities();
 }
