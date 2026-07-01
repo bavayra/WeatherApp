@@ -79,52 +79,6 @@ function setupTempToggle() {
   });
 }
 
-async function loadCurrentWeather(lat, lon) {
-  const currentCity = document.querySelector(".current-city");
-  const currentTemp = document.querySelector(".current-temp");
-  const currentDesc = document.querySelector(".current-desc");
-  const currentHum = document.querySelector(".current-hum");
-
-  if (currentCity) currentCity.textContent = "Loading...";
-  if (currentTemp) currentTemp.textContent = "--°";
-  if (currentDesc) currentDesc.textContent = "--";
-  if (currentHum) currentHum.textContent = "Humidity: --%";
-
-  try {
-    const data = await getWeatherByCoords(lat, lon);
-
-    if (!data || !data.name) {
-      throw new Error("Invalid current weather data from API");
-    }
-
-    const timeOfDay = getDayOrNight();
-    if (data.icon && typeof data.icon === "string") {
-      const baseIcon = data.icon.slice(0, 2);
-      data.icon = baseIcon + timeOfDay;
-    } else {
-      data.icon = "01" + timeOfDay;
-    }
-
-    currentWeatherData = data;
-    updateCurrentWeatherDisplay(currentWeatherData);
-  } catch (error) {
-    showErrorModal("Failed to load current weather. Using placeholders.");
-  }
-}
-
-function updateCurrentWeatherDisplay(weather) {
-  const currentCity = document.querySelector(".current-city");
-  const currentTemp = document.querySelector(".current-temp");
-  const currentDesc = document.querySelector(".current-desc");
-  const currentHum = document.querySelector(".current-hum");
-
-  if (currentCity) currentCity.textContent = weather.name;
-  if (currentTemp) currentTemp.innerHTML = formatTempShort(weather.temp);
-  if (currentDesc)
-    currentDesc.textContent = capitalizeFirstLetter(weather.description);
-  if (currentHum) currentHum.textContent = `Humidity: ${weather.humidity}%`;
-}
-
 async function loadForecastForLocation(lat, lon) {
   try {
     const data = await getForecast(lat, lon);
@@ -139,10 +93,10 @@ async function loadForecastForLocation(lat, lon) {
 
     weatherData.hourly = data.list.slice(0, 8).map((item) => {
       const date = new Date(item.dt * 1000);
-      let hours = date.getHours();
+      const hours = date.getHours();
       const period = hours >= 12 ? "PM" : "AM";
       const formattedHours = hours % 12 || 12;
-      const time = `${formattedHours}${period}`;
+      const time = String(formattedHours) + period;
 
       return {
         time: time,
@@ -152,20 +106,41 @@ async function loadForecastForLocation(lat, lon) {
       };
     });
 
-    weatherData.daily = data.list
-      .filter((_, index) => index % 8 === 0)
+    const groupedByDay = new Map();
+
+    for (const item of data.list) {
+      const date = new Date(item.dt * 1000);
+      const dayKey = toLocalDayKey(date);
+
+      if (!groupedByDay.has(dayKey)) {
+        groupedByDay.set(dayKey, []);
+      }
+
+      groupedByDay.get(dayKey).push(item);
+    }
+
+    weatherData.daily = Array.from(groupedByDay.values())
       .slice(0, 7)
-      .map((item) => {
-        const date = new Date(item.dt * 1000);
-        const dayName = date.toLocaleDateString("en-US", { weekday: "short" });
+      .map((items) => {
+        if (!items.length) return null;
+
+        const representative = pickRepresentativeForecastPoint(items);
+        const repDate = new Date(representative.dt * 1000);
+        const dayName = repDate.toLocaleDateString("en-US", {
+          weekday: "short",
+        });
+
+        const avgTemp =
+          items.reduce((sum, point) => sum + point.main.temp, 0) / items.length;
 
         return {
           day: dayName,
-          temp: Math.round(item.main.temp),
-          icon: item.weather[0].icon,
-          description: item.weather[0].description,
+          temp: Math.round(avgTemp),
+          icon: representative.weather[0].icon,
+          description: representative.weather[0].description,
         };
-      });
+      })
+      .filter(Boolean);
 
     if (import.meta.env.DEV)
       console.log("Processed forecast:", {
@@ -180,6 +155,27 @@ async function loadForecastForLocation(lat, lon) {
     weatherData.hourly = [];
     weatherData.daily = [];
   }
+}
+
+function toLocalDayKey(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return year + "-" + month + "-" + day;
+}
+
+function pickRepresentativeForecastPoint(items) {
+  const targetHour = 12;
+
+  return items.reduce((best, current) => {
+    const bestHour = new Date(best.dt * 1000).getHours();
+    const currentHour = new Date(current.dt * 1000).getHours();
+
+    const bestDistance = Math.abs(bestHour - targetHour);
+    const currentDistance = Math.abs(currentHour - targetHour);
+
+    return currentDistance < bestDistance ? current : best;
+  });
 }
 
 export function getUserLocation() {
