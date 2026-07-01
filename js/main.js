@@ -20,50 +20,31 @@ document.addEventListener("DOMContentLoaded", () => {
   try {
     setDynamicBackground();
 
+    async function loadModules() {
+      const [
+        { initCurrentWeather },
+        { initForecastToggle, initCarousel },
+        { initCityManagement },
+        { initNavigation },
+      ] = await Promise.all([
+        import("./currentWeather.js"),
+        import("./forecast.js"),
+        import("./cityManager.js"),
+        import("./navigation.js"),
+      ]);
+
+      initCurrentWeather();
+      initForecastToggle();
+      initCarousel();
+      initCityManagement();
+      initNavigation();
+    }
+
     const runDeferred = () => {
       if ("requestIdleCallback" in window) {
-        requestIdleCallback(
-          async () => {
-            const [
-              { initCurrentWeather },
-              { initForecastToggle, initCarousel },
-              { initCityManagement },
-              { initNavigation },
-            ] = await Promise.all([
-              import("./currentWeather.js"),
-              import("./forecast.js"),
-              import("./cityManager.js"),
-              import("./navigation.js"),
-            ]);
-
-            initCurrentWeather();
-            initForecastToggle();
-            initCarousel();
-            initCityManagement();
-            initNavigation();
-          },
-          { timeout: 500 }
-        );
+        requestIdleCallback(loadModules, { timeout: 500 });
       } else {
-        setTimeout(async () => {
-          const [
-            { initCurrentWeather },
-            { initForecastToggle, initCarousel },
-            { initCityManagement },
-            { initNavigation },
-          ] = await Promise.all([
-            import("./currentWeather.js"),
-            import("./forecast.js"),
-            import("./cityManager.js"),
-            import("./navigation.js"),
-          ]);
-
-          initCurrentWeather();
-          initForecastToggle();
-          initCarousel();
-          initCityManagement();
-          initNavigation();
-        }, 200);
+        setTimeout(loadModules, 200);
       }
     };
 
