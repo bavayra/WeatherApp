@@ -1,4 +1,4 @@
-import { getCurrentWeather, getWeatherByCoords, getForecast } from "./api.js";
+import { getWeatherByCoords, getForecast } from "./api.js";
 import { showErrorModal } from "./modal.js";
 import {
   renderHourlyForecast,
@@ -91,7 +91,7 @@ async function loadCurrentWeather(lat, lon) {
   if (currentHum) currentHum.textContent = "Humidity: --%";
 
   try {
-    const data = await getCurrentWeather(lat, lon);
+    const data = await getWeatherByCoords(lat, lon);
 
     if (!data || !data.name) {
       throw new Error("Invalid current weather data from API");

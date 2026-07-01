@@ -35,25 +35,10 @@ async function fetchWithRetry(url, options = {}, retries = 3) {
   }
 }
 
-export async function getCurrentWeather(lat, lon) {
+export async function getWeatherByCoords(lat, lon) {
   if (!navigator.onLine) {
     throw new Error("No internet connection");
   }
-  try {
-    const response = await fetchWithRetry(
-      `${API_BASE}/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`,
-    );
-
-    const data = await response.json();
-
-    return formatWeatherData(data);
-  } catch (error) {
-    console.error("Weather fetch failed:", error);
-    throw error;
-  }
-}
-
-export async function getWeatherByCoords(lat, lon) {
   try {
     const response = await fetchWithRetry(
       `${API_BASE}/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`,
