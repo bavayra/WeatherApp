@@ -97,7 +97,7 @@ export async function initializeMap() {
       maxZoom: 18,
     }).addTo(map);
 
-    alert("Could not get your location. Showing default location.");
+    showErrorModal("Could not get your location. Showing default location.");
   }
 
   setupMapClickListener();
@@ -123,7 +123,6 @@ export async function initializeMap() {
         const success = addCity(weatherData);
 
         if (success) {
-          alert(`${weatherData.name} was added to favorites!`);
           if (marker) marker.closePopup();
         }
       } catch (error) {
@@ -281,7 +280,7 @@ function displayWeatherOnMap(weatherData, lat, lon) {
         const btnLon = parseFloat(addBtn.getAttribute("data-lon"));
 
         if (isNaN(btnLat) || isNaN(btnLon)) {
-          alert("Invalid coordinates");
+          showErrorModal("Invalid coordinates");
           addBtn.disabled = false;
           addBtn.textContent = "Add to favorites";
           return;
