@@ -26,6 +26,9 @@ function showInfo(message, timeout = 2500) {
 }
 
 function ensureLeaflet() {
+  const INTEGRITY_CSS = "sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=";
+  const INTEGRITY_JS = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=";
+
   return new Promise((resolve, reject) => {
     if (window.L) return resolve(window.L);
 
@@ -33,6 +36,17 @@ function ensureLeaflet() {
       const link = document.createElement("link");
       link.rel = "stylesheet";
       link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+
+      if (INTEGRITY_CSS && !INTEGRITY_CSS.includes("REPLACE_WITH")) {
+        link.integrity = INTEGRITY_CSS;
+        link.crossOrigin = "anonymous";
+      } else {
+        if (import.meta.env.DEV) {
+          console.warn(
+            "Leaflet CSS loaded without SRI — consider adding a valid integrity hash.",
+          );
+        }
+      }
       document.head.appendChild(link);
     }
 
@@ -48,9 +62,20 @@ function ensureLeaflet() {
       existing.addEventListener("error", reject);
       return;
     }
+
     const s = document.createElement("script");
     s.src = src;
     s.async = true;
+    if (INTEGRITY_JS && !INTEGRITY_JS.includes("REPLACE_WITH")) {
+      s.integrity = INTEGRITY_JS;
+      s.crossOrigin = "anonymous";
+    } else {
+      if (import.meta.env.DEV) {
+        console.warn(
+          "Leaflet JS loaded without SRI — consider adding a valid integrity hash.",
+        );
+      }
+    }
     s.onload = () => {
       if (window.L) {
         resolve(window.L);
