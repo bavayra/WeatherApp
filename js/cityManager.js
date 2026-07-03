@@ -98,17 +98,6 @@ export function initCityManagement() {
   });
 }
 
-if (searchBtn) {
-  searchBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    const query = searchInput.value.trim();
-
-    if (query.length >= 3) {
-      searchNewCities(query);
-    }
-  });
-}
-
 async function searchNewCities(query) {
   if (import.meta.env.DEV) console.log("Searching for:", query);
 
