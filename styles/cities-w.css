@@ -19,6 +19,13 @@
   transition: all 0.3s ease-in-out;
 }
 
+.search-results {
+  display: none;
+}
+.search-results.visible {
+  display: block;
+}
+
 @keyframes fadeOut {
   0% {
     opacity: 1;
@@ -124,7 +131,9 @@
   border-radius: 50%;
   font-size: var(--title1-size);
   cursor: pointer;
-  transition: background 0.2s ease-in-out, transform 0.2s ease-in-out;
+  transition:
+    background 0.2s ease-in-out,
+    transform 0.2s ease-in-out;
 }
 
 .delete-city-btn:hover {

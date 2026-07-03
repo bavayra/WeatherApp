@@ -149,7 +149,7 @@ function displaySearchResults(cities) {
     noEl.className = "no-results";
     noEl.textContent = "No cities found";
     searchResults.appendChild(noEl);
-    searchResults.style.display = "block";
+    searchResults.classList.add("visible");
     return;
   }
 
@@ -211,7 +211,7 @@ function filterCities(query) {
     const cityElement = card.querySelector(".weather-city-country");
     if (cityElement) {
       const cityName = cityElement.textContent.toLowerCase();
-      card.style.display = cityName.includes(query) ? "block" : "none";
+      card.classList.toggle("hidden", !cityName.includes(query));
     }
   });
 }
