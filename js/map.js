@@ -2,6 +2,7 @@ import { addCity } from "./cityManager.js";
 import { getWeatherByCoords } from "./api.js";
 import { formatTempShort } from "./tempConverter.js";
 import { showErrorModal } from "./modal.js";
+import { getUserLocation } from "./currentWeather.js";
 
 let map = null;
 let marker = null;
