@@ -41,52 +41,17 @@ export function initCityManagement() {
 
   const searchInput = document.getElementById("search-input");
   const manageBtn = document.getElementById("manage-list-btn");
-  const searchBtn = document.getElementById("search-btn"); /**/
+  const searchBtn = document.getElementById("search-btn");
 
   if (!searchInput) {
     console.error("Search input not found");
     return;
   }
 
-  if (searchInput) {
-    let searchTimeout;
-
-    searchInput.addEventListener("input", (e) => {
-      clearTimeout(searchTimeout);
-
-      const query = e.target.value.trim();
-
-      if (query.length >= 3) {
-        searchTimeout = setTimeout(() => {
-          searchNewCities(query);
-        }, 500);
-      } else {
-        const searchResults = document.getElementById("search-results");
-        if (searchResults) {
-          searchResults.remove();
-        }
-      }
-
-      filterCities(query.toLowerCase());
-    });
-
-    searchInput.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        const query = e.target.value.trim();
-
-        if (query.length >= 3) {
-          searchNewCities(query);
-        }
-      }
-    });
-  }
-
   if (searchBtn) {
     searchBtn.addEventListener("click", (e) => {
       e.preventDefault();
       const query = searchInput.value.trim();
-
       if (query.length >= 3) {
         searchNewCities(query);
       }
@@ -99,7 +64,49 @@ export function initCityManagement() {
       toggleManageMode();
     });
   }
-  renderSavedCities();
+
+  let searchTimeout;
+
+  searchInput.addEventListener("input", (e) => {
+    clearTimeout(searchTimeout);
+
+    const query = e.target.value.trim();
+
+    if (query.length >= 3) {
+      searchTimeout = setTimeout(() => {
+        searchNewCities(query);
+      }, 500);
+    } else {
+      const searchResults = document.getElementById("search-results");
+      if (searchResults) {
+        searchResults.remove();
+      }
+    }
+
+    filterCities(query.toLowerCase());
+  });
+
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const query = e.target.value.trim();
+
+      if (query.length >= 3) {
+        searchNewCities(query);
+      }
+    }
+  });
+}
+
+if (searchBtn) {
+  searchBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const query = searchInput.value.trim();
+
+    if (query.length >= 3) {
+      searchNewCities(query);
+    }
+  });
 }
 
 async function searchNewCities(query) {
@@ -117,6 +124,7 @@ async function searchNewCities(query) {
       return;
     }
     showErrorModal("Failed to search cities. Please try again.");
+    return;
   }
 }
 
@@ -190,6 +198,7 @@ async function addCityFromSearch(lat, lon) {
     }
   } catch (error) {
     showErrorModal("Could not load city data. Please try again.");
+    return;
   }
 }
 
@@ -316,6 +325,7 @@ function createWeatherCard(city, index) {
     console.error("Invalid city data:", city);
     return null;
   }
+
   const tpl = getTemplate();
   if (!tpl) {
     console.error("weather-card-template not found in DOM");
@@ -324,23 +334,29 @@ function createWeatherCard(city, index) {
 
   const el = tpl.content.firstElementChild.cloneNode(true);
   el.dataset.index = index;
+
   const timeOfDay = getDayOrNight();
-  const baseIcon = city.icon.slice(0, 2);
+  const baseIcon = String(city.icon).slice(0, 2);
   const currentIcon = baseIcon + timeOfDay;
 
   const iconImg = el.querySelector(".weather-icon img");
-  iconImg.src = getWeatherIcon(currentIcon, "large");
-  iconImg.alt = `Current weather in ${city.name}`;
+  if (iconImg) {
+    iconImg.src = getWeatherIcon(currentIcon, "large");
+    iconImg.alt = `Current weather in ${city.name}`;
+  }
 
   const tempValueEl = el.querySelector(".city-temp .temp-value");
+  if (tempValueEl) tempValueEl.textContent = formatTempShort(city.temp);
+
   const tempUnitEl = el.querySelector(".city-temp .temp-unit");
+  if (tempUnitEl)
+    tempUnitEl.textContent = getCurrentUnit() === "F" ? "°F" : "°C";
 
-  tempValueEl.textContent = formatTempShort(city.temp);
-  tempUnitEl.textContent = getCurrentUnit() === "F" ? "°F" : "°C";
+  const humEl = el.querySelector(".weather-hum");
+  if (humEl) humEl.textContent = `Humidity: ${city.humidity ?? 0}%`;
 
-  el.querySelector(".weather-hum").textContent = `Humidity: ${city.humidity}%`;
-  el.querySelector(".weather-city-country").textContent =
-    `${city.name}, ${city.country}`;
+  const cityEl = el.querySelector(".weather-city-country");
+  if (cityEl) cityEl.textContent = `${city.name}, ${city.country}`;
 
   el.setAttribute(
     "aria-label",
@@ -349,12 +365,15 @@ function createWeatherCard(city, index) {
 
   if (isManageMode) {
     const btn = el.querySelector(".delete-city-btn");
-    btn.hidden = false;
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      removeCity(index);
-    });
+    if (btn) {
+      btn.hidden = false;
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        removeCity(index);
+      });
+    }
   }
+
   return el;
 }
 
@@ -374,7 +393,12 @@ function toggleManageMode() {
 }
 
 export function addCity(cityData) {
-  if (!cityData || !cityData.name || !cityData.lat || !cityData.lon) {
+  if (
+    !cityData ||
+    !cityData.name ||
+    cityData.lat == null ||
+    cityData.lon == null
+  ) {
     showErrorModal("Invalid city data");
     return false;
   }
@@ -387,7 +411,7 @@ export function addCity(cityData) {
     return false;
   }
 
-  const validation = validateCoordinates(cityData.lat, cityData.lon);
+  const validation = validateCoordinates(lat, lon);
   if (!validation.valid) {
     showErrorModal(validation.error);
     return false;
@@ -399,8 +423,12 @@ export function addCity(cityData) {
   }
 
   const isDuplicate = savedCities.some((city) => {
-    const latMatch = Math.abs(city.lat - cityData.lat) < 0.01;
-    const lonMatch = Math.abs(city.lon - cityData.lon) < 0.01;
+    const existingLat = Number(city.lat);
+    const existingLon = Number(city.lon);
+    const newLat = Number(lat);
+    const newLon = Number(lon);
+    const latMatch = Math.abs(existingLat - newLat) < 0.01;
+    const lonMatch = Math.abs(existingLon - newLon) < 0.01;
     return latMatch && lonMatch;
   });
 
@@ -412,8 +440,8 @@ export function addCity(cityData) {
   const newCity = {
     name: cityData.name,
     country: cityData.country,
-    lat: cityData.lat,
-    lon: cityData.lon,
+    lat,
+    lon,
     temp: cityData.temp,
     description: cityData.description,
     humidity: cityData.humidity,
