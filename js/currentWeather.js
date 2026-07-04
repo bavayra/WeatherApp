@@ -3,7 +3,8 @@ import { showErrorModal } from "./modal.js";
 import {
   renderHourlyForecast,
   renderDailyForecast,
-  weatherData,
+  getWeatherData,
+  setWeatherData,
 } from "./forecast.js";
 import { formatTempShort, toggleUnit } from "./tempConverter.js";
 import { getDayOrNight } from "./weatherIcons.js";
@@ -84,14 +85,12 @@ async function loadForecastForLocation(lat, lon) {
     const data = await getForecast(lat, lon);
 
     if (!data || !data.list || !Array.isArray(data.list)) {
-      weatherData.hourly = [];
-      weatherData.daily = [];
-      renderHourlyForecast();
-      renderDailyForecast();
+      setWeatherData([], []);
+      document.dispatchEvent(new CustomEvent("weatherDataUpdated"));
       return;
     }
 
-    weatherData.hourly = data.list.slice(0, 8).map((item) => {
+    const hourly = data.list.slice(0, 8).map((item) => {
       const date = new Date(item.dt * 1000);
       const hours = date.getHours();
       const period = hours >= 12 ? "PM" : "AM";
@@ -99,10 +98,10 @@ async function loadForecastForLocation(lat, lon) {
       const time = String(formattedHours) + period;
 
       return {
-        time: time,
-        temp: Math.round(item.main.temp),
-        icon: item.weather[0].icon,
-        description: item.weather[0].description,
+        time,
+        temp: Math.round(item.main?.temp ?? 0),
+        icon: item.weather?.[0]?.icon ?? "01d",
+        description: item.weather?.[0]?.description ?? "",
       };
     });
 
@@ -110,16 +109,20 @@ async function loadForecastForLocation(lat, lon) {
 
     for (const item of data.list) {
       const date = new Date(item.dt * 1000);
-      const dayKey = toLocalDayKey(date);
+      const dayKey =
+        date.getFullYear() +
+        "-" +
+        String(date.getMonth() + 1).padStart(2, "0") +
+        "-" +
+        String(date.getDate()).padStart(2, "0");
 
       if (!groupedByDay.has(dayKey)) {
         groupedByDay.set(dayKey, []);
       }
-
       groupedByDay.get(dayKey).push(item);
     }
 
-    weatherData.daily = Array.from(groupedByDay.values())
+    const daily = Array.from(groupedByDay.values())
       .slice(0, 7)
       .map((items) => {
         if (!items.length) return null;
@@ -131,29 +134,31 @@ async function loadForecastForLocation(lat, lon) {
         });
 
         const avgTemp =
-          items.reduce((sum, point) => sum + point.main.temp, 0) / items.length;
+          items.reduce((sum, point) => sum + (point.main?.temp ?? 0), 0) /
+          items.length;
 
         return {
           day: dayName,
           temp: Math.round(avgTemp),
-          icon: representative.weather[0].icon,
-          description: representative.weather[0].description,
+          icon: representative.weather?.[0]?.icon ?? "01d",
+          description: representative.weather?.[0]?.description ?? "",
         };
       })
       .filter(Boolean);
 
+    setWeatherData(hourly, daily);
+
     if (import.meta.env.DEV)
       console.log("Processed forecast:", {
-        hourly: weatherData.hourly.length,
-        daily: weatherData.daily.length,
+        hourly: getWeatherData().hourly.length,
+        daily: getWeatherData().daily.length,
       });
 
-    renderHourlyForecast();
-    renderDailyForecast();
+    document.dispatchEvent(new CustomEvent("weatherDataUpdated"));
   } catch (error) {
     console.error("Failed to load forecast:", error);
-    weatherData.hourly = [];
-    weatherData.daily = [];
+    setWeatherData([], []);
+    document.dispatchEvent(new CustomEvent("weatherDataUpdated"));
   }
 }
 
